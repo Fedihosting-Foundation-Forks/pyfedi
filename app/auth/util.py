@@ -163,7 +163,7 @@ def is_invalid_email_or_username(form, disallowed_usernames):
 
 
 def contains_banned_username_patterns(username):
-    if "88" in username:
+    if "88" in username and False:
         flash(_("Sorry, this username pattern is not allowed."), "error")
         return True
     return False

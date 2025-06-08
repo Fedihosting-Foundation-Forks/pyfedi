@@ -12,6 +12,10 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip3 install gunicorn
 
+# dd integration, should be before copying files to allow layer caching/reuse
+RUN --mount=type=cache,target=/root/.cache/pip \
+    pip3 install ddtrace
+
 COPY --chown=python:python . /app
 
 WORKDIR /app
@@ -23,3 +27,15 @@ RUN chmod u+x ./entrypoint_celery.sh
 
 USER python
 ENTRYPOINT ["./entrypoint.sh"]
+
+# keep dd integration customization below this to minimize conflicts if possible
+
+ARG DD_VERSION=dev
+ARG DD_GIT_REPOSITORY_URL=unknown
+ARG DD_GIT_COMMIT_SHA=unknown
+
+ENV DD_SERVICE piefed
+ENV DD_VERSION ${DD_VERSION}
+ENV DD_GIT_REPOSITORY_URL=${DD_GIT_REPOSITORY_URL}
+ENV DD_GIT_COMMIT_SHA=${DD_GIT_COMMIT_SHA}
+ENV DD_LOGS_INJECTION=true

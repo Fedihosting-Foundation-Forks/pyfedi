@@ -89,9 +89,13 @@ jobs:
           SERVER_NAME: localhost
           DATABASE_URL: postgresql+psycopg2://piefed:password@127.0.0.1/piefed
           SECRET_KEY: this-is-not-a-real-secret-at-all
+          PIEFED_DB_INIT_ADMIN_USERNAME: rimu # this is hardcoded in tests
+          PIEFED_DB_INIT_ADMIN_EMAIL: admin@localhost
+          PIEFED_DB_INIT_ADMIN_PASSWORD: thisIsN0tSecure.
         run: |
           set -x
           flask db upgrade
+          flask init-db
 
       - name: Test with pytest
         env:

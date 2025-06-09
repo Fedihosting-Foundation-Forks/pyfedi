@@ -178,9 +178,12 @@ def register(app):
             # Admin user
             print(
                 'The admin user created here should be reserved for admin tasks and not used as a primary daily identity (unless this instance will only be for personal use).')
-            user_name = input("Admin user name (ideally not 'admin'): ")
-            email = input("Admin email address: ")
-            password = input("Admin password: ")
+            if (user_name := os.environ.get("PIEFED_DB_INIT_ADMIN_USERNAME")) is None:
+                user_name = input("Admin user name (ideally not 'admin'): ")
+            if (email := os.environ.get("PIEFED_DB_INIT_ADMIN_EMAIL")) is None:
+                email = input("Admin email address: ")
+            if (password := os.environ.get("PIEFED_DB_INIT_ADMIN_PASSWORD")) is None:
+                password = input("Admin password: ")
             while '@' in user_name or ' ' in user_name:
                 print('User name cannot be an email address or have spaces.')
                 user_name = input("Admin user name (ideally not 'admin'): ")

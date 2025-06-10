@@ -15,6 +15,7 @@ User-Agent: *
   Disallow: /comment/
   Disallow: /honey
   Disallow: /honey/
+  Disallow: /c/*@
   Content-Signal: ai-train=no, search=yes, ai-input=no
 
 User-agent: Applebot

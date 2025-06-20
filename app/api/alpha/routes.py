@@ -28,6 +28,12 @@ from app.constants import *
 from app.utils import orjson_response
 from app.api.alpha.schema import *
 
+from app.api.alpha.utils.fhf import (
+    fhf_list_registration_applications,
+    fhf_approve_registration_application,
+    fhf_ban_user,
+)
+
 
 def enable_api():
     return True if current_app.debug or current_app.config['ENABLE_ALPHA_API'] == 'true' else False
@@ -1025,3 +1031,19 @@ def alpha_admin():
 @bp.route('/api/alpha/custom_emoji/delete', methods=['POST'])  # important)
 def alpha_emoji():
     return jsonify({"error": "not_yet_implemented"}), 400
+
+
+# FHF admin API
+@bp.route("/api/fhf/admin/registration_application/list", methods=["GET"])
+def fhf_api_list_registration_applications():
+    return fhf_list_registration_applications()
+
+
+@bp.route("/api/fhf/admin/registration_application/approve", methods=["PUT"])
+def fhf_api_approve_registration_application():
+    return fhf_approve_registration_application()
+
+
+@bp.route("/api/fhf/user/ban", methods=["POST"])
+def fhf_api_ban_user():
+    return fhf_ban_user()

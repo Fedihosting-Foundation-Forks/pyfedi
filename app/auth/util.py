@@ -142,7 +142,7 @@ def process_registration_form(form):
 
     if is_country_blocked(country):
         return render_template("generic_message.html", title=_("Application declined"),
-                               message=_("Sorry, we are not accepting registrations from your country."))
+                               message=_("Sorry, we are not accepting registrations from your IP."))
 
     return register_new_user(form, ip, country)
 

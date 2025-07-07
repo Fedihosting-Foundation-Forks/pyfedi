@@ -2122,7 +2122,7 @@ def move_file_to_s3(file_id, s3):
                     'app/static/media'):
                 if os.path.isfile(file.thumbnail_path):
                     content_type = guess_mime_type(file.thumbnail_path)
-                    new_path = file.thumbnail_path.replace('app/static/media/', f"")
+                    new_path = file.thumbnail_path.replace('app/static/media/', "")
                     s3.upload_file(file.thumbnail_path, current_app.config['S3_BUCKET'], new_path, ExtraArgs={'ContentType': content_type})
                     os.unlink(file.thumbnail_path)
                     file.thumbnail_path = f"https://{current_app.config['S3_PUBLIC_URL']}/{new_path}"
@@ -2132,7 +2132,7 @@ def move_file_to_s3(file_id, s3):
                     'app/static/media'):
                 if os.path.isfile(file.file_path):
                     content_type = guess_mime_type(file.file_path)
-                    new_path = file.file_path.replace('app/static/media/', f"")
+                    new_path = file.file_path.replace('app/static/media/', "")
                     s3.upload_file(file.file_path, current_app.config['S3_BUCKET'], new_path, ExtraArgs={'ContentType': content_type})
                     os.unlink(file.file_path)
                     file.file_path = f"https://{current_app.config['S3_PUBLIC_URL']}/{new_path}"
@@ -2142,7 +2142,7 @@ def move_file_to_s3(file_id, s3):
                     'app/static/media'):
                 if os.path.isfile(file.source_url):
                     content_type = guess_mime_type(file.source_url)
-                    new_path = file.source_url.replace('app/static/media/', f"")
+                    new_path = file.source_url.replace('app/static/media/', "")
                     s3.upload_file(file.source_url, current_app.config['S3_BUCKET'], new_path, ExtraArgs={'ContentType': content_type})
                     os.unlink(file.source_url)
                     file.source_url = f"https://{current_app.config['S3_PUBLIC_URL']}/{new_path}"
@@ -2349,3 +2349,38 @@ def on_unread_notifications_set(target, value, oldvalue, initiator):
 def publish_sse_event(key, value):
     r = get_redis_connection()
     r.publish(key, value)
+
+def safe_order_by(sort_param: str, model, allowed_fields: set):
+    """
+    Returns a SQLAlchemy order_by clause for a given model and sort parameter. Guards against SQL injection.
+
+    Parameters:
+        sort_param (str): The user-supplied sort string (e.g., 'name desc').
+        model (db.Model): The SQLAlchemy model class to sort on.
+        allowed_fields (set): A set of allowed field names (str) from the model.
+
+    Returns:
+        A SQLAlchemy order_by clause (asc/desc column expression).
+
+    Example usage:
+        sort_param = request.args.get('sort_by', 'post_reply_count desc')
+        allowed_fields = {'name', 'created_at', 'post_reply_count'}
+
+        communities = communities.order_by(
+            safe_order_by(sort_param, Community, allowed_fields)
+        )
+    """
+    parts = sort_param.strip().split()
+    field_name = parts[0]
+    direction = parts[1].lower() if len(parts) > 1 else 'asc'
+
+    if field_name in allowed_fields and hasattr(model, field_name):
+        column = getattr(model, field_name)
+        if direction == 'desc':
+            return desc(column)
+        else:
+            return asc(column)
+    else:
+        # Return a default safe order if invalid input
+        default_field = next(iter(allowed_fields))
+        return desc(getattr(model, default_field))

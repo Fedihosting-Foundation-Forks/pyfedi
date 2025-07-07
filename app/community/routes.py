@@ -2089,6 +2089,6 @@ def retrieve_title_of_url(url):
             return ""
         else:
             return ""
-    except Exception as e:
+    except Exception:
         return ""
 

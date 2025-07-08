@@ -16,9 +16,14 @@ RUN --mount=type=cache,target=/root/.cache/pip \
 RUN --mount=type=cache,target=/root/.cache/pip \
     pip3 install ddtrace
 
+RUN python -c "import compileall; compileall.compile_path()"
+
 COPY --chown=python:python . /app
 
 WORKDIR /app
+
+USER python
+RUN python -m compileall /app
 
 RUN pybabel compile -d app/translations || true
 
@@ -26,7 +31,6 @@ RUN chmod u+x ./entrypoint.sh
 RUN chmod u+x ./entrypoint_celery.sh
 RUN chmod u+x ./entrypoint_async.sh
 
-USER python
 ENTRYPOINT ["./entrypoint.sh"]
 
 # keep dd integration customization below this to minimize conflicts if possible

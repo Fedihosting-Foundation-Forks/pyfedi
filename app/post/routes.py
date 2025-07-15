@@ -41,7 +41,7 @@ from app.utils import render_template, markdown_to_html, validation_required, \
     permission_required, blocked_users, get_request, is_local_image_url, is_video_url, can_upvote, can_downvote, \
     referrer, can_create_post_reply, communities_banned_from, \
     block_bots, flair_for_form, login_required_if_private_instance, retrieve_image_hash, posts_with_blocked_images, \
-    possible_communities, user_notes, login_required
+    possible_communities, user_notes, login_required, approval_required
 from app.post.util import post_type_to_form_url_type
 from app.shared.reply import make_reply, edit_reply, bookmark_reply, remove_bookmark_reply, subscribe_reply, \
     delete_reply, mod_remove_reply, vote_for_reply
@@ -368,22 +368,25 @@ def post_oembed(post_id):
 
 
 @bp.route('/post/<int:post_id>/<vote_direction>', methods=['GET', 'POST'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def post_vote(post_id: int, vote_direction):
     return vote_for_post(post_id, vote_direction, SRC_WEB)
 
 
 @bp.route('/comment/<int:comment_id>/<vote_direction>', methods=['POST'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def comment_vote(comment_id, vote_direction):
     return vote_for_reply(comment_id, vote_direction, SRC_WEB)
 
 
 @bp.route('/poll/<int:post_id>/vote', methods=['POST'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def poll_vote(post_id):
     poll_data = Poll.query.get_or_404(post_id)
     if poll_data.mode == 'single':

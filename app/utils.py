@@ -11,7 +11,6 @@ from json import JSONDecodeError
 from time import sleep
 from typing import List, Literal, Union
 
-from jinja2 import BytecodeCache
 
 import app
 import redis
@@ -25,8 +24,6 @@ import warnings
 import jwt
 import base64
 
-from app.constants import DOWNVOTE_ACCEPT_ALL, DOWNVOTE_ACCEPT_TRUSTED, DOWNVOTE_ACCEPT_INSTANCE, \
-    DOWNVOTE_ACCEPT_MEMBERS
 
 warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 import os
@@ -751,6 +748,17 @@ def validation_required(func):
             return func(*args, **kwargs)
         else:
             return redirect(url_for('auth.validation_required'))
+    return decorated_view
+
+
+def approval_required(func):
+    @wraps(func)
+    def decorated_view(*args, **kwargs):
+        if not (current_user.private_key is None and (g.site.registration_mode == 'RequireApplication' or g.site.registration_mode == 'Closed')):
+            return func(*args, **kwargs)
+        else:
+            return redirect(url_for('auth.please_wait'))
+
     return decorated_view
 
 

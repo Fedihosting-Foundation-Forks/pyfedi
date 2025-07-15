@@ -24,7 +24,7 @@ from app.utils import show_ban_message, piefed_markdown_to_lemmy_markdown, markd
     gibberish, get_task_session, instance_banned, menu_subscribed_feeds, referrer, community_membership, \
     paginate_post_ids, get_deduped_post_ids, get_request, post_ids_to_models, recently_upvoted_posts, \
     recently_downvoted_posts, joined_or_modding_communities, login_required_if_private_instance, \
-    communities_banned_from, reported_posts, user_notes, login_required
+    communities_banned_from, reported_posts, user_notes, login_required, approval_required
 from collections import namedtuple
 from slugify import slugify
 
@@ -749,8 +749,9 @@ def get_all_child_feed_ids(feed: Feed) -> List[int]:
 
 
 @bp.route('/f/<feed_name>/submit', methods=['GET', 'POST'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def feed_create_post(feed_name):
     feed = Feed.query.filter(Feed.machine_name == feed_name.strip().lower()).first()
     if not feed:
@@ -780,8 +781,9 @@ def feed_create_post(feed_name):
 
 
 @bp.route('/feed/<actor>/subscribe', methods=['GET'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def subscribe(actor):
     do_feed_subscribe(actor, current_user.id)
     referrer = request.headers.get('Referer', None)

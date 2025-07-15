@@ -46,7 +46,7 @@ from app.utils import get_setting, render_template, allowlist_html, markdown_to_
     blocked_users, languages_for_form, menu_topics, add_to_modlog, \
     blocked_communities, remove_tracking_from_link, piefed_markdown_to_lemmy_markdown, \
     instance_software, domain_from_email, referrer, flair_for_form, find_flair_id, login_required_if_private_instance, \
-    possible_communities, reported_posts, user_notes, login_required
+    possible_communities, reported_posts, user_notes, login_required, approval_required
 from app.shared.post import make_post, sticky_post
 from app.shared.tasks import task_selector
 from feedgen.feed import FeedGenerator
@@ -54,6 +54,7 @@ from datetime import timezone, timedelta
 
 
 @bp.route('/add_local', methods=['GET', 'POST'])
+@approval_required
 @validation_required
 @login_required
 def add_local():
@@ -122,6 +123,7 @@ def add_local():
 
 
 @bp.route('/add_remote', methods=['GET', 'POST'])
+@approval_required
 @validation_required
 @login_required
 def add_remote():
@@ -543,8 +545,9 @@ def show_community_rss(actor):
 
 
 @bp.route('/<actor>/subscribe', methods=['GET', 'POST'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def subscribe(actor):
     # POST is used by htmx, GET when JS is disabled
     do_subscribe(actor, current_user.id, admin_preload=request.method == 'POST')
@@ -703,8 +706,9 @@ def unsubscribe(actor):
 
 
 @bp.route('/<actor>/join_then_add', methods=['GET', 'POST'])
-@login_required
+@approval_required
 @validation_required
+@login_required
 def join_then_add(actor):
     community = actor_to_community(actor)
     if not current_user.subscribed(community.id):
@@ -737,6 +741,7 @@ def join_then_add(actor):
 
 @bp.route('/<actor>/submit/<string:type>', methods=['GET', 'POST'])
 @bp.route('/<actor>/submit', defaults={'type': 'discussion'}, methods=['GET', 'POST'])
+@approval_required
 @validation_required
 @login_required
 def add_post(actor, type):

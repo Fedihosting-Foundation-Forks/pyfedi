@@ -3365,7 +3365,11 @@ def find_community(request_json):
     if rj['type'] == 'Video':
         if 'attributedTo' in rj and isinstance(rj['attributedTo'], list):
             for a in rj['attributedTo']:
-                if a['type'] == 'Group':
+                if isinstance(a, str):
+                    potential_community = Community.query.filter_by(ap_profile_id=a.lower()).first()
+                    if potential_community:
+                        return potential_community
+                elif a['type'] == 'Group':
                     potential_community = Community.query.filter_by(ap_profile_id=a['id'].lower()).first()
                     if potential_community:
                         return potential_community

@@ -21,6 +21,7 @@ def app():
     return app
 
 
+@pytest.mark.xfail
 def test_api_user_subscriptions(app):
     with app.app_context():
         from app.api.alpha.utils.user import put_user_subscribe

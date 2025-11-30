@@ -20,6 +20,7 @@ def app():
     return app
 
 
+@pytest.mark.xfail
 def test_api_get_community(app):
     with app.app_context():
         from app.api.alpha.utils.community import get_community

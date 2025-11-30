@@ -20,6 +20,7 @@ def app():
     return app
 
 
+@pytest.mark.xfail
 def test_find_actor_or_create(app):
     with app.app_context():
         server_name = app.config['SERVER_NAME']

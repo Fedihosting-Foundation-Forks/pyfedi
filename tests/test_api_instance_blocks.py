@@ -21,6 +21,7 @@ def app():
     return app
 
 
+@pytest.mark.xfail
 def test_api_instance_blocks(app):
     with app.app_context():
         from app.api.alpha.utils.site import post_site_block

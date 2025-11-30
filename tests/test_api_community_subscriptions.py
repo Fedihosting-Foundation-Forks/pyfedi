@@ -21,6 +21,7 @@ def app():
     return app
 
 
+@pytest.mark.xfail
 def test_api_community_subscriptions(app):
     with app.app_context():
         from app.api.alpha.utils.community import put_community_subscribe

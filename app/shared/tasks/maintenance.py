@@ -153,6 +153,10 @@ def remove_old_community_content():
 
 def remove_old_bot_content():
     """Remove old posts by bots with no replies"""
+
+    # disabled for piefed.world
+    return
+
     session = get_task_session()
     try:
 

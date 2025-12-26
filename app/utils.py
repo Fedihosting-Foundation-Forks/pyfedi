@@ -314,7 +314,7 @@ FEED_PATTERN = re.compile(r"(?<![\/])~([a-zA-Z0-9_.-]*)@([a-zA-Z0-9_.-]*)\b")
 
 
 # sanitise HTML using an allow list
-def allowlist_html(html: str, a_target='_blank') -> str:
+def allowlist_html(html: str, a_target='_blank', test_env=False) -> str:
     # RUN THE TESTS in tests/test_allowlist_html.py whenever you alter this function, it's fragile and bugs are hard to spot.
     if html is None or html == '':
         return ''
@@ -439,8 +439,6 @@ def allowlist_html(html: str, a_target='_blank') -> str:
                 if not tag.attrs.get('href', "").startswith("#"):
                     tag.attrs['rel'] = 'nofollow ugc'
                     tag.attrs['target'] = a_target
-                    if furl(tag['href']).host in instance_domains:
-                        tag['href'] = rewrite_href(tag['href'])
                 else:
                     # This is a same-page anchor - a footnote, give unique suffix for href
                     tag.attrs['href'] = tag.attrs.get('href', '') + '-' + fn_string

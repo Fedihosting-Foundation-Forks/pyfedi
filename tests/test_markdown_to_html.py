@@ -8,13 +8,13 @@ class TestMarkdownToHtml(unittest.TestCase):
     def test_basic_markdown(self):
         """Test basic markdown formatting"""
         markdown = "**Bold** and *italic* text"
-        result = markdown_to_html(markdown)
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
         self.assertEqual(result, "<p><strong>Bold</strong> and <em>italic</em> text</p>\n")
 
     def test_paragraphs(self):
         """Test paragraph formatting"""
         markdown = "First paragraph\n\nSecond paragraph"
-        result = markdown_to_html(markdown)
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
         self.assertEqual(result, "<p>First paragraph</p>\n<p>Second paragraph</p>\n")
 
     def test_links(self):

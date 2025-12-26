@@ -67,16 +67,6 @@ def render_template(template_name: str, **context) -> Response:
     else:
         content = flask.render_template(template_name, **context)
 
-    # Add nonces to all script tags that don't have them (for CSP with strict-dynamic)
-    if hasattr(g, 'nonce') and g.nonce:
-        import re
-        # Find all <script tags with src= that don't have nonce=
-        content = re.sub(
-            r'<script\s+([^>]*?)src=(["\'][^"\']*["\'])(?![^>]*nonce=)',
-            rf'<script \1src=\2 nonce="{g.nonce}"',
-            content
-        )
-
     # Browser caching using ETags and Cache-Control
     resp = make_response(content)
     if current_user.is_anonymous:
@@ -329,83 +319,22 @@ def allowlist_html(html: str, a_target='_blank') -> str:
     if html is None or html == '':
         return ''
 
-    # Pre-escape angle brackets that aren't valid HTML tags before BeautifulSoup parsing
-    # We need to distinguish between:
-    # 1. Valid HTML tags (allowed or disallowed) - let BeautifulSoup handle them
-    # 2. Invalid/non-HTML content in angle brackets - escape them
-    def escape_non_html_brackets(match):
-        tag_content = match.group(1).strip().lower()
-        # Handle closing tags by removing the leading slash before extracting tag name
-        if tag_content.startswith('/'):
-            tag_name = tag_content[1:].split()[0]
-        else:
-            tag_name = tag_content.split()[0]
-        
-        # Check if this looks like a valid HTML tag (allowed or not)
-        # Valid HTML tags have specific patterns
-        html_tags = ['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big',
-                     'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col',
-                     'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt',
-                     'em', 'embed', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'frame', 'frameset',
-                     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input',
-                     'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'meta', 'meter', 'nav',
-                     'noframes', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture',
-                     'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small',
-                     'source', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'svg', 'table', 'tbody',
-                     'tg-spoiler', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track',
-                     'tt', 'u', 'ul', 'var', 'video', 'wbr']
-        
-        if tag_name in html_tags:
-            # This is a valid HTML tag - let BeautifulSoup handle it (it will remove if not allowed)
-            return match.group(0)
-        else:
-            # This doesn't look like a valid HTML tag - escape it
-            return f"&lt;{match.group(1)}&gt;"
-    
-    html = re.sub(r'<([^<>]+?)>', escape_non_html_brackets, html)
-
-    # Parse the HTML using BeautifulSoup
-    soup = BeautifulSoup(html, 'html.parser')
-
-    # Filter tags, leaving only safe ones
-    for tag in soup.find_all():
-        # If the tag is not in the allowed_tags list, remove it and its contents
-        if tag.name not in allowed_tags:
-            tag.extract()
-        else:
-            # Filter and sanitize attributes
-            allowed_attrs = ['href', 'src', 'alt', 'class']
-            # Add image-specific attributes for enhanced-images markdown extra
-            if tag.name == 'img':
-                allowed_attrs.extend(['width', 'height', 'align', 'title', 'data-enhanced-img'])
-
-            for attr in list(tag.attrs):
-                if attr not in allowed_attrs:
-                    del tag[attr]
-            # Remove some mastodon guff - spans with class "invisible"
-            if tag.name == 'span' and 'class' in tag.attrs and 'invisible' in tag.attrs['class']:
-                tag.extract()
-            # Add nofollow and target=_blank to anchors
-            if tag.name == 'a':
-                tag.attrs['rel'] = 'nofollow ugc'
-                tag.attrs['target'] = a_target
-            # Add loading=lazy to images
-            if tag.name == 'img':
-                tag.attrs['loading'] = 'lazy'
-            if tag.name == 'table':
-                tag.attrs['class'] = 'table'
-
-    clean_html = str(soup)
+    # Produce a short, random string that is used for footnotes
+    if test_env:
+        fn_string = test_env.get('fn_string', 'fn-test')
+    else:
+        fn_string = gibberish(6)
 
     # substitute out the <code> snippets so that they don't inadvertently get formatted
-    code_snippets, clean_html = stash_code_html(clean_html)
+    code_snippets, clean_html = stash_code_html(html)
 
     # avoid returning empty anchors
     re_empty_anchor = re.compile(r'<a href="(.*?)" rel="nofollow ugc" target="_blank"><\/a>')
     clean_html = re_empty_anchor.sub(r'<a href="\1" rel="nofollow ugc" target="_blank">\1</a>', clean_html)
 
     # replace lemmy's spoiler markdown left in HTML
-    clean_html = clean_html.replace('<h2>:::</h2>', '<p>:::</p>')   # this is needed for lemmy.world/c/hardware's sidebar, for some reason.
+    clean_html = clean_html.replace('<h2>:::</h2>',
+                                    '<p>:::</p>')  # this is needed for lemmy.world/c/hardware's sidebar, for some reason.
     re_spoiler = re.compile(r':{3}\s*?spoiler\s+?(\S.+?)(?:\n|</p>)(.+?)(?:\n|<p>):{3}', re.S)
     clean_html = re_spoiler.sub(r'<details><summary>\1</summary><p>\2</p></details>', clean_html)
 
@@ -449,7 +378,84 @@ def allowlist_html(html: str, a_target='_blank') -> str:
     # bring back the <code> snippets
     clean_html = pop_code(code_snippets, clean_html)
 
-    return clean_html
+    # Pre-escape angle brackets that aren't valid HTML tags before BeautifulSoup parsing
+    # We need to distinguish between:
+    # 1. Valid HTML tags (allowed or disallowed) - let BeautifulSoup handle them
+    # 2. Invalid/non-HTML content in angle brackets - escape them
+    def escape_non_html_brackets(match):
+        tag_content = match.group(1).strip().lower()
+        # Handle closing tags by removing the leading slash before extracting tag name
+        if tag_content.startswith('/'):
+            tag_name = tag_content[1:].split()[0]
+        else:
+            tag_name = tag_content.split()[0]
+        
+        # Check if this looks like a valid HTML tag (allowed or not)
+        # Valid HTML tags have specific patterns
+        html_tags = ['a', 'abbr', 'acronym', 'address', 'area', 'article', 'aside', 'audio', 'b', 'bdi', 'bdo', 'big',
+                     'blockquote', 'body', 'br', 'button', 'canvas', 'caption', 'center', 'cite', 'code', 'col',
+                     'colgroup', 'data', 'datalist', 'dd', 'del', 'details', 'dfn', 'dialog', 'dir', 'div', 'dl', 'dt',
+                     'em', 'embed', 'fieldset', 'figcaption', 'figure', 'font', 'footer', 'form', 'frame', 'frameset',
+                     'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'head', 'header', 'hr', 'html', 'i', 'iframe', 'img', 'input',
+                     'ins', 'kbd', 'label', 'legend', 'li', 'link', 'main', 'map', 'mark', 'meta', 'meter', 'nav',
+                     'noframes', 'noscript', 'object', 'ol', 'optgroup', 'option', 'output', 'p', 'param', 'picture',
+                     'pre', 'progress', 'q', 'rp', 'rt', 'ruby', 's', 'samp', 'script', 'section', 'select', 'small',
+                     'source', 'span', 'strike', 'strong', 'style', 'sub', 'summary', 'sup', 'svg', 'table', 'tbody',
+                     'tg-spoiler', 'td', 'template', 'textarea', 'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track',
+                     'tt', 'u', 'ul', 'var', 'video', 'wbr']
+        
+        if tag_name in html_tags:
+            # This is a valid HTML tag - let BeautifulSoup handle it (it will remove if not allowed)
+            return match.group(0)
+        else:
+            # This doesn't look like a valid HTML tag - escape it
+            return f"&lt;{match.group(1)}&gt;"
+    
+    html = re.sub(r'<([^<>]+?)>', escape_non_html_brackets, clean_html)
+
+    # Parse the HTML using BeautifulSoup
+    soup = BeautifulSoup(html, 'html.parser')
+
+    # Filter tags, leaving only safe ones
+    for tag in soup.find_all():
+        # If the tag is not in the allowed_tags list, remove it and its contents
+        if tag.name not in allowed_tags:
+            tag.extract()
+        else:
+            # Filter and sanitize attributes
+            allowed_attrs = ['href', 'src', 'alt', 'class', 'id']
+            # Add image-specific attributes for enhanced-images markdown extra
+            if tag.name == 'img':
+                allowed_attrs.extend(['width', 'height', 'align', 'title', 'data-enhanced-img'])
+
+            for attr in list(tag.attrs):
+                if attr not in allowed_attrs:
+                    del tag[attr]
+            # Remove some mastodon guff - spans with class "invisible"
+            if tag.name == 'span' and 'class' in tag.attrs and 'invisible' in tag.attrs['class']:
+                tag.extract()
+            # Add nofollow and target=_blank to anchors
+            if tag.name == 'a':
+                if not tag.attrs.get('href', "").startswith("#"):
+                    tag.attrs['rel'] = 'nofollow ugc'
+                    tag.attrs['target'] = a_target
+                    if furl(tag['href']).host in instance_domains:
+                        tag['href'] = rewrite_href(tag['href'])
+                else:
+                    # This is a same-page anchor - a footnote, give unique suffix for href
+                    tag.attrs['href'] = tag.attrs.get('href', '') + '-' + fn_string
+            # Add unique suffix for footnote id's
+            if 'class' in tag.attrs and 'footnote-ref' in tag.attrs.get('class'):
+                tag.attrs['id'] = tag.attrs.get('id', '') + '-' + fn_string
+            if tag.name == 'li' and tag.attrs.get('id', '').startswith('fn-'):
+                tag.attrs['id'] = tag.attrs.get('id', '') + '-' + fn_string
+            # Add loading=lazy to images
+            if tag.name == 'img':
+                tag.attrs['loading'] = 'lazy'
+            if tag.name == 'table':
+                tag.attrs['class'] = 'table'
+
+    return str(soup)
 
 
 def escape_non_html_angle_brackets(text: str) -> str:
@@ -550,7 +556,7 @@ def handle_lemmy_autocomplete(text: str) -> str:
 
 # use this for Markdown irrespective of origin, as it can deal with both soft break newlines ('\n' used by PieFed) and hard break newlines ('  \n' or ' \\n')
 # ' \\n' will create <br /><br /> instead of just <br />, but hopefully that's acceptable.
-def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_target="_blank") -> str:
+def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_target="_blank", test_env=False) -> str:
     if markdown_text:
 
         # Escape <...> if it’s not a real HTML tag
@@ -563,11 +569,17 @@ def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_targ
         markdown_text = markdown_text.replace('þ', 'th')
 
         try:
-            md = markdown2.Markdown(extras={'middle-word-em': False, 'tables': True, 'fenced-code-blocks': None, 'strike': True,
-                                            'tg-spoiler': True, 'link-patterns': [(LINK_PATTERN, r'\1')],
-                                            'breaks': {'on_newline': True, 'on_backslash': True},
-                                            'tag-friendly': True, 'smarty-pants': True,
-                                            'enhanced-images': True})
+            md = markdown2.Markdown(extras={'middle-word-em': False,
+                                            'tables': True,
+                                            'fenced-code-blocks': None,
+                                            'strike': True,
+                                            'tg-spoiler': True,
+                                            'link-patterns': [(LINK_PATTERN, r'\1')],
+                                            'breaks': {'on_backslash': True},
+                                            'tag-friendly': True,
+                                            'smarty-pants': True,
+                                            'enhanced-images': True,
+                                            'footnotes': True})
             raw_html = md.convert(markdown_text)
             # Apply enhanced image attributes after markdown processing
             raw_html = apply_enhanced_image_attributes(raw_html, md)
@@ -575,11 +587,16 @@ def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_targ
             # weird markdown, like https://mander.xyz/u/tty1 and https://feddit.uk/comment/16076443,
             # causes "markdown2.Markdown._color_with_pygments() argument after ** must be a mapping, not bool" error, so try again without fenced-code-blocks extra
             try:
-                md = markdown2.Markdown(extras={'middle-word-em': False, 'tables': True, 'strike': True,
-                                                'tg-spoiler': True, 'link-patterns': [(LINK_PATTERN, r'\1')],
-                                                'breaks': {'on_newline': True, 'on_backslash': True},
-                                                'tag-friendly': True, 'smarty-pants': True,
-                                                'enhanced-images': True})
+                md = markdown2.Markdown(extras={'middle-word-em': False,
+                                                'tables': True,
+                                                'strike': True,
+                                                'tg-spoiler': True,
+                                                'link-patterns': [(LINK_PATTERN, r'\1')],
+                                                'breaks': {'on_backslash': True},
+                                                'tag-friendly': True,
+                                                'smarty-pants': True,
+                                                'enhanced-images': True,
+                                                'footnotes': True})
                 raw_html = md.convert(markdown_text)
                 # Apply enhanced image attributes after markdown processing
                 raw_html = apply_enhanced_image_attributes(raw_html, md)

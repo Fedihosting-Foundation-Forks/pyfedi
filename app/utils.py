@@ -378,7 +378,8 @@ def allowlist_html(html: str, a_target='_blank') -> str:
     clean_html = str(soup)
 
     # substitute out the <code> snippets so that they don't inadvertently get formatted
-    code_snippets, clean_html = stash_code_html(clean_html)
+    placeholder = gibberish(10)
+    code_snippets, clean_html = stash_code_html(clean_html, placeholder)
 
     # avoid returning empty anchors
     re_empty_anchor = re.compile(r'<a href="(.*?)" rel="nofollow ugc" target="_blank"><\/a>')
@@ -427,7 +428,7 @@ def allowlist_html(html: str, a_target='_blank') -> str:
     clean_html = re_ruby.sub(r'<ruby>\1<rp>(</rp><rt>\2</rt><rp>)</rp></ruby>', clean_html)
 
     # bring back the <code> snippets
-    clean_html = pop_code(code_snippets, clean_html)
+    clean_html = pop_code(code_snippets, clean_html, placeholder)
 
     return clean_html
 
@@ -435,7 +436,8 @@ def allowlist_html(html: str, a_target='_blank') -> str:
 def escape_non_html_angle_brackets(text: str) -> str:
     
     # Step 1: Extract inline and block code, replacing with placeholders
-    code_snippets, text = stash_code_md(text)
+    placeholder = gibberish(10)
+    code_snippets, text = stash_code_md(text, placeholder)
 
     # Step 2: Escape <...> unless they look like valid HTML tags
     def escape_tag(match):
@@ -453,7 +455,7 @@ def escape_non_html_angle_brackets(text: str) -> str:
     text = re.sub(r'<([^<>]+?)>', escape_tag, text)
 
     # Step 3: Restore code blocks
-    text = pop_code(code_snippets=code_snippets, text=text)
+    text = pop_code(code_snippets=code_snippets, text=text, placeholder=placeholder)
 
     return text
 
@@ -464,7 +466,8 @@ def handle_double_bolds(text: str) -> str:
     """
 
     # Step 1: Extract inline and block code, replacing with placeholders
-    code_snippets, text = stash_code_md(text)
+    placeholder = gibberish(10)
+    code_snippets, text = stash_code_md(text, placeholder)
 
     # Step 2: Wrap **bold** sections with <strong></strong>
     # Regex is slightly modified from markdown2 source code
@@ -472,7 +475,7 @@ def handle_double_bolds(text: str) -> str:
     text = re_bold.sub(r"<strong>\2</strong>", text)
 
     # Step 3: Restore code blocks
-    text = pop_code(code_snippets=code_snippets, text=text)
+    text = pop_code(code_snippets=code_snippets, text=text, placeholder=placeholder)
 
     return text
 
@@ -624,7 +627,8 @@ def community_link_to_href(link: str, server_name_override: str | None = None) -
         server_name = current_app.config['SERVER_NAME']
 
     # Stash the <code> portions so they are not formatted
-    code_snippets, link = stash_code_html(link)
+    placeholder = gibberish(10)
+    code_snippets, link = stash_code_html(link, placeholder)
 
     # Stash the existing links so they are not formatted
     link_snippets, link = stash_link_html(link)
@@ -637,7 +641,7 @@ def community_link_to_href(link: str, server_name_override: str | None = None) -
     link = pop_link(link_snippets=link_snippets, text=link)
 
     # Bring back the <code> portions
-    link = pop_code(code_snippets=code_snippets, text=link)
+    link = pop_code(code_snippets=code_snippets, text=link, placeholder=placeholder)
 
     return link
 
@@ -649,7 +653,8 @@ def feed_link_to_href(link: str, server_name_override: str | None = None) -> str
         server_name = current_app.config['SERVER_NAME']
 
     # Stash the <code> portions so they are not formatted
-    code_snippets, link = stash_code_html(link)
+    placeholder = gibberish(10)
+    code_snippets, link = stash_code_html(link, placeholder)
 
     # Stash the existing links so they are not formatted
     link_snippets, link = stash_link_html(link)
@@ -662,7 +667,7 @@ def feed_link_to_href(link: str, server_name_override: str | None = None) -> str
     link = pop_link(link_snippets=link_snippets, text=link)
 
     # Bring back the <code> portions
-    link = pop_code(code_snippets=code_snippets, text=link)
+    link = pop_code(code_snippets=code_snippets, text=link, placeholder=placeholder)
 
     return link
 
@@ -674,7 +679,8 @@ def person_link_to_href(link: str, server_name_override: str | None = None) -> s
         server_name = current_app.config['SERVER_NAME']
     
     # Stash the <code> portions so they are not formatted
-    code_snippets, link = stash_code_html(link)
+    placeholder = gibberish(10)
+    code_snippets, link = stash_code_html(link, placeholder)
 
     # Stash the existing links so they are not formatted
     link_snippets, link = stash_link_html(link)
@@ -689,29 +695,29 @@ def person_link_to_href(link: str, server_name_override: str | None = None) -> s
     link = pop_link(link_snippets=link_snippets, text=link)
     
     # Bring back the <code> portions
-    link = pop_code(code_snippets=code_snippets, text=link)
+    link = pop_code(code_snippets=code_snippets, text=link, placeholder=placeholder)
     
     return link
 
 
-def stash_code_html(text: str) -> tuple[list, str]:
+def stash_code_html(text: str, placeholder: str) -> tuple[list, str]:
     code_snippets = []
 
     def store_code(match):
         code_snippets.append(match.group(0))
-        return f"__CODE_PLACEHOLDER_{len(code_snippets) - 1}__"
+        return f"{placeholder}{len(code_snippets) - 1}__"
     
     text = re.sub(r'<code>[\s\S]*?<\/code>', store_code, text)
 
     return (code_snippets, text)
 
 
-def stash_code_md(text: str) -> tuple[list, str]:
+def stash_code_md(text: str, placeholder) -> tuple[list, str]:
     code_snippets = []
 
     def store_code(match):
         code_snippets.append(match.group(0))
-        return f"__CODE_PLACEHOLDER_{len(code_snippets) - 1}__"
+        return f"{placeholder}{len(code_snippets) - 1}__"
     
     # Fenced code blocks (```...```)
     text = re.sub(r'```[\s\S]*?```', store_code, text)
@@ -721,9 +727,9 @@ def stash_code_md(text: str) -> tuple[list, str]:
     return (code_snippets, text)
 
 
-def pop_code(code_snippets: list, text: str) -> str:
+def pop_code(code_snippets: list, text: str, placeholder) -> str:
     for i, code in enumerate(code_snippets):
-        text = text.replace(f"__CODE_PLACEHOLDER_{i}__", code)
+        text = text.replace(f"{placeholder}{i}__", code)
     
     return text
 

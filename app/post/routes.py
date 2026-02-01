@@ -640,10 +640,13 @@ def continue_discussion(post_id, comment_id):
         if current_user.is_anonymous or not (current_user.is_authenticated and (current_user.is_admin() or current_user.is_staff())):
             abort(404)
         else:
-            if post.deleted_by == post.user_id:
-                flash(_('This post has been deleted by the author and is only visible to staff and admins.'), 'warning')
+            if comment.deleted:
+                flash(_('This comment has been deleted and is only visible to staff and admins.'), 'warning')
             else:
-                flash(_('This post has been deleted and is only visible to staff and admins.'), 'warning')
+                if post.deleted_by == post.user_id:
+                    flash(_('This post has been deleted by the author and is only visible to staff and admins.'), 'warning')
+                else:
+                    flash(_('This post has been deleted and is only visible to staff and admins.'), 'warning')
 
     mods = post.community.moderators()
     is_moderator = current_user.is_authenticated and any(mod.user_id == current_user.id for mod in mods)

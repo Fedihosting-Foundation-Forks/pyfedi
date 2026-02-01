@@ -49,7 +49,7 @@ class ProfileForm(FlaskForm):
             raise ValidationError(_l('Matrix user ids start with @'))
 
     def validate_title(self, field):
-        if field.data.strip.lower() == '[deleted]':
+        if field.data.strip().lower() == '[deleted]':
             raise ValidationError(_l('Invalid display name'))
 
 

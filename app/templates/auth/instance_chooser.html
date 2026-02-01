@@ -556,7 +556,7 @@
         else if(countDefederated === 1)
             defederationQuality = 'Minimal';
         else if(countDefederated < 1)
-            defederationQuality = 'Negligent';
+            defederationQuality = 'None';
 
         const defederationElement = document.getElementById('modal-defederation')
         defederationElement.innerHTML = defederationQuality;

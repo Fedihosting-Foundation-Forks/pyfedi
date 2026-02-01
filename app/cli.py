@@ -99,6 +99,25 @@ def register(app):
                 print("Error: alembic_version table not found. Please run 'flask db upgrade' first.")
                 return
 
+            # check database encoding - must be UTF8 for proper Unicode support
+            try:
+                result = db.session.execute(text("SHOW SERVER_ENCODING")).fetchone()
+                encoding = result[0] if result else None
+
+                if encoding and encoding.upper() not in ('UTF8', 'UTF-8'):
+                    print(f"Error: Database encoding is '{encoding}' but must be UTF8 for proper Unicode support.")
+                    print("\nThis will cause errors when storing Unicode characters (emojis, special symbols, etc.).")
+                    print("\nTo fix this, create a new database with UTF8 encoding:")
+                    print("  1. createdb -E UTF8 -T template0 pyfedi_new")
+                    print("  2. Update your DATABASE_URL in .env to use pyfedi_new")
+                    print("  3. Run 'flask db upgrade' on the new database")
+                    print("  4. Run 'flask init-db' again")
+                    return
+            except Exception as e:
+                # if the check fails just warn and continue
+                print(f"Warning: Could not check database encoding: {e}")
+                print("If using PostgreSQL, please ensure your database uses UTF8 encoding.")
+
             db.drop_all()
 
             # Drop PostgreSQL functions that are created by migrations but not dropped by drop_all()

@@ -1419,6 +1419,7 @@ def user_settings_filters_add():
         cache.delete_memoized(user_filters_home, current_user.id)
         cache.delete_memoized(user_filters_posts, current_user.id)
         cache.delete_memoized(user_filters_replies, current_user.id)
+        cache.delete_memoized(filtered_out_communities, current_user)
 
         flash(_('Your changes have been saved.'), 'success')
         return redirect(url_for('user.user_settings_filters'))
@@ -1446,6 +1447,7 @@ def user_settings_filters_edit(filter_id):
         cache.delete_memoized(user_filters_home, current_user.id)
         cache.delete_memoized(user_filters_posts, current_user.id)
         cache.delete_memoized(user_filters_replies, current_user.id)
+        cache.delete_memoized(filtered_out_communities, current_user)
 
         flash(_('Your changes have been saved.'), 'success')
 
@@ -1474,6 +1476,7 @@ def user_settings_filters_delete(filter_id):
     cache.delete_memoized(user_filters_home, current_user.id)
     cache.delete_memoized(user_filters_posts, current_user.id)
     cache.delete_memoized(user_filters_replies, current_user.id)
+    cache.delete_memoized(filtered_out_communities, current_user)
     flash(_('Filter deleted.'))
     return redirect(url_for('user.user_settings_filters'))
 

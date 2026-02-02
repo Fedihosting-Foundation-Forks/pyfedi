@@ -114,7 +114,7 @@ def show_post(post_id: int):
             mod_list = []
         else:
             mod_user_ids = [mod.user_id for mod in mods]
-            mod_list = User.query.filter(User.id.in_(mod_user_ids)).all()
+            mod_list = User.query.filter(User.id.in_(mod_user_ids), User.deleted.is_(False)).all()
 
         banned_from_community = False
         if current_user.is_authenticated and community.id in communities_banned_from(current_user.id):
@@ -654,7 +654,7 @@ def continue_discussion(post_id, comment_id):
         mod_list = []
     else:
         mod_user_ids = [mod.user_id for mod in mods]
-        mod_list = User.query.filter(User.id.in_(mod_user_ids)).all()
+        mod_list = User.query.filter(User.id.in_(mod_user_ids), User.deleted.is_(False)).all()
     replies = get_comment_branch(post, comment.id, 'top', current_user if current_user.is_authenticated else None)
 
     # Voting history
@@ -734,7 +734,7 @@ def continue_discussion_ajax(post_id, comment_id, nonce):
         mod_list = []
     else:
         mod_user_ids = [mod.user_id for mod in mods]
-        mod_list = User.query.filter(User.id.in_(mod_user_ids)).all()
+        mod_list = User.query.filter(User.id.in_(mod_user_ids), User.deleted.is_(False)).all()
     replies = get_comment_branch(post, comment.id, 'top', current_user if current_user.is_authenticated else None)
 
     # user flair
@@ -797,7 +797,7 @@ def add_reply(post_id: int, comment_id: int):
         mod_list = []
     else:
         mod_user_ids = [mod.user_id for mod in mods]
-        mod_list = User.query.filter(User.id.in_(mod_user_ids)).all()
+        mod_list = User.query.filter(User.id.in_(mod_user_ids), User.deleted.is_(False)).all()
 
     if in_reply_to.author.has_blocked_user(current_user.id):
         flash(_('You cannot reply to %(name)s', name=in_reply_to.author.display_name()))
@@ -1019,7 +1019,7 @@ def post_edit(post_id: int):
         mod_list = []
     else:
         mod_user_ids = [mod.user_id for mod in mods]
-        mod_list = User.query.filter(User.id.in_(mod_user_ids)).all()
+        mod_list = User.query.filter(User.id.in_(mod_user_ids), User.deleted.is_(False)).all()
 
     if post.user_id == current_user.id or post.community.is_moderator() or current_user.is_admin():
 

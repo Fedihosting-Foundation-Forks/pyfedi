@@ -331,9 +331,9 @@ def show_community(community: Community):
     if community.private_mods:
         mod_list = []
         inactive_mods = User.query.filter(User.id.in_(mod_user_ids),
-                                          User.last_seen < utcnow() - timedelta(days=60)).all()
+                                          User.last_seen < utcnow() - timedelta(days=60), User.deleted == False).all()
     else:
-        mod_list = User.query.filter(User.id.in_(mod_user_ids)).all()
+        mod_list = User.query.filter(User.id.in_(mod_user_ids), User.deleted.is_(False)).all()
         inactive_mods = []
         for mod in mod_list:
             if mod.last_seen < utcnow() - timedelta(days=60):

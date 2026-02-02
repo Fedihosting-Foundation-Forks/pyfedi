@@ -484,7 +484,7 @@ def admin_federation():
         is_piefed = False
 
         # get the remote_url data
-        remote_url = remote_scan_form.remote_url.data
+        remote_url = remote_scan_form.remote_url.data.strip()
 
         # test to make sure its a valid fqdn
         regex_pattern = '^(https:\\/\\/)(?=.{1,255}$)((.{1,63}\\.){1,127}(?![0-9]*$)[a-z0-9-]+\\.?)$'

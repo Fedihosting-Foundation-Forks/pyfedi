@@ -411,6 +411,11 @@ form {
   .card-body > p > img, .card-body > p > a > img {
     max-width: 100%;
   }
+
+  .card-body .list-group-item {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 #breadcrumb_nav {

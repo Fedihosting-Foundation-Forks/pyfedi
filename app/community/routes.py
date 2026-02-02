@@ -99,6 +99,9 @@ def add_local():
             form.local_only.data = True
             show_popular = False
             show_all = False
+            private = True
+        else:
+            private = False
         if form.local_only.data:
             private_key = None
             public_key = None
@@ -110,7 +113,7 @@ def add_local():
                               nsfw=form.nsfw.data, private_key=private_key,
                               public_key=public_key, description_html=markdown_to_html(form.description.data),
                               local_only=form.local_only.data, posting_warning=form.posting_warning.data,
-                              private=form.private.data, invitations=form.invitations.data,
+                              private=private, invitations=form.invitations.data,
                               show_popular=show_popular, show_all=show_all,
                               ap_profile_id='https://' + current_app.config['SERVER_NAME'] + '/c/' + form.url.data.lower(),
                               ap_public_url='https://' + current_app.config['SERVER_NAME'] + '/c/' + form.url.data,
@@ -1183,8 +1186,10 @@ def community_edit(community_id: int):
                 form.local_only.data = True
                 community.show_popular = False
                 community.show_all = False
+                community.private = True
             else:
                 form.invitations.data = 0
+                community.private = False
             community.title = form.title.data
             community.description = piefed_markdown_to_lemmy_markdown(form.description.data)
             community.description_html = markdown_to_html(form.description.data, anchors_new_tab=False)
@@ -1192,7 +1197,6 @@ def community_edit(community_id: int):
             community.nsfw = form.nsfw.data
             community.ai_generated = form.ai_generated.data
             community.local_only = form.local_only.data
-            community.private = form.private.data
             community.invitations = form.invitations.data
             community.restricted_to_mods = form.restricted_to_mods.data
             community.new_mods_wanted = form.new_mods_wanted.data

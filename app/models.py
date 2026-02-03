@@ -2716,6 +2716,9 @@ class PostReply(db.Model):
                 session.query(Post).filter(Post.id.in_(ids)).update({"reply_count_cross_posted": total}, synchronize_session=False)
 
                 session.commit()
+            else:
+                post.reply_count_cross_posted = post.reply_count
+                session.commit()
 
         # LLM Detection
         if reply.body and '—' in reply.body and user.created_very_recently() and get_setting('enable_report_em_dash_replies', True):

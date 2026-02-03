@@ -139,6 +139,7 @@ div.navbar {
   line-height: 46px;
   img {
     margin-right: 20px;
+    margin-top: -1px;
   }
 }
 
@@ -2317,6 +2318,12 @@ form {
   padding-left: 0;
   .post_flair {
 
+  }
+}
+
+.hide_flair {
+  .post_flair {
+    display: none;
   }
 }
 

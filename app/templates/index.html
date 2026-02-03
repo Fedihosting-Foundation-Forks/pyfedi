@@ -22,7 +22,7 @@
                 {% include "_view_filter_nav.html" %}
             </div>
         </div>
-        <div class="post_list h-feed">
+        <div class="post_list h-feed hide_flair">
             {% for post in instance_stickies -%}
                 <div class="bg-success bg-opacity-10 instance_sticky">
                     {% include 'post/_post_teaser.html' %}
@@ -83,7 +83,7 @@
                         </li>
                     {% endfor %}
                 </ul>
-                <p class="mt-4"><a class="btn btn-primary" href="/communities">{{ _('More communities') }}</a>
+                <p class="mt-4 mb-0"><a class="btn btn-primary" href="/communities">{{ _('More communities') }}</a>
                     {% if has_topics -%}
                         <a class="btn btn-primary" href="/topics">{{ _('Browse topics') }}</a>
                     {% endif -%}

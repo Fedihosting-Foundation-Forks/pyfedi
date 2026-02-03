@@ -802,6 +802,7 @@ div.navbar {
 }
 .navbar-brand img {
   margin-right: 20px;
+  margin-top: -1px;
 }
 
 .navbar-light .navbar-nav .nav-link {
@@ -2711,6 +2712,10 @@ form h5 {
 .post_flair_body {
   padding-left: 0;
 }
+.hide_flair .post_flair {
+  display: none;
+}
+
 #image_preview {
   max-width: 200px;
   display: none;

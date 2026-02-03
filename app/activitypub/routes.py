@@ -780,11 +780,6 @@ def process_inbox_request(request_json, store_ap_json):
                     actor = find_actor_or_create_cached(actor_id)
                     if actor and isinstance(actor, User):
                         user = actor
-                        # Update user's last_seen in a separate transaction to avoid deadlocks
-                        with redis_client.lock(f"lock:user:{user.id}", timeout=10, blocking_timeout=6):
-                            session.execute(text('UPDATE "user" SET last_seen=:last_seen WHERE id = :user_id'),
-                                               {"last_seen": utcnow(), "user_id": user.id})
-                            session.commit()
                     elif actor and isinstance(actor, Community):  # Process a few activities from NodeBB and a.gup.pe
                         if request_json['type'] == 'Add' or request_json['type'] == 'Remove':
                             log_incoming_ap(id, APLOG_ADD, APLOG_IGNORED, saved_json, 'NodeBB Topic Management')
@@ -831,14 +826,6 @@ def process_inbox_request(request_json, store_ap_json):
                             if user.banned:
                                 log_incoming_ap(id, APLOG_ANNOUNCE, APLOG_FAILURE, saved_json, f'{user.ap_id} is banned')
                                 return
-
-                            with redis_client.lock(f"lock:user:{user.id}", timeout=10, blocking_timeout=6):
-                                user.last_seen = utcnow()
-                                user.instance.last_seen = utcnow()
-                                user.instance.dormant = False
-                                user.instance.gone_forever = False
-                                user.instance.failures = 0
-                                session.commit()
                         else:
                             log_incoming_ap(id, APLOG_ANNOUNCE, APLOG_FAILURE, saved_json, 'Blocked or unfound user for Announce object actor ' + str(request_json['object']['actor']))
                             return

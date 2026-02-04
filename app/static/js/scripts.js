@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         preventDoubleFormSubmissions,
         setupSelectAllCheckbox,
         setupFontSizeChangers,
-        setupAddPassKey,
+        setupAddPassKeyAndCaptcha,
         setupFancySelects,
         setupImagePreview,
         setupNotificationPermission,
@@ -1185,7 +1185,16 @@ function setupFontSizeChangers() {
     }
 }
 
-function setupAddPassKey() {
+function setupAddPassKeyAndCaptcha() {
+    const captchaImage = document.getElementById('captcha-image');
+    if (captchaImage) {
+        captchaImage.addEventListener('click', () => {
+            const captchaEntry = document.getElementById('captcha');
+            if(captchaEntry) {
+                captchaEntry.focus();
+            }
+        })
+    }
     const passkeyButton = document.getElementById('add_passkey_button');
     if(passkeyButton) {
         document.getElementById('add_passkey_button').addEventListener('click', () => {

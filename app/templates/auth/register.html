@@ -63,7 +63,9 @@
                                     {{ render_field(form.terms) }}
                                 {% endif -%}
                                 {% if form.captcha %}
-                                    {{ render_field(form.captcha) }}
+                                    <div id="registration_captcha">
+                                        {{ render_field(form.captcha) }}
+                                    </div>
                                 {% endif -%}
                                 {{ render_field(form.timezone) }}
                                 {{ render_field(form.submit) }}

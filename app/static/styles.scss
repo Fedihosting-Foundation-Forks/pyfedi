@@ -2976,6 +2976,13 @@ form {
   padding-right: 3px;
 }
 
+#registration_captcha {
+  label {
+    width: 100%;
+    display: inline-block;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .render_username a .gif {
     display: none !important;

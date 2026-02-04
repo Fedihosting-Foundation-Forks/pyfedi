@@ -2,8 +2,8 @@ import multiprocessing
 
 cpu_cores = multiprocessing.cpu_count()
 
-workers = max(2, cpu_cores // 2)            # Number of worker processes. Keep low because gthread
-threads = min(16, cpu_cores * 2)            # Number of threads within each worker. Should be high in gthread worker class
+workers = max(2, cpu_cores // 2)
+threads = 2
 
 worker_tmp_dir = '/dev/shm'
 

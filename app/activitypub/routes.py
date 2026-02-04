@@ -4,7 +4,7 @@ from flask_babel import _
 from flask_login import current_user
 from furl import furl
 from psycopg2 import IntegrityError
-from sqlalchemy import desc, or_, text
+from sqlalchemy import desc, or_, text, func
 
 from app import db, cache, celery, limiter
 from app.activitypub import bp
@@ -54,7 +54,7 @@ def testredis_get():
 def webfinger():
     if request.args.get('resource'):
         feed = False
-        query = request.args.get('resource')  # acct:alice@tada.club
+        query = request.args.get('resource', '')  # acct:alice@tada.club
         if 'acct:' in query:
             actor = query.split(':')[1].split('@')[0]  # alice
             if actor.startswith('~'):
@@ -94,7 +94,7 @@ def webfinger():
             # look for the User first, then the Community, then the Feed that matches
             type = 'Person'
             object = User.query.filter(
-                or_(User.user_name == actor.strip(), User.alt_user_name == actor.strip())).filter_by(deleted=False,
+                or_(func.lower(User.user_name) == actor.strip().lower(), func.lower(User.alt_user_name) == actor.strip().lower())).filter_by(deleted=False,
                                                                                                      banned=False,
                                                                                                      ap_id=None).first()
             if object is None:
@@ -112,7 +112,7 @@ def webfinger():
             return ''
 
         webfinger_data = {
-            "subject": f"acct:{actor}@{current_app.config['SERVER_NAME']}",
+            "subject": f"acct:{actor.strip().lower()}@{current_app.config['SERVER_NAME']}",
             "aliases": [object.public_url()],
             "links": [
                 {

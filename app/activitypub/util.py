@@ -3997,6 +3997,7 @@ def is_vote(activity: dict) -> bool:
 
 
 def proactively_delete_content(community: Community, ap_id: str):
+    return  # disable for now, seems buggy
     deletor = None
     # Try to find a local moderator to send the Delete
     for moderator in community.moderators():

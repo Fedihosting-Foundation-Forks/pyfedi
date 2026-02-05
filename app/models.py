@@ -2475,7 +2475,7 @@ class Post(db.Model):
                 self.update_reaction_cache()
 
             # Calculate new ranking values
-            self.ranking = self.post_ranking(self.score, self.created_at)
+            self.ranking = self.post_ranking(self.score + self.reply_count, self.created_at)
             self.ranking_scaled = int(self.ranking + self.community.scale_by())
 
             db.session.commit()

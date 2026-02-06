@@ -359,7 +359,7 @@ class File(db.Model):
             if self.file_path.startswith('http'):
                 return self.file_path
             file_path = self.file_path[4:] if self.file_path.startswith('app/') else self.file_path
-            return f"/{file_path}"
+            return f"{current_app.config['SERVER_URL']}/{file_path}"
         else:
             return ''
 
@@ -369,7 +369,7 @@ class File(db.Model):
         if self.file_path.startswith('http'):
             return self.file_path
         file_path = self.file_path[4:] if self.file_path.startswith('app/') else self.file_path
-        return f"/{file_path}"
+        return f"{current_app.config['SERVER_URL']}/{file_path}"
 
     def thumbnail_url(self):
         if self.thumbnail_path is None:
@@ -380,7 +380,7 @@ class File(db.Model):
         if self.thumbnail_path.startswith('http'):
             return self.thumbnail_path
         thumbnail_path = self.thumbnail_path[4:] if self.thumbnail_path.startswith('app/') else self.thumbnail_path
-        return f"/{thumbnail_path}"
+        return f"{current_app.config['SERVER_URL']}/{thumbnail_path}"   # image paths must include fqdn (not just starting with /) because apps need to make a request from outside
 
     def delete_from_disk(self, purge_cdn=True):
         purge_from_cache = []

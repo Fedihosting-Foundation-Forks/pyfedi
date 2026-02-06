@@ -62,7 +62,7 @@ def home_page(sort, view_filter):
     block_honey_pot()
 
     if sort is None:
-        sort = current_user.default_sort if current_user.is_authenticated else 'active'
+        sort = current_user.default_sort if current_user.is_authenticated else 'hot'
 
     if view_filter is None:
         view_filter = current_user.default_filter if current_user.is_authenticated else g.site.default_filter

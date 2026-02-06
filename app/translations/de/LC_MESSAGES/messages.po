@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: piefed\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-31 16:23+1300\n"
-"PO-Revision-Date: 2026-02-01 11:47+0000\n"
-"Last-Translator: squirrel <squirrel@kobel.fyi>\n"
+"PO-Revision-Date: 2026-02-03 08:15+0000\n"
+"Last-Translator: Snoopy <snoopy@users.noreply.translate.piefed.social>\n"
 "Language-Team: German <http://translate.piefed.social/projects/piefed/"
 "main-web-app/de/>\n"
 "Language: de\n"
@@ -2853,9 +2853,8 @@ msgid "Sorry your account is too new to do this."
 msgstr "Entschuldigung, dein Konto ist zu neu um dies zu tun."
 
 #: app/community/routes.py:2423
-#, fuzzy
 msgid "Sorry, you cannot invite people to this community."
-msgstr "Du kannst dieser Community nicht beitreten"
+msgstr "Du kannst dieser Community nicht beitreten."
 
 #: app/community/routes.py:2445
 #, python-format
@@ -3391,9 +3390,8 @@ msgid "Set flair for %(post_title)s"
 msgstr "Flair für %(post_title)s einrichten"
 
 #: app/post/routes.py:1636 app/post/routes.py:2182
-#, fuzzy
 msgid "Could not find that community."
-msgstr "Du kannst dieser Community nicht beitreten"
+msgstr "Du kannst dieser Community nicht beitreten."
 
 #: app/post/routes.py:1639 app/templates/post/post_move.html:14
 #, fuzzy, python-format
@@ -5167,7 +5165,7 @@ msgstr "%(community)s nach %(instance_domain)s umziehen"
 
 #: app/templates/admin/content.html:26
 msgid "Posts/Comments:"
-msgstr "Posts/Kommentare"
+msgstr "Posts/Kommentare :"
 
 #: app/templates/admin/content.html:37
 msgid "14 days"
@@ -5235,7 +5233,7 @@ msgstr "Instanz"
 
 #: app/templates/admin/emoji.html:49
 msgid "No emoji have been created yet."
-msgstr "Noch wurde kein Emoji erstellt"
+msgstr "Noch wurde kein Emoji erstellt."
 
 #: app/templates/admin/federation.html:22
 msgid "Import / Export Bans"
@@ -5590,7 +5588,7 @@ msgstr "Lokales Konto hinzufügen"
 #: app/templates/admin/users.html:40
 #, fuzzy
 msgid "Email verified?"
-msgstr "E-Mail-Adresse bestätigt"
+msgstr "E-Mail-Adresse bestätigt?"
 
 #: app/templates/admin/users.html:53
 msgid "Display name."
@@ -7071,9 +7069,9 @@ msgstr "Upvote-Button."
 #: app/templates/post/post_teaser/_macros.html:94
 #: app/templates/post/reply/_macros.html:13
 #: app/templates/post/reply/_macros.html:24
-#, fuzzy, python-format
+#, python-format
 msgid "Score: %(score)s"
-msgstr "Konto-Notiz: %(note)s"
+msgstr "Konto-Notiz: %(score)s"
 
 #: app/templates/post/_comment_voting_buttons.html:11
 #: app/templates/post/post_teaser/_macros.html:83
@@ -7799,14 +7797,14 @@ msgid "Post deleted"
 msgstr "Beitrag gelöscht"
 
 #: app/templates/post/post_teaser/_macros.html:71
-#, fuzzy, python-format
+#, python-format
 msgid "Number of comments: %(number)d"
-msgstr "Anzahl der Kommentare:"
+msgstr "Anzahl der Kommentare: %(number)d"
 
 #: app/templates/post/post_teaser/_macros.html:117
-#, fuzzy, python-format
+#, python-format
 msgid "Number of cross-posts: %(number)d"
-msgstr "Anzahl der Crossposts:"
+msgstr "Anzahl der Crossposts: %(number)d"
 
 #: app/templates/post/post_teaser/_macros.html:143
 msgid "Join this community"
@@ -8004,7 +8002,7 @@ msgstr "Anzahl Beiträge"
 
 #: app/templates/tag/tag_cloud.html:129
 msgid "There are no tags to display"
-msgstr "Keine anzuzeigenden Tags."
+msgstr "Keine anzuzeigenden Tags"
 
 #: app/templates/tag/tags.html:14 app/templates/tag/tags_blocked.html:14
 #, python-format
@@ -9754,7 +9752,7 @@ msgstr "Filter gelöscht."
 #: app/user/routes.py:1493
 #, python-format
 msgid "User not found: %(username)s"
-msgstr "Nutzer*in nicht gefunden: \"%(user_name)s\""
+msgstr "Nutzer*in nicht gefunden: %(username)s"
 
 #: app/user/routes.py:1503 app/user/routes.py:1548 app/user/routes.py:1582
 #, python-format

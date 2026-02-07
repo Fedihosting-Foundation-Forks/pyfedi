@@ -135,6 +135,11 @@ def webfinger():
               "rel": "https://w3id.org/fep/3b86/Create",
               "template": f"{current_app.config['SERVER_URL']}/share?url=" + '{object}'
             })
+        elif isinstance(object, Community):
+            webfinger_data['links'].append({
+                "rel": "https://w3id.org/fep/3b86/Follow",
+                "template": "{object}/subscribe"
+            })
         resp = jsonify(webfinger_data)
         resp.headers.add_header('Access-Control-Allow-Origin', '*')
         resp.headers.set('Cache-Control', 'public, max-age=15')
@@ -542,6 +547,12 @@ def community_profile(actor):
             return redirect(url_for("community.add_local"))
         else:
             abort(404)
+
+
+@bp.route('/c/<actor>/subscribe', methods=['GET'])
+def community_profile_subscribe(actor):
+    # For use by FEP 3b86, activity intents. See webfinger()
+    return redirect(url_for('community.subscribe', actor=actor))
 
 
 @bp.route('/inbox', methods=['POST'])

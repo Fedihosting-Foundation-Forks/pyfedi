@@ -1148,6 +1148,7 @@ def site_instance_chooser_view():
     defed_list = BannedInstances.query.filter(or_(BannedInstances.domain == 'hexbear.net',
                                                   BannedInstances.domain == 'lemmygrad.ml',
                                                   BannedInstances.domain == 'hilariouschaos.com',
+                                                  BannedInstances.domain == 'gregtech.eu',
                                                   BannedInstances.domain == 'lemmy.ml')).order_by(BannedInstances.domain).all()
     trusted_list = Instance.query.filter(Instance.trusted).all()
     maturity = 0

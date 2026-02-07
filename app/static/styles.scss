@@ -2956,6 +2956,11 @@ form {
   .card .card-body {
     height: 95px;
     overflow-y: auto;
+
+    .instance_name {
+      max-width: 152px;
+      text-wrap: nowrap;
+    }
   }
 }
 

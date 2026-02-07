@@ -3261,6 +3261,10 @@ form h5 {
   height: 95px;
   overflow-y: auto;
 }
+.instance_chooser_results .card .card-body .instance_name {
+  max-width: 152px;
+  text-wrap: nowrap;
+}
 
 .user-suggestion-box {
   position: absolute;

@@ -27,6 +27,7 @@ import jwt
 import markdown2
 import redis
 from bs4 import BeautifulSoup, MarkupResemblesLocatorWarning
+from babel.numbers import format_compact_decimal
 import orjson
 
 from app.markdown_extras import apply_enhanced_image_attributes
@@ -35,7 +36,7 @@ from app.translation import LibreTranslateAPI
 warnings.filterwarnings("ignore", category=MarkupResemblesLocatorWarning)
 import os
 from furl import furl
-from flask import current_app, json, redirect, url_for, request, make_response, Response, g, flash, abort
+from flask import current_app, json, redirect, url_for, request, make_response, Response, g, flash, abort, session
 from flask_babel import _, lazy_gettext as _l
 from flask_login import current_user, logout_user
 from flask_wtf.csrf import validate_csrf
@@ -3945,6 +3946,27 @@ def compaction_level():
     if current_app.config['HTTP_PROTOCOL'] == 'mixed' and compact_level is None:
         compact_level = 'compact-min compact-max'
     return compact_level
+
+
+def humanize_number(value):
+    """Return an abbreviated, human readable number (e.g. 1.2k instead of 1215)"""
+
+    if not value:
+        return "0"
+
+    def get_locale():
+        try:
+            if session.get('ui_language', None):
+                return session['ui_language']
+            else:
+                try:
+                    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
+                except:
+                    return 'en'
+        except:
+            return 'en'
+
+    return format_compact_decimal(value, locale=get_locale())
 
 
 def debug_checkpoint(name: str):

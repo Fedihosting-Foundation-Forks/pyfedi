@@ -3579,6 +3579,22 @@ class Site(db.Model):
         return db.session.query(User).filter_by(deleted=False, banned=False).join(user_role).filter(
                                       user_role.c.role_id == ROLE_STAFF).order_by(User.id).all()
 
+    def active_daily(self):
+        from app.activitypub.util import active_day
+        return active_day()
+
+    def active_weekly(self):
+        from app.activitypub.util import active_week
+        return active_week()
+
+    def active_monthly(self):
+        from app.activitypub.util import active_month
+        return active_month()
+
+    def active_6monthly(self):
+        from app.activitypub.util import active_half_year
+        return active_half_year()
+
 
 # class IngressQueue(db.Model):
 #    id = db.Column(db.Integer, primary_key=True)

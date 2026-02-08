@@ -128,13 +128,15 @@
                 {% cache 60*5 %}
                     {% set active_monthly = g.site.active_monthly() -%}
                     {% if active_monthly > 100 -%}
-                    <hr>
-                    <div>
-                        <span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(g.site.active_daily()) }} {{ _('Daily Users') }}</span>
-                        <span class="badge text-bg-secondary" title="{{ _('Active users in the past 7 days') }}">{{ humanize_number(g.site.active_weekly()) }} {{ _('Weekly Users') }}</span>
-                        <span class="badge text-bg-secondary" title="{{ _('Active users in the past month') }}">{{ humanize_number(active_monthly) }} {{ _('Monthly Users') }}</span>
-                        <span class="badge text-bg-secondary" title="{{ _('Active users in the past 6 months') }}">{{ humanize_number(g.site.active_6monthly()) }} {{ _('Users / 6 Months') }}</span>
-                    </div>
+                        {% set active_now = g.site.active_now() -%}
+                        <hr>
+                        <div>
+                            {% if active_now %}<span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(active_now) }} {{ _('Online Now') }}</span>{% endif -%}
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(g.site.active_daily()) }} {{ _('Daily Users') }}</span>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past 7 days') }}">{{ humanize_number(g.site.active_weekly()) }} {{ _('Weekly Users') }}</span>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past month') }}">{{ humanize_number(active_monthly) }} {{ _('Monthly Users') }}</span>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past 6 months') }}">{{ humanize_number(g.site.active_6monthly()) }} {{ _('Users / 6 Months') }}</span>
+                        </div>
                     {% endif -%}
                 {% endcache -%}
             </div>

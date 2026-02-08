@@ -3579,6 +3579,10 @@ class Site(db.Model):
         return db.session.query(User).filter_by(deleted=False, banned=False).join(user_role).filter(
                                       user_role.c.role_id == ROLE_STAFF).order_by(User.id).all()
 
+    def active_now(self):
+        return db.session.execute(text(
+            "SELECT COUNT(id) as c FROM \"user\" WHERE last_seen >= CURRENT_DATE - INTERVAL '5 minutes' AND ap_id is null AND verified is true AND banned is false AND deleted is false")).scalar()
+
     def active_daily(self):
         from app.activitypub.util import active_day
         return active_day()

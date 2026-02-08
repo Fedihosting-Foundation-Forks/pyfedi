@@ -64,9 +64,13 @@ from app.utils import render_template, markdown_to_html, validation_required, \
     instance_sticky_posts, instance_sticky_post_ids
 
 
+def post_cache_key(post_id, sort, low_bandwidth, autoplay):
+    return f"{current_user.get_id()}_{post_id}_{sort}_{low_bandwidth}_{autoplay}"
+
+
+@cache.cached(timeout=10, make_cache_key=post_cache_key)
 @login_required_if_private_instance
-def show_post(post_id: int):
-    block_honey_pot()
+def show_post(post_id: int, sort, low_bandwidth, autoplay):
     with limiter.limit('30/minute'):
         post = Post.query.get_or_404(post_id)
         community: Community = post.community
@@ -92,8 +96,6 @@ def show_post(post_id: int):
         else:
             if (post.nsfw or post.nsfl) and user_in_restricted_country(current_user):
                 abort(403)
-
-        sort = request.args.get('sort', 'hot' if current_user.is_anonymous else current_user.default_comment_sort or 'hot')
 
         # If nothing has changed since their last visit, return HTTP 304
         current_etag = f"{post.id}{sort}_{hash(post.last_active)}"
@@ -307,7 +309,7 @@ def show_post(post_id: int):
                                    THREAD_CUTOFF_DEPTH=constants.THREAD_CUTOFF_DEPTH,
                                    description=description, og_image=og_image, sort=sort,
                                    show_deleted=current_user.is_authenticated and current_user.is_admin_or_staff(),
-                                   autoplay=request.args.get('autoplay', False), archive_link=archive_link,
+                                   autoplay=autoplay, archive_link=archive_link,
                                    noindex=not post.author.indexable, preconnect=post.url if post.url else None,
                                    recently_upvoted=recently_upvoted, recently_downvoted=recently_downvoted,
                                    tags=hashtags_used_in_community(post.community_id, content_filters),
@@ -321,7 +323,7 @@ def show_post(post_id: int):
                                    disable_voting=post.archived is not None,
                                    user_notes=user_notes(current_user.get_id()),
                                    banned_from_community=banned_from_community,
-                                   low_bandwidth=request.cookies.get('low_bandwidth', '0') == '1',
+                                   low_bandwidth=low_bandwidth,
                                    inoculation=inoculation[randint(0, len(inoculation) - 1)] if g.site.show_inoculation_block else None,
                                    recipient_language_id=recipient_language_id,
                                    recipient_language_code=recipient_language_code,

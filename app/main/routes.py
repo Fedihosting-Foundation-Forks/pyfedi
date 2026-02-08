@@ -54,13 +54,6 @@ def index(sort=None, view_filter=None):
             'Accept', ''):
         return activitypub_application()
 
-    return home_page(sort, view_filter)
-
-
-def home_page(sort, view_filter):
-    verification_warning()
-    block_honey_pot()
-
     if sort is None:
         sort = current_user.default_sort if current_user.is_authenticated else 'hot'
 
@@ -77,10 +70,24 @@ def home_page(sort, view_filter):
     if current_user.is_anonymous and request_etag_matches(current_etag):
         return return_304(current_etag)
 
-    page = request.args.get('page', 0, type=int)
-    result_id = request.args.get('result_id', gibberish(15)) if current_user.is_authenticated else None
-    low_bandwidth = request.cookies.get('low_bandwidth', '0') == '1'
-    tag = request.args.get('tag', '')
+    verification_warning()
+    block_honey_pot()
+
+    return home_page(sort, view_filter,
+                     page=request.args.get('page', 0, type=int),
+                     result_id=request.args.get('result_id', gibberish(15)) if current_user.is_authenticated else None,
+                     low_bandwidth=request.cookies.get('low_bandwidth', '0') == '1',
+                     tag=request.args.get('tag', ''))
+
+
+def home_page_cache_key(sort, view_filter, page, result_id, low_bandwidth, tag):
+    # this is almost the same as cache.memoized except prepends current_user.get_id() which is 0 for all anonymous users
+    return f"{current_user.get_id()}_{sort}_{view_filter}_{page}_{result_id}_{low_bandwidth}_{tag}"
+
+
+@cache.cached(timeout=10, make_cache_key=home_page_cache_key)
+def home_page(sort, view_filter, page, result_id, low_bandwidth, tag):
+
     page_length = 20 if low_bandwidth else current_app.config['PAGE_LENGTH']
 
     # view filter - subscribed/local/all
@@ -652,7 +659,7 @@ def honey_pot(whatever=None):
 
     if whatever:
         try:
-            return show_post(int(whatever))
+            return show_post(int(whatever), 'hot', False, False)
         except Exception:
             pass
     return ''
@@ -661,7 +668,7 @@ def honey_pot(whatever=None):
 @bp.route('/test')
 @debug_mode_only
 def test():
-    refresh_instance_chooser()
+    #refresh_instance_chooser()
     #p = Post.query.get(42)
     #p.delete_dependencies()
     #db.session.delete(p)

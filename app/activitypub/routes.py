@@ -36,7 +36,7 @@ from app.utils import gibberish, get_setting, community_membership, ap_datetime,
     community_moderators, html_to_text, add_to_modlog, instance_banned, get_redis_connection, \
     feed_membership, get_task_session, patch_db_session, \
     blocked_phrases, orjson_response, moderating_communities, joined_communities, moderating_communities_ids, \
-    moderating_communities_ids_all_users, publish_sse_event, blocked_users
+    moderating_communities_ids_all_users, publish_sse_event, blocked_users, block_honey_pot
 
 
 @bp.route('/testredis')
@@ -2012,7 +2012,11 @@ def post_ap(post_id):
         else:
             return redirect(post.ap_id, code=301)
     else:
-        return show_post(post_id)
+        block_honey_pot()
+        return show_post(post_id,
+                         low_bandwidth=request.cookies.get('low_bandwidth', '0') == '1',
+                         sort=request.args.get('sort', 'hot' if current_user.is_anonymous else current_user.default_comment_sort or 'hot'),
+                         autoplay=request.args.get('autoplay', False))
 
 
 @bp.route('/c/<community_name>/p/<int:post_id>/<slug>', methods=['GET', 'HEAD', 'POST'])

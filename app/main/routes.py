@@ -85,7 +85,7 @@ def home_page_cache_key(sort, view_filter, page, result_id, low_bandwidth, tag):
     return f"{current_user.get_id()}_{sort}_{view_filter}_{page}_{result_id}_{low_bandwidth}_{tag}"
 
 
-@cache.cached(timeout=10, make_cache_key=home_page_cache_key)
+@cache.cached(timeout=3, make_cache_key=home_page_cache_key)
 def home_page(sort, view_filter, page, result_id, low_bandwidth, tag):
 
     page_length = 20 if low_bandwidth else current_app.config['PAGE_LENGTH']

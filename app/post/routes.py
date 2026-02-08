@@ -65,10 +65,10 @@ from app.utils import render_template, markdown_to_html, validation_required, \
 
 
 def post_cache_key(post_id, sort, low_bandwidth, autoplay):
-    return f"{current_user.get_id()}_{post_id}_{sort}_{low_bandwidth}_{autoplay}"
+    return f"{current_user.get_id()}_{post_id}_{sort}_{low_bandwidth}_{autoplay}_{request.method}"
 
 
-@cache.cached(timeout=1, make_cache_key=post_cache_key)
+@cache.cached(timeout=5, make_cache_key=post_cache_key)
 @login_required_if_private_instance
 def show_post(post_id: int, sort, low_bandwidth, autoplay):
     with limiter.limit('30/minute'):

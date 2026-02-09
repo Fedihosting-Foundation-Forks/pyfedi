@@ -33,9 +33,9 @@
         <h1><a href="{{ url_for('admin.admin_topic_add') }}" class="btn btn-primary" style="float: right;">{{ _('Add topic') }}</a>{{ _('Topics') }}</h1>
         <table class="table table-striped">
             <tr>
-               <th>Name</th>
-               <th># Communities</th>
-               <th>Actions</th>
+               <th>{{ _('Name') }}</th>
+               <th>{{ _('# Communities') }}</th>
+               <th>{{ _('Actions') }}</th>
             </tr>
             {% for topic in topics %}
                 {{ render_topic(topic, 0)|safe }}

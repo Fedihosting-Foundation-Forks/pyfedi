@@ -20,7 +20,7 @@ from app.utils import getmtime, gibberish, shorten_string, shorten_url, digits, 
     can_create_post, can_upvote, can_downvote, shorten_number, ap_datetime, current_theme, community_link_to_href, \
     in_sorted_list, role_access, first_paragraph, person_link_to_href, feed_membership, html_to_text, remove_images, \
     notif_id_to_string, feed_link_to_href, get_setting, set_setting, show_explore, human_filesize, can_upload_video, \
-    debug_checkpoint, compaction_level, humanize_number
+    debug_checkpoint, compaction_level, humanize_number, get_site_as_dict
 
 app = create_app()
 cli.register(app)
@@ -89,7 +89,8 @@ def before_request():
     g.locale = str(get_locale())
     g.low_bandwidth = request.cookies.get('low_bandwidth', '0') == '1'
     if request.path != '/inbox' and not request.path.startswith('/static/'):        # do not load g.site on shared inbox, to increase chance of duplicate detection working properly
-        g.site = Site.query.get(1)
+        site = get_site_as_dict()
+        g.site = Site(**site)
         g.admin_ids = get_setting('admin_ids')    # get_setting is cached in redis
         if g.admin_ids is None:
             g.admin_ids = list(db.session.execute(

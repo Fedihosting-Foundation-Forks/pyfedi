@@ -127,7 +127,7 @@
                 {% endif -%}
                 {% cache 60*5, g.locale %}
                     {% set active_monthly = g.site.active_monthly() -%}
-                    {% if active_monthly > 1 -%}
+                    {% if active_monthly > 100 -%}
                         <hr>
                         <h4>{{ _('This server') }}</h4>
                         <div>

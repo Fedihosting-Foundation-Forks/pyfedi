@@ -3972,3 +3972,10 @@ def debug_checkpoint(name: str):
 
     g._debug_checkpoints.append((name, now))
     return now, delta
+
+
+@cache.cached(timeout=5)
+def get_site_as_dict() -> dict:
+    # return the Site as a dict so that it can be serialized by flask-caching
+    site = db.session.query(Site).get(1)
+    return { c.name: getattr(site, c.name) for c in site.__table__.columns }

@@ -128,10 +128,8 @@
                 {% cache 60*5, g.locale %}
                     {% set active_monthly = g.site.active_monthly() -%}
                     {% if active_monthly > 100 -%}
-                        {% set active_now = g.site.active_now() -%}
                         <hr>
                         <div>
-                            {% if active_now %}<span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(active_now) }} {{ _('Online Now') }}</span>{% endif -%}
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(g.site.active_daily()) }} {{ _('Daily Users') }}</span>
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past 7 days') }}">{{ humanize_number(g.site.active_weekly()) }} {{ _('Weekly Users') }}</span>
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past month') }}">{{ humanize_number(active_monthly) }} {{ _('Monthly Users') }}</span>

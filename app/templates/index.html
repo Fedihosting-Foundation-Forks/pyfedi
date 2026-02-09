@@ -125,7 +125,7 @@
                     <a class="no-underline" href="{{ rss_feed }}" rel="nofollow"><span class="fe fe-rss"></span> RSS feed</a>
                 </p>
                 {% endif -%}
-                {% cache 60*5 %}
+                {% cache 60*5, g.locale %}
                     {% set active_monthly = g.site.active_monthly() -%}
                     {% if active_monthly > 100 -%}
                         {% set active_now = g.site.active_now() -%}

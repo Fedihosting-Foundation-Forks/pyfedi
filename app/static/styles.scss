@@ -1866,6 +1866,21 @@ a.unread, div.unread {
     background: var(--bs-secondary-bg);
     padding: 0.25rem 0.5rem;
     border-radius: 5px;
+    position: relative;
+
+    .btn {
+      --bs-btn-padding-x: 0.25rem ! important;
+      --bs-btn-padding-y: 0 ! important;
+    }
+  }
+
+  code .before {
+    float: right;
+  }
+
+  code .btn:hover {
+      background-color: rgba(0, 0, 0, 0.3);
+      color: white;
   }
 
   table.table {

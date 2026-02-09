@@ -3,8 +3,8 @@ msgstr ""
 "Project-Id-Version: piefed\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-01-31 16:23+1300\n"
-"PO-Revision-Date: 2026-02-03 08:15+0000\n"
-"Last-Translator: Snoopy <snoopy@users.noreply.translate.piefed.social>\n"
+"PO-Revision-Date: 2026-02-07 16:07+0000\n"
+"Last-Translator: squirrel <squirrel@kobel.fyi>\n"
 "Language-Team: German <http://translate.piefed.social/projects/piefed/"
 "main-web-app/de/>\n"
 "Language: de\n"
@@ -156,9 +156,8 @@ msgid "Un-lock comment"
 msgstr "Kommentar entsperren"
 
 #: app/models.py:3491
-#, fuzzy
 msgid "Move post"
-msgstr "Beitrag lesen"
+msgstr "Beitrag verschieben"
 
 #: app/auth/routes.py:169 app/auth/util.py:449 app/post/routes.py:836
 #: app/shared/auth.py:68 app/utils.py:2253
@@ -337,18 +336,16 @@ msgid "No"
 msgstr "Nein"
 
 #: app/admin/forms.py:37
-#, fuzzy
 msgid "User ID 1"
-msgstr "Konto-ID #1"
+msgstr "Benutzer-ID 1"
 
 #: app/admin/forms.py:38
 msgid "Admins and staff"
-msgstr ""
+msgstr "Administratoren und Mitarbeiter"
 
 #: app/admin/forms.py:39
-#, fuzzy
 msgid "Any user"
-msgstr "Konto bannen"
+msgstr "Jeder Benutzer"
 
 #: app/admin/forms.py:41
 msgid "Allow video file uploads"
@@ -675,9 +672,8 @@ msgid "Everyone"
 msgstr "Alle"
 
 #: app/admin/forms.py:144 app/community/forms.py:107
-#, fuzzy
 msgid "Nobody"
-msgstr "Beitragstext"
+msgstr "Niemand"
 
 #: app/admin/forms.py:145 app/community/forms.py:108 app/community/forms.py:145
 msgid "Community members"
@@ -806,7 +802,7 @@ msgstr "Remote-Spracheinstellung überschreiben"
 
 #: app/admin/forms.py:176
 msgid "Override remote AI content setting"
-msgstr "Einstellung zu KI-Inhalten anderer Instanzen ignorieren"
+msgstr "Remote-KI-Inhaltseinstellung überschreiben"
 
 #: app/admin/forms.py:177
 msgid "Always show translation icon on posts"
@@ -882,7 +878,7 @@ msgstr "Von Instanz-Auswähler verbergen"
 
 #: app/admin/forms.py:209
 msgid "Notes about this instance (only visible to other admins)"
-msgstr ""
+msgstr "Notizen über diese Instanz (nur für Administratoren sichtbar)"
 
 #: app/admin/forms.py:210
 msgid "Inbox"
@@ -1975,14 +1971,12 @@ msgid "NSFW"
 msgstr "NSFW"
 
 #: app/community/forms.py:33
-#, fuzzy
 msgid "Local only"
-msgstr "Ort"
+msgstr "Nur lokal"
 
 #: app/community/forms.py:34 app/community/forms.py:94
-#, fuzzy
 msgid "Private"
-msgstr "Privatsphäre"
+msgstr "Privat"
 
 #: app/community/forms.py:36 app/community/forms.py:96
 msgid "Anyone can join"
@@ -2136,9 +2130,8 @@ msgid "Search"
 msgstr "Suchen"
 
 #: app/community/forms.py:179
-#, fuzzy
 msgid "Address is required."
-msgstr "URL ist erforderlich."
+msgstr "Adresse ist erforderlich."
 
 #: app/community/forms.py:185
 msgid "Address must start with !"
@@ -2149,9 +2142,8 @@ msgid "Address must include @"
 msgstr "Adresse muss @ beinhalten"
 
 #: app/community/forms.py:191
-#, fuzzy
 msgid "/ cannot be in address"
-msgstr "IP-Adresse bannen"
+msgstr "/ ist keine gültige Adresse"
 
 #: app/community/forms.py:199
 msgid "Ban until"
@@ -2472,9 +2464,8 @@ msgid "Delete community"
 msgstr "Community löschen"
 
 #: app/community/forms.py:548
-#, fuzzy
 msgid "Accept invitation"
-msgstr "Kommentar-Pagination"
+msgstr "Einladung akzeptieren"
 
 #: app/community/forms.py:552
 msgid "Full URL"
@@ -2854,7 +2845,7 @@ msgstr "Entschuldigung, dein Konto ist zu neu um dies zu tun."
 
 #: app/community/routes.py:2423
 msgid "Sorry, you cannot invite people to this community."
-msgstr "Du kannst dieser Community nicht beitreten."
+msgstr "Verzeihung, aber du kannst keine Leute in diese Community einladen."
 
 #: app/community/routes.py:2445
 #, python-format
@@ -2890,9 +2881,9 @@ msgid "You are already a member."
 msgstr "Du bist bereits Mitglied."
 
 #: app/community/routes.py:2486
-#, fuzzy, python-format
+#, python-format
 msgid "Accept invitation to %(community_name)s"
-msgstr "Neue Beiträge in %(community_name)s"
+msgstr "Einladung akzeptieren für %(community_name)s"
 
 #: app/community/routes.py:2524
 msgid "Search result for remote community"
@@ -3157,9 +3148,8 @@ msgid "I changed my mind"
 msgstr "Ich habe meine Meinung geändert"
 
 #: app/post/forms.py:61
-#, fuzzy
 msgid "Community to post to"
-msgstr "Community in der dieser Link gepostet werden soll"
+msgstr "Community in die gepostet werden soll"
 
 #: app/post/forms.py:73 app/post/forms.py:79 app/post/forms.py:85
 #: app/templates/admin/instances.html:91
@@ -3192,18 +3182,16 @@ msgid "Share"
 msgstr "Teilen"
 
 #: app/post/forms.py:127
-#, fuzzy
 msgid "Community to move this post to"
-msgstr "Community in der dieser Link gepostet werden soll"
+msgstr "Community in die dieser Beitrag verschoben werden soll"
 
 #: app/post/forms.py:134 app/templates/community/community_move.html:16
 msgid "Move"
 msgstr "Umziehen"
 
 #: app/post/routes.py:75
-#, fuzzy
 msgid "This post has been deleted by the author."
-msgstr "Dieses Konto wurde gelöscht."
+msgstr "Dieser Beitrag wurde vom Ersteller gelöscht."
 
 #: app/post/routes.py:78 app/post/routes.py:424 app/post/routes.py:645
 msgid "This post has been deleted and is only visible to staff and admins."
@@ -3391,12 +3379,12 @@ msgstr "Flair für %(post_title)s einrichten"
 
 #: app/post/routes.py:1636 app/post/routes.py:2182
 msgid "Could not find that community."
-msgstr "Du kannst dieser Community nicht beitreten."
+msgstr "Diese Community konnte nicht gefunden werden."
 
 #: app/post/routes.py:1639 app/templates/post/post_move.html:14
-#, fuzzy, python-format
+#, python-format
 msgid "Move \"%(post_title)s\""
-msgstr "Melde \"%(post_title)s\""
+msgstr "Verschiebe \"%(post_title)s\""
 
 #: app/post/routes.py:1680
 msgid ""
@@ -3560,9 +3548,9 @@ msgid "%(name)s has been unlocked."
 msgstr "%(name)s wurde entsperrt."
 
 #: app/shared/post.py:929
-#, fuzzy, python-format
+#, python-format
 msgid "%(name)s has been moved."
-msgstr "%(name)s wurde gesperrt."
+msgstr "%(name)s wurde verschoben."
 
 #: app/shared/reply.py:183
 msgid "Your comment has been added."
@@ -3976,9 +3964,8 @@ msgid "This community does not federate with other instances."
 msgstr "Diese Community föderiert nicht mit anderen Instanzen."
 
 #: app/templates/_side_pane.html:99
-#, fuzzy
 msgid "This community is private and only visible to members."
-msgstr "Diese Community ist nur für eingeloggte Nutzende sichtbar."
+msgstr "Diese Community ist privat und nur für seine Mitglieder sichtbar."
 
 #: app/templates/_side_pane.html:110
 msgid "Set my flair"
@@ -4195,14 +4182,12 @@ msgid "PieFed"
 msgstr "PieFed"
 
 #: app/templates/base.html:127
-#, fuzzy
 msgid "Skip to main content"
-msgstr "Inhalt beibehalten"
+msgstr "Zum Inhalt springen"
 
 #: app/templates/base.html:128
-#, fuzzy
 msgid "Go to side pane"
-msgstr "Gehe zum Bild"
+msgstr "Zur Seitenleiste gehen"
 
 #: app/templates/base.html:133 app/templates/themes/dillo/base.html:63
 msgid "To home page"
@@ -4261,9 +4246,8 @@ msgstr "Geplante Beiträge"
 
 #: app/templates/base.html:218 app/templates/user/hidden_posts.html:15
 #: app/user/routes.py:1803
-#, fuzzy
 msgid "Hidden posts"
-msgstr "Älteste Beiträge"
+msgstr "Verborgene Beiträge"
 
 #: app/templates/base.html:223
 msgid "Manage donations"
@@ -4464,9 +4448,8 @@ msgstr "Noch keine Beiträge. Tritt einigen Communities bei, um mehr zu sehen."
 #: app/templates/user/bookmarks_comments.html:34
 #: app/templates/user/files.html:48 app/templates/user/hidden_posts.html:33
 #: app/templates/user/read_posts.html:32
-#, fuzzy
 msgid "Pagination"
-msgstr "Beitrags-Pagination"
+msgstr "Pagination"
 
 #: app/templates/admin/activities.html:64
 #: app/templates/admin/communities.html:119 app/templates/admin/content.html:56
@@ -5586,7 +5569,6 @@ msgid "Add local user"
 msgstr "Lokales Konto hinzufügen"
 
 #: app/templates/admin/users.html:40
-#, fuzzy
 msgid "Email verified?"
 msgstr "E-Mail-Adresse bestätigt?"
 
@@ -6546,7 +6528,6 @@ msgstr ""
 "einzige Weg ist, um alte Posts hierherzuziehen."
 
 #: app/templates/community/community_move.html:26
-#, fuzzy
 msgid ""
 "Lock the old community by setting it to 'moderators only' so no one else "
 "can post in it."
@@ -7085,9 +7066,8 @@ msgstr "NSFL"
 
 #: app/templates/post/_post_full.html:10
 #: app/templates/post/post_teaser/_macros.html:42
-#, fuzzy
 msgid "nsfw"
-msgstr "NSFW"
+msgstr "nsfw"
 
 #: app/templates/post/_post_full.html:14
 #: app/templates/post/post_teaser/_macros.html:43
@@ -7096,9 +7076,8 @@ msgstr "Potenziell emotional abschreckender Inhalt"
 
 #: app/templates/post/_post_full.html:15
 #: app/templates/post/post_teaser/_macros.html:43
-#, fuzzy
 msgid "nsfl"
-msgstr "NSFL"
+msgstr "nsfl"
 
 #: app/templates/post/_post_full.html:19
 #: app/templates/post/post_teaser/_macros.html:44
@@ -7116,9 +7095,8 @@ msgid "Reported. Check post for issues."
 msgstr "Gemeldet. Prüfe den Beitrag auf Probleme."
 
 #: app/templates/post/_post_full.html:41 app/templates/post/_post_full.html:396
-#, fuzzy
 msgid "deleted"
-msgstr "Löschen"
+msgstr "gelöscht"
 
 #: app/templates/post/_post_full.html:92
 msgid "Go to image"
@@ -7221,9 +7199,8 @@ msgid "Set flair"
 msgstr "Flair festlegen"
 
 #: app/templates/post/_post_preview.html:10
-#, fuzzy
 msgid "Update Preview"
-msgstr "Vorschau"
+msgstr "Vorschau aktualisieren"
 
 #: app/templates/post/_post_replies.html:7
 msgid "Translate all comments"
@@ -7501,13 +7478,12 @@ msgid "This post is old so votes and comments are disabled."
 msgstr "Dieser Beitrag ist alt, deshalb sind Votes und Kommentare deaktiviert."
 
 #: app/templates/post/post.html:84
-#, fuzzy
 msgid ""
 "The author of this post has been banned/deleted so they might not see "
 "your reply."
 msgstr ""
-"Die Autor*in wurde gebannt und wird deine Antwort wahrscheinlich nicht "
-"sehen."
+"Die Autor*in wurde gebannt/gelöscht und wird deine Antwort wahrscheinlich "
+"nicht sehen."
 
 #: app/templates/post/post.html:171
 msgid "Verify your email address to comment"
@@ -7642,9 +7618,8 @@ msgid "Purge"
 msgstr "Endgültig löschen"
 
 #: app/templates/post/post_options.html:35
-#, fuzzy
 msgid "Move to another community"
-msgstr "Crossposte zu einer anderen Community"
+msgstr "Zu einer anderen Community verschieben"
 
 #: app/templates/post/post_options.html:52
 msgid "Un-sticky"
@@ -7666,9 +7641,8 @@ msgid "Written by AI?"
 msgstr "Von KI geschrieben?"
 
 #: app/templates/post/post_options.html:106
-#, fuzzy
 msgid "Stop hiding this post from me"
-msgstr "Verberge diesen Beitrag vor mir"
+msgstr "Diesen Beitrag nicht mehr ausblenden"
 
 #: app/templates/post/post_options.html:113
 msgid "Hide this post from me"
@@ -7876,27 +7850,24 @@ msgid "Recent first"
 msgstr "Neueste zuerst"
 
 #: app/templates/search/start.html:78
-#, fuzzy
 msgid "Use my profile settings"
-msgstr "Weitere E-Mail-Einstellungen"
+msgstr "Meine Profileinstellung verwenden"
 
 #: app/templates/search/start.html:79
-#, fuzzy
 msgid "Only NSFW"
-msgstr "Nur einmal"
+msgstr "Nur NSFW"
 
 #: app/templates/search/start.html:80
 msgid "Include NSFW"
-msgstr ""
+msgstr "Inklusive NSFW"
 
 #: app/templates/search/start.html:81
-#, fuzzy
 msgid "No NSFW"
-msgstr "NSFW"
+msgstr "Kein NSFW"
 
 #: app/templates/search/start.html:84
 msgid "Minimum score"
-msgstr ""
+msgstr "Minimale Punkte"
 
 #: app/templates/search/start.html:89
 msgid "Example searches:"
@@ -8336,7 +8307,7 @@ msgstr "%(username)s löschen"
 
 #: app/templates/user/delete_account.html:20
 #: app/templates/user/edit_profile.html:140
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You are about to permanently delete the account with the username "
 "\"<strong>%(username)s</strong>.\" This means your profile will "
@@ -8344,8 +8315,8 @@ msgid ""
 "like they are from someone named \"deleted\"."
 msgstr ""
 "Du bist dabei, das Konto mit dem Namen \"<strong>%(username)s</strong>\" "
-"dauerhaft zu löschen. Das bedeutet, dass dein Profil verschwindet und "
-"Bilder gelöscht werden. Textbasierte Beiträge bleiben bestehen, aber so "
+"dauerhaft zu löschen. Das bedeutet, dass dein Profil verschwindet und Bilder "
+"gelöscht werden. Textbasierte Beiträge bleiben bestehen, aber so "
 "dargestellt, als seien sie von jemandem mit dem Namen \"gelöscht\"."
 
 #: app/templates/user/delete_account.html:21
@@ -8503,7 +8474,7 @@ msgstr ""
 
 #: app/templates/user/edit_settings.html:69
 msgid "You can have different values on each device."
-msgstr ""
+msgstr "Man kann auf jedem Geräten unterschiedliche Werte haben."
 
 #: app/templates/user/edit_settings.html:71
 msgid "Long press to vote differently."
@@ -9639,9 +9610,8 @@ msgid "Spanish"
 msgstr "Spanisch"
 
 #: app/user/routes.py:555
-#, fuzzy
 msgid "Polish"
-msgstr "Veröffentlichen"
+msgstr "Polnisch"
 
 #: app/user/routes.py:663
 #, python-format
@@ -9811,9 +9781,10 @@ msgid "Reading history has been deleted"
 msgstr "Leseverlauf wurde gelöscht"
 
 #: app/user/routes.py:1969
-#, fuzzy, python-format
+#, python-format
 msgid "That person could not be retrieved or is banned from %(site)s."
-msgstr "Diese Person konnte nicht abgerufen werden oder ist von %(site)s gebannt."
+msgstr ""
+"Diese Person konnte nicht abgerufen werden oder ist von %(site)s gebannt."
 
 #: app/user/routes.py:1979
 msgid "Searching for remote people requires login"

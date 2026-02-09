@@ -846,7 +846,7 @@ class Community(db.Model):
         if version == 1:
             for flair in self.flair:
                 result.append({'type': 'lemmy:CommunityTag',
-                            'id': f'{current_app.config["SERVER_NAME"]}://{current_app.config["SERVER_NAME"]}/c/{self.link()}/tag/{flair.id}',
+                            'id': f'{current_app.config["SERVER_URL"]}/c/{self.link()}/tag/{flair.id}',
                             'display_name': flair.flair,
                             'text_color': flair.text_color,
                             'background_color': flair.background_color,
@@ -2308,14 +2308,14 @@ class Post(db.Model):
         return_value = []
         for flair in self.flair:
             return_value.append({'type': 'lemmy:CommunityTag',
-                                 'id': f'{current_app.config["SERVER_NAME"]}://{current_app.config["SERVER_NAME"]}/c/{self.community.link()}/tag/{flair.id}',
+                                 'id': f'{current_app.config["SERVER_URL"]}/c/{self.community.link()}/tag/{flair.id}',
                                  'display_name': flair.flair,
                                  'text_color': flair.text_color,
                                  'background_color': flair.background_color,
                                  'blur_images': flair.blur_images})
         for tag in self.tags:
             return_value.append({'type': 'Hashtag',
-                                 'href': f'{current_app.config["SERVER_NAME"]}://{current_app.config["SERVER_NAME"]}/tag/{tag.name}',
+                                 'href': f'{current_app.config["SERVER_URL"]}/tag/{tag.name}',
                                  'name': f'#{tag.name}'})
 
         # include emojis used in body text

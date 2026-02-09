@@ -2293,6 +2293,18 @@ a.unread:before, div.unread:before {
   background: var(--bs-secondary-bg);
   padding: 0.25rem 0.5rem;
   border-radius: 5px;
+  position: relative;
+}
+.post_body p > code .btn, .comment_body p > code .btn, #preview p > code .btn, .reply_preview p > code .btn, .accordion-body p > code .btn, .post_col p > code .btn {
+  --bs-btn-padding-x: 0.25rem ! important;
+  --bs-btn-padding-y: 0 ! important;
+}
+.post_body code .before, .comment_body code .before, #preview code .before, .reply_preview code .before, .accordion-body code .before, .post_col code .before {
+  float: right;
+}
+.post_body code .btn:hover, .comment_body code .btn:hover, #preview code .btn:hover, .reply_preview code .btn:hover, .accordion-body code .btn:hover, .post_col code .btn:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
 }
 .post_body table.table, .comment_body table.table, #preview table.table, .reply_preview table.table, .accordion-body table.table, .post_col table.table {
   display: block;

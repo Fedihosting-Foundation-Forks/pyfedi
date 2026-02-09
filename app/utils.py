@@ -3949,24 +3949,12 @@ def compaction_level():
 
 
 def humanize_number(value):
-    """Return an abbreviated, human readable number (e.g. 1.2k instead of 1215)"""
+    """Return an abbreviated, human-readable number (e.g. 1.2k instead of 1215)"""
 
     if not value:
         return "0"
 
-    def get_locale():
-        try:
-            if session.get('ui_language', None):
-                return session['ui_language']
-            else:
-                try:
-                    return request.accept_languages.best_match(current_app.config['LANGUAGES'])
-                except:
-                    return 'en'
-        except:
-            return 'en'
-
-    return format_compact_decimal(value, locale=get_locale())
+    return format_compact_decimal(value, locale=g.locale)
 
 
 def debug_checkpoint(name: str):

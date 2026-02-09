@@ -1,18 +1,18 @@
-
 msgid ""
 msgstr ""
-"Project-Id-Version:  piefed\n"
+"Project-Id-Version: piefed\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
 "POT-Creation-Date: 2026-02-09 21:09+1300\n"
-"PO-Revision-Date: 2026-02-09 06:31+0000\n"
-"Last-Translator: Snoopy <snoopy@users.noreply.translate.piefed.social>\n"
+"PO-Revision-Date: 2026-02-09 22:28+0000\n"
+"Last-Translator: Takapapatapaka <jean.gosselin3@orange.fr>\n"
+"Language-Team: French <http://translate.piefed.social/projects/piefed/"
+"main-web-app/fr/>\n"
 "Language: fr\n"
-"Language-Team: French <http://translate.piefed.social/projects/piefed"
-"/main-web-app/fr/>\n"
-"Plural-Forms: nplurals=2; plural=n > 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: app/__init__.py:52
@@ -472,6 +472,8 @@ msgid ""
 "Report comments containing an em dash (—) from newly created users - "
 "likely spam / AI."
 msgstr ""
+"Signaler les commentaires de nouveauxelles utilisateurices qui contiennent "
+"un tiret long (—) - probablement du spam / de l'IA."
 
 #: app/admin/forms.py:72
 msgid "Log ActivityPub JSON for debugging"
@@ -1578,9 +1580,8 @@ msgstr ""
 " (voir les liens en bas de page)"
 
 #: app/auth/forms.py:36
-#, fuzzy
 msgid "Enter captcha code below"
-msgstr "Entrez le code captcha"
+msgstr "Entrez le code captcha ci-dessous"
 
 #: app/auth/forms.py:39 app/auth/util.py:356 app/templates/base.html:266
 #: app/templates/themes/dillo/base.html:108
@@ -3275,10 +3276,9 @@ msgid "Vote has been cast."
 msgstr "Le vote a été exprimé."
 
 #: app/post/routes.py:646
-#, fuzzy
 msgid "This comment has been deleted and is only visible to staff and admins."
 msgstr ""
-"Cette publication a été supprimée et n'est visible que par l'équipe de "
+"Ce commentaire a été supprimée et n'est visible que par l'équipe de "
 "modération et les administrateurices."
 
 #: app/post/routes.py:704 app/post/routes.py:831
@@ -3403,12 +3403,12 @@ msgstr "%(name)s a été désépinglé."
 #: app/post/routes.py:1513
 #, fuzzy, python-format
 msgid "%(name)s has been stickied to the instance."
-msgstr "%(name)s a été épinglé."
+msgstr "%(name)s a été épinglé au niveau de l'instance."
 
 #: app/post/routes.py:1516
-#, fuzzy, python-format
+#, python-format
 msgid "%(name)s has been un-stickied from the instance."
-msgstr "%(name)s a été désépinglé."
+msgstr "%(name)s a été désépinglé au niveau de l'instance."
 
 #: app/post/routes.py:1534
 #, python-format
@@ -5675,8 +5675,11 @@ msgid "I don't know, help me"
 msgstr "Je ne sais pas, aidez-moi"
 
 #: app/templates/auth/instance_chooser.html:19
+#, fuzzy
 msgid "Either join this server using the button above or choose one below."
 msgstr ""
+"Vous pouvez rejoindre ce serveur en utilisant le bouton ci-dessus ou en "
+"choisir un ci-dessous."
 
 #: app/templates/auth/instance_chooser.html:36
 msgid "Good for newbies"
@@ -5768,49 +5771,70 @@ msgid "Visit server"
 msgstr "Visiter le serveur"
 
 #: app/templates/auth/instance_chooser.html:141
+#, fuzzy
 msgid "Help"
-msgstr ""
+msgstr "Assistance"
 
 #: app/templates/auth/instance_chooser.html:147
+#, fuzzy
 msgid ""
 "There's not much risk involved in this decision - you can always export "
 "your subscriptions and settings and import then into another server if "
 "your original choice doesn't work out."
 msgstr ""
+"Ce choix n'est pas très important : vous pourrez exporter vos abonnements et "
+"paramètres puis les importer dans un autre serveur, si jamais celui que vous "
+"allez choisir ne vous convient pas."
 
 #: app/templates/auth/instance_chooser.html:148
 msgid ""
 "The servers are listed in order of how fast they are - look for ones with"
 " a rocket or lightning icon."
 msgstr ""
+"Les serveurs sont affichés en fonction de leur vitesse - les plus rapides "
+"ont une icône de fusée ou d'éclair."
 
 #: app/templates/auth/instance_chooser.html:149
 msgid ""
 "Stability is a rough measure of how organized the admin team is and how "
 "much support they have, not uptime."
 msgstr ""
+"La stabilité est une mesure au doigt mouillé du niveau d'organisation de "
+"l'équipe d'administration et des ressources dont iels disposent, pas de la "
+"disponibilité du serveur."
 
 #: app/templates/auth/instance_chooser.html:150
 msgid ""
 "Newbie friendly servers have set up some starter-packs to help you find "
 "interesting communities more easily."
 msgstr ""
+"Les serveurs tournés vers les néophytes ont mis en place des kits de "
+"démarrages pour vous aider à trouver des communautés intéressantes."
 
 #: app/templates/auth/instance_chooser.html:151
+#, fuzzy
 msgid ""
 "Age is how long the server has been online for. Generally older ones are "
 "more likely to be around for the long term."
 msgstr ""
+"L'âge correspond à la durée écoulée depuis que le serveur a été mis en "
+"ligne. Généralement, les plus vieux ont plus de chances de continuer à "
+"exister longtemps."
 
 #: app/templates/auth/instance_chooser.html:152
+#, fuzzy
 msgid ""
 "The language of the server only matters when need to communicate with the"
 " admins."
 msgstr ""
+"La langue du serveur est surtout importante si jamais vous devez échanger "
+"avec l'équipe d'administration."
 
 #: app/templates/auth/instance_chooser.html:153
 msgid "Click 'more' on a server to read a longer description of it."
 msgstr ""
+"Cliquez sur \"plus\" pour lire des descriptions plus longues de chaque "
+"serveur."
 
 #: app/templates/auth/instance_chooser.html:350
 #: app/templates/post/add_reply_inline.html:87 app/templates/post/post.html:42
@@ -7706,14 +7730,13 @@ msgid "Un-sticky"
 msgstr "Désépingler"
 
 #: app/templates/post/post_options.html:68
-#, fuzzy, python-format
+#, python-format
 msgid "Un-sticky from instance"
-msgstr "Publications de %(instance)s"
+msgstr "Désépinglée au niveau de %(instance)s"
 
 #: app/templates/post/post_options.html:75
-#, fuzzy
 msgid "Sticky to instance"
-msgstr "Aller sur l'instance"
+msgstr "Épinglée au niveau de l'instance"
 
 #: app/templates/post/post_options.html:84
 #: app/templates/post/post_reply_options.html:144
@@ -9353,9 +9376,8 @@ msgid "Matrix user ids start with @"
 msgstr "Les identifiants Matrix commencent par @"
 
 #: app/user/forms.py:53
-#, fuzzy
 msgid "Invalid display name"
-msgstr "Nom d'affichage"
+msgstr "Nom d'affichage invalide"
 
 #: app/user/forms.py:57
 msgid "Interface language"
@@ -10403,4 +10425,3 @@ msgstr "Votre don a été annulé."
 
 #~ msgid "More new communities"
 #~ msgstr "Plus de nouvelles communautés"
-

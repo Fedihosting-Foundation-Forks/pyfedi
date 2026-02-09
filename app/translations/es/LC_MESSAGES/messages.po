@@ -8,15 +8,16 @@ msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: tkz@tkz.es\n"
 "POT-Creation-Date: 2026-02-09 21:09+1300\n"
-"PO-Revision-Date: 2026-02-09 06:31+0000\n"
+"PO-Revision-Date: 2026-02-09 22:28+0000\n"
 "Last-Translator: f <felipe@disroot.org>\n"
+"Language-Team: Spanish <http://translate.piefed.social/projects/piefed/"
+"main-web-app/es/>\n"
 "Language: es\n"
-"Language-Team: Spanish <http://translate.piefed.social/projects/piefed"
-"/main-web-app/es/>\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Weblate 5.10.4\n"
 "Generated-By: Babel 2.12.1\n"
 
 #: app/__init__.py:52
@@ -5081,7 +5082,7 @@ msgstr ""
 
 #: app/templates/admin/cms_page_delete.html:21
 msgid "This action cannot be undone."
-msgstr ""
+msgstr "Esta acción no se puede deshacer."
 
 #: app/templates/admin/cms_page_delete.html:26
 msgid "Page Details"
@@ -5097,7 +5098,7 @@ msgstr "URL:"
 
 #: app/templates/admin/cms_page_delete.html:31
 msgid "Last edited by:"
-msgstr ""
+msgstr "Última edición por:"
 
 #: app/templates/admin/cms_page_delete.html:32
 msgid "Last edited:"
@@ -5129,6 +5130,8 @@ msgid ""
 "Content is written in Markdown format and will be converted to HTML when "
 "saved."
 msgstr ""
+"El contenido se escribe en formato Markdown y será convertido a HTML cuando "
+"se guarde."
 
 #: app/templates/admin/cms_page_edit.html:38
 #: app/templates/post/add_reply_inline.html:34 app/templates/post/post.html:118
@@ -5138,11 +5141,11 @@ msgstr "Vista previa"
 
 #: app/templates/admin/cms_page_edit.html:54
 msgid "Markdown Help"
-msgstr ""
+msgstr "Ayuda de Markdown"
 
 #: app/templates/admin/cms_page_edit.html:57
 msgid "Basic formatting:"
-msgstr ""
+msgstr "Formato básico:"
 
 #: app/templates/admin/cms_page_edit.html:66
 msgid "Lists, tables, and other Markdown features are supported."
@@ -5372,7 +5375,7 @@ msgstr ""
 
 #: app/templates/admin/home.html:50
 msgid "Installed Plugins"
-msgstr ""
+msgstr "Complementos instalados"
 
 #: app/templates/admin/home.html:56
 #, fuzzy
@@ -5406,7 +5409,7 @@ msgstr "Sin ganchos"
 
 #: app/templates/admin/home.html:98
 msgid "No plugins installed."
-msgstr ""
+msgstr "No hay complementos instalados."
 
 #: app/templates/admin/instance_chooser.html:14
 #, fuzzy
@@ -5427,7 +5430,7 @@ msgstr ""
 
 #: app/templates/admin/instance_chooser.html:22
 msgid "Instance strength / maturity"
-msgstr ""
+msgstr "Fuerza / madurez de la instancia"
 
 #: app/templates/admin/instance_chooser.html:23
 msgid ""
@@ -5531,7 +5534,7 @@ msgstr ""
 #: app/templates/admin/site.html:25 app/templates/admin/site.html:32
 #: app/templates/admin/site.html:34
 msgid "You can use markdown here."
-msgstr ""
+msgstr "Puedes usar Markdown aquí."
 
 #: app/templates/admin/misc.html:57
 msgid ""
@@ -5541,7 +5544,7 @@ msgstr ""
 
 #: app/templates/admin/misc.html:60
 msgid "PieFed instances only. One per line, no https:// on the front."
-msgstr ""
+msgstr "Solo instancias de PieFed. Una por línea, sin https:// al inicio."
 
 #: app/templates/admin/misc.html:62
 msgid "This will be sent after their application is approved. Use markdown."
@@ -5698,7 +5701,7 @@ msgstr ""
 
 #: app/templates/auth/check_email.html:18
 msgid "Request a new verification email"
-msgstr ""
+msgstr "Solicita una nueva verificación por correo electrónico"
 
 #: app/templates/auth/choose_topics.html:14
 msgid "Please choose at least 3 topics that interest you."
@@ -5715,7 +5718,7 @@ msgstr "Unirte a  %(domain)s"
 
 #: app/templates/auth/instance_chooser.html:17
 msgid "I don't know, help me"
-msgstr ""
+msgstr "No sé, ayúdame"
 
 #: app/templates/auth/instance_chooser.html:19
 msgid "Either join this server using the button above or choose one below."
@@ -5723,7 +5726,7 @@ msgstr ""
 
 #: app/templates/auth/instance_chooser.html:36
 msgid "Good for newbies"
-msgstr ""
+msgstr "Bueno para novatos"
 
 #: app/templates/auth/instance_chooser.html:36
 msgid "Newbies"
@@ -5735,11 +5738,11 @@ msgstr ""
 
 #: app/templates/auth/instance_chooser.html:39
 msgid "Choose your own adventure"
-msgstr ""
+msgstr "Elige tu propia aventura"
 
 #: app/templates/auth/instance_chooser.html:45
 msgid "I don't care"
-msgstr ""
+msgstr "No me importa"
 
 #: app/templates/auth/instance_chooser.html:46
 msgid "NSFW content available"
@@ -5755,6 +5758,8 @@ msgid ""
 "These servers are ordered by speed so it may vary depending on time of "
 "day, etc"
 msgstr ""
+"Estos servidores están ordenados por velocidad así que puede variar "
+"dependiendo de la hora del día, etc."
 
 #: app/templates/auth/instance_chooser.html:75
 msgid "Server details"
@@ -5817,7 +5822,7 @@ msgstr "Visitar usuario"
 
 #: app/templates/auth/instance_chooser.html:141
 msgid "Help"
-msgstr ""
+msgstr "Ayuda"
 
 #: app/templates/auth/instance_chooser.html:147
 msgid ""
@@ -5997,7 +6002,7 @@ msgstr "Eliminado por el autor"
 
 #: app/templates/chat/_messages.html:17
 msgid "The other participant has left the chat."
-msgstr ""
+msgstr "El otro participante ha abandonado el chat."
 
 #: app/templates/chat/blocked.html:15
 msgid "You have blocked this person or they have blocked you."
@@ -6425,6 +6430,7 @@ msgstr "No apto para la vida (NSFL)"
 #: app/templates/community/community.html:123
 msgid "You need to be a member to see the contents of this private community."
 msgstr ""
+"Necesitas ser miembro para ver los contenidos de esta comunidad privada."
 
 #: app/templates/community/community.html:159
 msgid "No posts in this community yet."
@@ -6663,7 +6669,7 @@ msgstr "Esta comunidad aún no tiene acciones de moderación."
 
 #: app/templates/community/community_move.html:22
 msgid "The process to move a community to this instance is:"
-msgstr ""
+msgstr "El proceso para mover una comunidad a esta instancia es:"
 
 #: app/templates/community/community_move.html:24
 msgid ""
@@ -6761,7 +6767,7 @@ msgstr "Crear comunidad"
 
 #: app/templates/community/rate.html:24
 msgid "1 = terrible, 3 = ok, 5 = best ever"
-msgstr ""
+msgstr "1 = terrible, 3 = bien, 5 = lo mejor"
 
 #: app/templates/community/retrieve_remote_post.html:30
 msgid "Found a post:"
@@ -6868,7 +6874,7 @@ msgstr "No se pudo encontrar la página que tu navegador intentó cargar."
 
 #: app/templates/errors/429.html:12
 msgid "429 - Too Many Requests"
-msgstr ""
+msgstr "429 - Demasiadas peticiones"
 
 #: app/templates/errors/429.html:15
 msgid ""
@@ -6927,7 +6933,7 @@ msgstr "Más información"
 #: app/templates/feed/public_feeds.html:57
 #: app/templates/feed/public_feeds.html:61
 msgid "Copy"
-msgstr ""
+msgstr "Copiar"
 
 #: app/templates/feed/_feed_nav.html:173
 #: app/templates/feed/_feed_table_row.html:7
@@ -6984,7 +6990,7 @@ msgstr "Feed de inicio"
 #: app/templates/feed/feed_copy.html:25 app/templates/feed/feed_edit.html:30
 #: app/templates/feed/feed_new.html:25
 msgid "Format example: news@lemmy.world. One per line."
-msgstr ""
+msgstr "Ejemplo de formato: news@lemmy.world. Una por línea."
 
 #: app/templates/feed/feed_create_post.html:13
 #, fuzzy, python-format
@@ -7235,7 +7241,7 @@ msgstr "NSFW"
 #: app/templates/post/_post_full.html:19
 #: app/templates/post/post_teaser/_macros.html:44
 msgid "This post contains AI generated content"
-msgstr ""
+msgstr "Esta publicación contiene contenido generado por IA"
 
 #: app/templates/post/_post_full.html:20
 #: app/templates/post/post_teaser/_macros.html:44
@@ -10364,4 +10370,3 @@ msgstr "Tu nueva comunidad ha sido creada."
 
 #~ msgid "More new communities"
 #~ msgstr "Más nuevas comunidades"
-

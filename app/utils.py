@@ -3974,7 +3974,7 @@ def debug_checkpoint(name: str):
     return now, delta
 
 
-@cache.cached(timeout=5)
+@cache.memoize(timeout=5)
 def get_site_as_dict() -> dict:
     # return the Site as a dict so that it can be serialized by flask-caching
     site = db.session.query(Site).get(1)

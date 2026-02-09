@@ -127,13 +127,21 @@
                 {% endif -%}
                 {% cache 60*5, g.locale %}
                     {% set active_monthly = g.site.active_monthly() -%}
-                    {% if active_monthly > 100 -%}
+                    {% if active_monthly > 1 -%}
                         <hr>
+                        <h4>{{ _('This server') }}</h4>
                         <div>
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(g.site.active_daily()) }} {{ _('Daily Users') }}</span>
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past 7 days') }}">{{ humanize_number(g.site.active_weekly()) }} {{ _('Weekly Users') }}</span>
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past month') }}">{{ humanize_number(active_monthly) }} {{ _('Monthly Users') }}</span>
                             <span class="badge text-bg-secondary" title="{{ _('Active users in the past 6 months') }}">{{ humanize_number(g.site.active_6monthly()) }} {{ _('Users / 6 Months') }}</span>
+                        </div>
+                        <h4 class="mt-3">{{ _('Whole network') }}</h4>
+                        <div>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past 24 hours') }}">{{ humanize_number(g.site.all_active_daily()) }} {{ _('Daily Users') }}</span>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past 7 days') }}">{{ humanize_number(g.site.all_active_weekly()) }} {{ _('Weekly Users') }}</span>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past month') }}">{{ humanize_number(g.site.all_active_monthly()) }} {{ _('Monthly Users') }}</span>
+                            <span class="badge text-bg-secondary" title="{{ _('Active users in the past 6 months') }}">{{ humanize_number(g.site.all_active_6monthly()) }} {{ _('Users / 6 Months') }}</span>
                         </div>
                     {% endif -%}
                 {% endcache -%}

@@ -556,6 +556,7 @@ def user_settings():
         ('ca', _l('Catalan')),
         ('zh', _l('Chinese')),
         ('en', _l('English')),
+        ('fi', _l('Finnish')),
         ('fr', _l('French')),
         ('de', _l('German')),
         ('hi', _l('Hindi')),

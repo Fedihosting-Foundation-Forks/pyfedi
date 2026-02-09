@@ -171,6 +171,7 @@ def register(app):
             db.session.add(Language(code='en', name='English'))
             db.session.add(Language(code='de', name='Deutsch'))
             db.session.add(Language(code='es', name='Español'))
+            db.session.add(Language(code='fi', name='Finnish'))
             db.session.add(Language(code='fr', name='Français'))
             db.session.add(Language(code='hi', name='हिन्दी'))
             db.session.add(Language(code='ja', name='日本語'))

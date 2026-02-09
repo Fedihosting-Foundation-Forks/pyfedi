@@ -7,43 +7,42 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: tkz@tkz.es\n"
-"POT-Creation-Date: 2026-02-09 21:09+1300\n"
+"POT-Creation-Date: 2026-02-10 11:32+1300\n"
 "PO-Revision-Date: 2026-02-09 22:28+0000\n"
 "Last-Translator: f <felipe@disroot.org>\n"
-"Language-Team: Spanish <http://translate.piefed.social/projects/piefed/"
-"main-web-app/es/>\n"
 "Language: es\n"
+"Language-Team: Spanish <http://translate.piefed.social/projects/piefed"
+"/main-web-app/es/>\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
-"Generated-By: Babel 2.12.1\n"
+"Generated-By: Babel 2.17.0\n"
 
 #: app/__init__.py:52
 msgid "Please log in to access this page."
 msgstr "Por favor, inicia sesión para acceder a esta página."
 
-#: app/cli.py:649
+#: app/cli.py:651
 #, fuzzy, python-format
 msgid "Reminder: %(title)s"
 msgstr "Revisiones de %(title)s"
 
-#: app/cli.py:654
+#: app/cli.py:656
 #, fuzzy, python-format
 msgid "Reminder: comment on %(title)s"
 msgstr "Respuestas a mi comentario en %(post_title)s"
 
-#: app/cli.py:852 app/main/routes.py:785
+#: app/cli.py:854 app/main/routes.py:785
 msgid "[PieFed] You have unread notifications"
 msgstr "[PieFed] Tienes notificaciones sin leer"
 
-#: app/cli.py:996 app/shared/post.py:139
+#: app/cli.py:998 app/shared/post.py:139
 #, python-format
 msgid "Replies to my post %(post_title)s"
 msgstr "Respuestas a mi publicación %(post_title)s"
 
-#: app/cli.py:1006 app/models.py:2684 app/shared/reply.py:115
+#: app/cli.py:1008 app/models.py:2684 app/shared/reply.py:115
 #, python-format
 msgid "Replies to my comment on %(post_title)s"
 msgstr "Respuestas a mi comentario en %(post_title)s"
@@ -198,7 +197,7 @@ msgstr "Comentario"
 msgid "Chat"
 msgstr "Chat"
 
-#: app/admin/forms.py:263 app/admin/forms.py:325 app/admin/routes.py:84
+#: app/admin/forms.py:263 app/admin/forms.py:325 app/admin/routes.py:85
 #: app/templates/admin/permissions.html:22 app/templates/base.html:239
 #: app/templates/themes/dillo/base.html:163
 #: app/templates/user/show_profile.html:140
@@ -211,7 +210,9 @@ msgstr "Administrador"
 
 #: app/admin/forms.py:66 app/templates/_view_filter_nav.html:11
 #: app/templates/_view_filter_nav.html:27
-#: app/templates/admin/communities.html:77
+#: app/templates/admin/activities.html:16
+#: app/templates/admin/communities.html:23
+#: app/templates/admin/communities.html:77 app/templates/admin/content.html:28
 #: app/templates/list_communities.html:113
 #: app/templates/list_communities.html:131
 #: app/templates/list_communities.html:149
@@ -616,11 +617,13 @@ msgstr "Escanear"
 msgid "Import Bans List Json File"
 msgstr "Importar archivo JSON de lista de bloqueos"
 
-#: app/admin/forms.py:127 app/user/forms.py:135
+#: app/admin/forms.py:127 app/templates/user/import_export.html:24
+#: app/user/forms.py:135
 msgid "Import"
 msgstr "Importar"
 
-#: app/admin/forms.py:128 app/user/forms.py:134
+#: app/admin/forms.py:128 app/templates/user/import_export.html:28
+#: app/user/forms.py:134
 msgid "Export"
 msgstr "Exportar"
 
@@ -835,7 +838,8 @@ msgstr "Se requiere URL."
 #: app/admin/forms.py:197 app/community/forms.py:25 app/feed/forms.py:12
 #: app/feed/forms.py:64 app/templates/admin/approve_registrations.html:23
 #: app/templates/admin/approve_registrations.html:79
-#: app/templates/admin/users.html:54 app/templates/admin/users.html:98
+#: app/templates/admin/topics.html:36 app/templates/admin/users.html:54
+#: app/templates/admin/users.html:98
 #: app/templates/community/community_mod_list.html:61
 #: app/templates/community/community_moderate_subscribers.html:133
 #: app/templates/community/community_wiki_list.html:33
@@ -843,7 +847,8 @@ msgstr "Se requiere URL."
 #: app/templates/instance/people.html:24 app/templates/user/filters.html:47
 #: app/templates/user/filters.html:94 app/templates/user/filters.html:115
 #: app/templates/user/filters.html:136 app/templates/user/filters.html:157
-#: app/user/forms.py:209
+#: app/templates/user/user_feeds.html:19
+#: app/templates/user/user_public_feeds.html:17 app/user/forms.py:209
 msgid "Name"
 msgstr "Nombre"
 
@@ -967,6 +972,7 @@ msgstr "La dirección de correo electrónico está verificada"
 #: app/admin/forms.py:248 app/admin/forms.py:312
 #: app/templates/admin/approve_registrations.html:56
 #: app/templates/admin/users.html:60 app/templates/admin/users.html:99
+#: app/templates/admin/users.html:100
 msgid "Banned"
 msgstr "Bloqueado"
 
@@ -1089,7 +1095,7 @@ msgstr "Cuerpo (html)"
 msgid "Test mode"
 msgstr "Modo de prueba"
 
-#: app/admin/forms.py:338 app/admin/routes.py:1830
+#: app/admin/forms.py:338 app/admin/routes.py:1831
 msgid "Send newsletter"
 msgstr "Enviar boletín"
 
@@ -1160,22 +1166,27 @@ msgstr "Palabras clave"
 msgid "Category"
 msgstr "Categoría"
 
-#: app/admin/routes.py:219 app/admin/routes.py:251 app/admin/routes.py:293
+#: app/admin/routes.py:65
+#, fuzzy
+msgid "Storage used"
+msgstr "Moderar usuario"
+
+#: app/admin/routes.py:220 app/admin/routes.py:252 app/admin/routes.py:294
 #: app/feed/routes.py:238
 msgid "Settings saved."
 msgstr "Ajustes guardados."
 
-#: app/admin/routes.py:229 app/templates/admin/_nav.html:5
+#: app/admin/routes.py:230 app/templates/admin/_nav.html:5
 #: app/templates/admin/site.html:16
 msgid "Site profile"
 msgstr "Perfil del sitio"
 
-#: app/admin/routes.py:330 app/admin/routes.py:352
+#: app/admin/routes.py:331 app/admin/routes.py:353
 #: app/templates/admin/_nav.html:6 app/templates/admin/misc.html:19
 msgid "Misc settings"
 msgstr "Ajustes varios"
 
-#: app/admin/routes.py:344
+#: app/admin/routes.py:345
 msgid ""
 "Settings saved. It might take up to 24 hours before other instances show "
 "your changes."
@@ -1183,12 +1194,12 @@ msgstr ""
 "Ajustes guardados. Puede tomar hasta 24 horas para que otras instancias "
 "reflejen los cambios."
 
-#: app/admin/routes.py:419
+#: app/admin/routes.py:420
 #, python-format
 msgid "%d out of %d communities were excluded using current filters"
 msgstr "%d de %d comunidades fueron excluidas con los filtros actuales"
 
-#: app/admin/routes.py:469 app/admin/routes.py:779
+#: app/admin/routes.py:470 app/admin/routes.py:780
 #, python-format
 msgid "Results: %(results)s"
 msgstr "Resultados: %(results)s"
@@ -1215,23 +1226,23 @@ msgstr ""
 "suscripción para %(communities_to_join)d de %(candidate_communities)d "
 "comunidades. Revisa admin/activities para más detalles"
 
-#: app/admin/routes.py:808
+#: app/admin/routes.py:809
 msgid "Ban imports started in a background process."
 msgstr "La importación de bloqueos se inició en un proceso en segundo plano."
 
-#: app/admin/routes.py:811
+#: app/admin/routes.py:812
 msgid "Ban imports requested, but no json provided."
 msgstr "Se solicitó la importación de bloqueos, pero no se proporcionó JSON."
 
-#: app/admin/routes.py:911
+#: app/admin/routes.py:912
 msgid "Admin settings saved"
 msgstr "Ajustes de administrador guardados"
 
-#: app/admin/routes.py:927
+#: app/admin/routes.py:928
 msgid "Federation settings"
 msgstr "Ajustes de federación"
 
-#: app/admin/routes.py:1064
+#: app/admin/routes.py:1065
 msgid ""
 "LOG_ACTIVITYPUB_TO_DB is off so no incoming activities are being logged "
 "to the database."
@@ -1239,15 +1250,15 @@ msgstr ""
 "LOG_ACTIVITYPUB_TO_DB está apagado, así que no se registran actividades "
 "entrantes en la base de dato."
 
-#: app/admin/routes.py:1087
+#: app/admin/routes.py:1088
 msgid "ActivityPub Log"
 msgstr "Registro de ActivityPub"
 
-#: app/admin/routes.py:1116 app/templates/admin/activity_json.html:13
+#: app/admin/routes.py:1117 app/templates/admin/activity_json.html:13
 msgid "Activity JSON"
 msgstr "JSON de la actividad"
 
-#: app/admin/routes.py:1152 app/community/routes.py:567
+#: app/admin/routes.py:1153 app/community/routes.py:567
 #: app/community/routes.py:1940 app/community/routes.py:1992
 #: app/feed/forms.py:18 app/feed/forms.py:70 app/main/routes.py:425
 #: app/post/routes.py:220 app/post/routes.py:486 app/post/routes.py:2223
@@ -1276,25 +1287,25 @@ msgstr "JSON de la actividad"
 msgid "Communities"
 msgstr "Comunidades"
 
-#: app/admin/routes.py:1173
+#: app/admin/routes.py:1174
 msgid "Communities with no topic"
 msgstr "Comunidades sin tema"
 
-#: app/admin/routes.py:1195
+#: app/admin/routes.py:1196
 #, fuzzy
 msgid "Communities with low_quality == True"
 msgstr "Comunidades sin tema"
 
-#: app/admin/routes.py:1267 app/admin/routes.py:1373 app/admin/routes.py:1397
-#: app/admin/routes.py:1658 app/admin/routes.py:1930 app/admin/routes.py:1960
-#: app/admin/routes.py:2050 app/admin/routes.py:2078
+#: app/admin/routes.py:1268 app/admin/routes.py:1374 app/admin/routes.py:1398
+#: app/admin/routes.py:1659 app/admin/routes.py:1931 app/admin/routes.py:1961
+#: app/admin/routes.py:2051 app/admin/routes.py:2079
 #: app/community/routes.py:1243 app/community/routes.py:1888
 #: app/community/routes.py:2053 app/community/routes.py:2281
 #: app/domain/routes.py:43
 msgid "Saved"
 msgstr "Guardado"
 
-#: app/admin/routes.py:1271
+#: app/admin/routes.py:1272
 msgid ""
 "This is a remote community - most settings here will be regularly "
 "overwritten with data from the original server."
@@ -1302,15 +1313,15 @@ msgstr ""
 "Esta es una comunidad remota; la mayoría de los ajustes se sobrescribirán"
 " regularmente con datos del servidor original."
 
-#: app/admin/routes.py:1295 app/community/routes.py:1271
+#: app/admin/routes.py:1296 app/community/routes.py:1271
 msgid "Edit community"
 msgstr "Editar comunidad"
 
-#: app/admin/routes.py:1310 app/community/routes.py:1331
+#: app/admin/routes.py:1311 app/community/routes.py:1331
 msgid "Community deleted"
 msgstr "Comunidad eliminada"
 
-#: app/admin/routes.py:1353 app/community/routes.py:552
+#: app/admin/routes.py:1354 app/community/routes.py:552
 #: app/community/routes.py:1927 app/community/routes.py:1979
 #: app/post/routes.py:206 app/post/routes.py:467
 #: app/templates/admin/_nav.html:10 app/templates/admin/_tabbed_nav.html:11
@@ -1322,50 +1333,50 @@ msgstr "Comunidad eliminada"
 msgid "Topics"
 msgstr "Temas"
 
-#: app/admin/routes.py:1376 app/templates/admin/topics.html:33
+#: app/admin/routes.py:1377 app/templates/admin/topics.html:33
 msgid "Add topic"
 msgstr "Añadir tema"
 
-#: app/admin/routes.py:1404
+#: app/admin/routes.py:1405
 msgid "Edit topic"
 msgstr "Editar tema"
 
-#: app/admin/routes.py:1415
+#: app/admin/routes.py:1416
 msgid "Topic deleted"
 msgstr "Tema eliminado"
 
-#: app/admin/routes.py:1417
+#: app/admin/routes.py:1418
 msgid "Cannot delete topic with communities assigned to it."
 msgstr "No se puede eliminar el tema mientras tenga comunidades asignadas."
 
-#: app/admin/routes.py:1463 app/templates/admin/_nav.html:13
+#: app/admin/routes.py:1464 app/templates/admin/_nav.html:13
 #: app/templates/admin/_tabbed_nav.html:14
 #: app/templates/admin/instances.html:49 app/templates/admin/users.html:15
 #: app/templates/user/alerts/_type.html:7
 msgid "Users"
 msgstr "Usuarios"
 
-#: app/admin/routes.py:1482
+#: app/admin/routes.py:1483
 msgid "Bad / Most downvoted"
 msgstr "Malas / Más votos negativos"
 
-#: app/admin/routes.py:1492
+#: app/admin/routes.py:1493
 msgid "Likely spam"
 msgstr "Probable spam"
 
-#: app/admin/routes.py:1504
+#: app/admin/routes.py:1505
 msgid "Deleted content"
 msgstr "Contenido eliminado"
 
-#: app/admin/routes.py:1577
+#: app/admin/routes.py:1578
 msgid "Registration approved."
 msgstr "Registro aprobado."
 
-#: app/admin/routes.py:1605
+#: app/admin/routes.py:1606
 msgid "Registration denied. User removed from the database."
 msgstr "Registro denegado. El usuario ha sido removido de la base de datos."
 
-#: app/admin/routes.py:1644
+#: app/admin/routes.py:1645
 msgid ""
 "Permissions are cached for 50 seconds so new admin roles won't take "
 "effect immediately."
@@ -1373,7 +1384,7 @@ msgstr ""
 "Los permisos se almacenan en caché durante 50 segundos, así que los "
 "nuevos roles de administrador no se aplicarán inmediatamente."
 
-#: app/admin/routes.py:1662
+#: app/admin/routes.py:1663
 msgid ""
 "This is a remote user - most settings here will be regularly overwritten "
 "with data from the original server."
@@ -1381,92 +1392,92 @@ msgstr ""
 "Este es un usuario remoto; la mayoría de los ajustes se sobrescribirán "
 "regularmente con datos del servidor original."
 
-#: app/admin/routes.py:1675
+#: app/admin/routes.py:1676
 msgid "Edit user"
 msgstr "Editar usuario"
 
-#: app/admin/routes.py:1694 app/auth/routes.py:116
+#: app/admin/routes.py:1695 app/auth/routes.py:116
 msgid "Verification email sent!"
 msgstr "¡Verificación por correo electrónico enviada!"
 
-#: app/admin/routes.py:1696
+#: app/admin/routes.py:1697
 msgid "Problem sending email: "
 msgstr ""
 
-#: app/admin/routes.py:1753
+#: app/admin/routes.py:1754
 msgid "User added"
 msgstr "Usuario añadido"
 
-#: app/admin/routes.py:1756
+#: app/admin/routes.py:1757
 msgid "Add user"
 msgstr "Añadir usuario"
 
-#: app/admin/routes.py:1764
+#: app/admin/routes.py:1765
 msgid "This user cannot be deleted."
 msgstr "Este usuario no puede ser eliminado."
 
-#: app/admin/routes.py:1787
+#: app/admin/routes.py:1788
 msgid "User deleted"
 msgstr "Usuario eliminado"
 
-#: app/admin/routes.py:1816 app/templates/admin/reports.html:15
-#: app/templates/admin/users.html:66 app/templates/admin/users.html:102
+#: app/admin/routes.py:1817 app/templates/admin/reports.html:15
+#: app/templates/admin/users.html:66 app/templates/admin/users.html:104
 #: app/templates/community/_community_moderation_nav.html:8
 #: app/templates/community/community_moderate.html:22
 #: app/templates/community/community_moderate_subscribers.html:135
 msgid "Reports"
 msgstr "Reportes"
 
-#: app/admin/routes.py:1827
+#: app/admin/routes.py:1828
 msgid "Newsletter sent"
 msgstr "Boletín enviado"
 
-#: app/admin/routes.py:1851
+#: app/admin/routes.py:1852
 msgid "Settings saved"
 msgstr "Ajustes guardados"
 
-#: app/admin/routes.py:1856 app/templates/user/show_profile.html:141
+#: app/admin/routes.py:1857 app/templates/user/show_profile.html:141
 msgid "Role permissions"
 msgstr "Permisos de rol"
 
-#: app/admin/routes.py:1944
+#: app/admin/routes.py:1945
 msgid "Edit instance"
 msgstr "Editar instancia"
 
-#: app/admin/routes.py:1962
+#: app/admin/routes.py:1963
 msgid "Problem adding instance to database"
 msgstr "Problema agregando instancia a la base de datos"
 
-#: app/admin/routes.py:1977
+#: app/admin/routes.py:1978
 #, python-format
 msgid "Set community owner to %(user_name)s"
 msgstr "Asignar a %(user_name)s como propietario de la comunidad"
 
-#: app/admin/routes.py:2016
+#: app/admin/routes.py:2017
 #, python-format
 msgid ""
 "%(community_name)s is now %(new_url)s. Contact the initiator of this "
 "request to let them know."
 msgstr ""
 
-#: app/admin/routes.py:2019
+#: app/admin/routes.py:2020
 msgid "Ensure this community has the right moderators."
 msgstr "Asegúrate de que esta comunidad tenga los moderadores correctos."
 
-#: app/admin/routes.py:2024
+#: app/admin/routes.py:2025
 msgid "Move community"
 msgstr "Mover comunidad"
 
-#: app/admin/routes.py:2034 app/templates/admin/_nav.html:35
+#: app/admin/routes.py:2035 app/templates/admin/_nav.html:35
 msgid "Blocked images"
 msgstr "Imágenes bloqueadas"
 
-#: app/admin/routes.py:2057
+#: app/admin/routes.py:2058
 #, fuzzy
 msgid "Edit blocked image"
 msgstr "Modificar la imagen bloqueada"
 
-#: app/admin/routes.py:2081
+#: app/admin/routes.py:2082
 msgid ""
 "Provide the url of an image or the hash (and file name) of it, but not "
 "both."
@@ -1474,63 +1485,63 @@ msgstr ""
 "Entrega la URL de una imagen o el hash (y nombre de archivo), pero no "
 "ambos."
 
-#: app/admin/routes.py:2083 app/templates/admin/blocked_images.html:14
+#: app/admin/routes.py:2084 app/templates/admin/blocked_images.html:14
 #: app/templates/admin/edit_blocked_image.html:15
 msgid "Add blocked image"
 msgstr "Añadir imagen bloqueada"
 
-#: app/admin/routes.py:2097 app/post/routes.py:2109
+#: app/admin/routes.py:2098 app/post/routes.py:2109
 #, python-format
 msgid "%(count)s posts deleted."
 msgstr "%(count)s publicaciones eliminadas."
 
-#: app/admin/routes.py:2103 app/post/routes.py:2121
+#: app/admin/routes.py:2104 app/post/routes.py:2121
 #: app/templates/post/post_block_image_purge_posts.html:15
 msgid "Posts containing blocked images"
 msgstr "Publicaciones que contienen imágenes bloqueadas"
 
-#: app/admin/routes.py:2116
+#: app/admin/routes.py:2117
 msgid "Blocked image deleted"
 msgstr "La imagen bloqueada ha sido eliminada"
 
-#: app/admin/routes.py:2127
+#: app/admin/routes.py:2128
 msgid "CMS Pages"
 msgstr "Páginas CMS"
 
-#: app/admin/routes.py:2140 app/admin/routes.py:2161
+#: app/admin/routes.py:2141 app/admin/routes.py:2162
 msgid "Page saved."
 msgstr "Página guardada."
 
-#: app/admin/routes.py:2143
+#: app/admin/routes.py:2144
 msgid "Add CMS Page"
 msgstr "Añadir página CMS"
 
-#: app/admin/routes.py:2164
+#: app/admin/routes.py:2165
 msgid "Edit page"
 msgstr "Editar página"
 
-#: app/admin/routes.py:2174
+#: app/admin/routes.py:2175
 msgid "Page deleted."
 msgstr "Página eliminada."
 
-#: app/admin/routes.py:2184 app/templates/admin/_nav.html:25
+#: app/admin/routes.py:2185 app/templates/admin/_nav.html:25
 #: app/templates/admin/_tabbed_nav.html:27 app/templates/admin/emoji.html:15
 msgid "Emoji"
 msgstr "Emoji"
 
-#: app/admin/routes.py:2198 app/admin/routes.py:2218
+#: app/admin/routes.py:2199 app/admin/routes.py:2219
 msgid "Emoji saved."
 msgstr "Emoji guardado."
 
-#: app/admin/routes.py:2201
+#: app/admin/routes.py:2202
 msgid "Add Emoji"
 msgstr "Añadir Emoji"
 
-#: app/admin/routes.py:2221
+#: app/admin/routes.py:2222
 msgid "Edit Emoji"
 msgstr "Editar Emoji"
 
-#: app/admin/routes.py:2232
+#: app/admin/routes.py:2233
 msgid "Emoji deleted."
 msgstr "Emoji eliminado."
 
@@ -1564,6 +1575,7 @@ msgstr "Iniciar sesión"
 #: app/auth/forms.py:120 app/auth/forms.py:140
 #: app/templates/admin/approve_registrations.html:24
 #: app/templates/admin/approve_registrations.html:80
+#: app/templates/admin/edit_user.html:18
 msgid "Email"
 msgstr "Correo electrónico"
 
@@ -1825,7 +1837,7 @@ msgstr "Lo sentimos, no puedes usar ese nombre de usuario"
 msgid "Registration not allowed based on your referrer."
 msgstr ""
 
-#: app/auth/util.py:237
+#: app/auth/util.py:238
 #, python-format
 msgid "Your username contained special letters so it was changed to %(name)s."
 msgstr ""
@@ -1857,7 +1869,7 @@ msgstr "Error de inicio de sesión"
 msgid "Login"
 msgstr "Iniciar sesión"
 
-#: app/chat/forms.py:10
+#: app/chat/forms.py:10 app/templates/admin/activities.html:33
 msgid "Message"
 msgstr "Mensaje"
 
@@ -2022,6 +2034,15 @@ msgstr "Se necesita una invitación del dueño"
 msgid "Joining process"
 msgstr ""
 
+#: app/community/forms.py:43
+msgid "Announce this community to newcommunities@lemmy.world"
+msgstr ""
+
+#: app/community/forms.py:44
+#, fuzzy
+msgid "Question & answer community"
+msgstr "Publicar cruzado en otra comunidad"
+
 #: app/community/forms.py:47
 msgid "Create"
 msgstr "Crear"
@@ -2139,11 +2160,11 @@ msgstr "Dirección de la comunidad"
 
 #: app/community/forms.py:173 app/feed/forms.py:106 app/search/routes.py:207
 #: app/templates/admin/communities.html:19
+#: app/templates/admin/communities.html:20
 #: app/templates/admin/instances.html:16 app/templates/admin/instances.html:17
 #: app/templates/admin/users.html:19 app/templates/admin/users.html:20
 #: app/templates/auth/instance_chooser.html:23 app/templates/base.html:263
 #: app/templates/base.html:310 app/templates/community/_community_nav.html:179
-#: app/templates/community/add_remote.html:14
 #: app/templates/community/community_moderate_subscribers.html:37
 #: app/templates/domain/domains.html:29
 #: app/templates/domain/domains_blocked.html:29
@@ -2186,7 +2207,7 @@ msgstr "También eliminar todas sus publicaciones"
 msgid "Also delete all their comments"
 msgstr "También eliminar todos sus comentarios"
 
-#: app/community/forms.py:202
+#: app/community/forms.py:202 app/templates/admin/users.html:115
 #: app/templates/community/community_moderate_subscribers.html:98
 #: app/templates/user/show_profile.html:342 app/user/forms.py:151
 msgid "Ban"
@@ -2578,13 +2599,27 @@ msgstr ""
 "usuarios del equipo."
 
 #: app/community/routes.py:186 app/community/routes.py:2515
-#: app/feed/routes.py:130 app/feed/routes.py:1116 app/user/routes.py:1979
+#: app/feed/routes.py:130 app/feed/routes.py:1116 app/user/routes.py:1981
 msgid ""
 "Sorry, that instance is blocked, check https://gui.fediseer.com/ for "
 "reasons."
 msgstr ""
 "Lo sentimos, esa instancia está bloqueada; revisa "
 "https://gui.fediseer.com/ para más detalles."
+
+#: app/community/routes.py:196
+#, python-brace-format
+msgid ""
+"Accepted address formats: !community@server.name or "
+"https://server.name/{c|m}/community."
+msgstr ""
+
+#: app/community/routes.py:196
+msgid ""
+"Search on <a "
+"href=\"https://lemmyverse.net/communities\">Lemmyverse.net</a> to find "
+"some."
+msgstr ""
 
 #: app/community/routes.py:200 app/community/routes.py:2518
 msgid "Community not found."
@@ -2613,7 +2648,7 @@ msgstr "Añadir comunidad remota"
 msgid "This community is only visible to logged in users."
 msgstr "Esta comunidad es visible solo para usuarios identificados."
 
-#: app/community/routes.py:324 app/post/routes.py:129
+#: app/community/routes.py:324 app/post/routes.py:128
 #, python-format
 msgid "You have been banned from this community until %(when)s."
 msgstr ""
@@ -2753,13 +2788,13 @@ msgstr ""
 "Una comunidad debe tener uno o más propietarios. Añade a un nuevo "
 "propietario antes de quitar a este."
 
-#: app/community/routes.py:1456
+#: app/community/routes.py:1455
 #: app/templates/community/community_find_moderator.html:14
 #, python-format
 msgid "Add moderator to %(community)s"
 msgstr "Añadir moderador a %(community)s"
 
-#: app/community/routes.py:1485 app/post/routes.py:1438 app/user/routes.py:1565
+#: app/community/routes.py:1485 app/post/routes.py:1438 app/user/routes.py:1567
 #, python-format
 msgid "Posts in %(name)s will be hidden."
 msgstr "Las publicaciones en %(name)s se ocultarán."
@@ -2840,7 +2875,7 @@ msgstr "Reporte resuelto."
 msgid "Report ignored."
 msgstr "Reporte ignorado."
 
-#: app/community/routes.py:2287
+#: app/community/routes.py:2286
 #, fuzzy, python-format
 msgid "Set your flair in %(community_name)s"
 msgstr " en %(community_name)s"
@@ -2860,7 +2895,7 @@ msgstr "Etiqueta añadida."
 msgid "Flair updated."
 msgstr "Etiqueta actualizada"
 
-#: app/community/routes.py:2352
+#: app/community/routes.py:2351
 #, python-format
 msgid "Edit %(flair_name)s in %(community_name)s"
 msgstr "Editar %(flair_name)s en %(community_name)s"
@@ -3002,6 +3037,22 @@ msgstr "%(name)s desbloqueado para todos los usuarios."
 msgid "Parent feed"
 msgstr "Tema padre"
 
+#: app/feed/forms.py:17 app/feed/forms.py:69
+#, fuzzy
+msgid "Show posts from child feeds"
+msgstr "Mostrar publicaciones de temas secundarios"
+
+#: app/feed/forms.py:23 app/feed/forms.py:75
+#: app/templates/user/user_feeds.html:23
+#, fuzzy
+msgid "Public"
+msgstr "Publicar"
+
+#: app/feed/forms.py:24 app/feed/forms.py:76
+#, fuzzy
+msgid "Add to main menu"
+msgstr "Administración del dominio"
+
 #: app/feed/forms.py:57 app/feed/forms.py:97
 msgid ""
 "Please make sure each community is formatted as "
@@ -3029,6 +3080,12 @@ msgstr "Tu nueva comunidad ha sido creada."
 #, fuzzy
 msgid "Create a Feed"
 msgstr "Crear un evento"
+
+#: app/feed/routes.py:141
+msgid ""
+"Accepted address formats: ~feedname@server.name or "
+"https://server.name/f/feedname."
+msgstr ""
 
 #: app/feed/routes.py:145 app/feed/routes.py:1119
 #, fuzzy
@@ -3344,8 +3401,8 @@ msgid "Something went wrong and a post could not be found."
 msgstr "Algo salió mal y no se pudo encontrar una publicación."
 
 #: app/post/routes.py:1046 app/shared/reply.py:221 app/user/routes.py:345
-#: app/user/routes.py:597 app/user/routes.py:722 app/user/routes.py:1379
-#: app/user/routes.py:1424 app/user/routes.py:1452 app/user/routes.py:1941
+#: app/user/routes.py:599 app/user/routes.py:724 app/user/routes.py:1381
+#: app/user/routes.py:1426 app/user/routes.py:1454 app/user/routes.py:1943
 msgid "Your changes have been saved."
 msgstr "Tus cambios han sido guardados."
 
@@ -3385,7 +3442,7 @@ msgstr ""
 msgid "Creating a reminder about \"%(post_title)s\""
 msgstr "Reportar \"%(post_title)s\""
 
-#: app/post/routes.py:1301
+#: app/post/routes.py:1300
 #, python-format
 msgid "Creating a reminder about comment by %(author)s on \"%(post_title)s\""
 msgstr ""
@@ -3412,18 +3469,18 @@ msgstr "Se ha reportado la publicación, ¡gracias!"
 msgid "Report post"
 msgstr "Reportar publicación"
 
-#: app/post/routes.py:1382 app/post/routes.py:1740 app/user/routes.py:1520
+#: app/post/routes.py:1382 app/post/routes.py:1740 app/user/routes.py:1522
 #, python-format
 msgid "%(name)s has been blocked."
 msgstr "%(name)s ha sido bloqueado."
 
-#: app/post/routes.py:1413 app/user/routes.py:1599
+#: app/post/routes.py:1413 app/user/routes.py:1601
 #, python-format
 msgid "Posts linking to %(name)s will be hidden."
 msgstr "Las publicaciones que enlacen a %(name)s se ocultarán."
 
-#: app/post/routes.py:1460 app/post/routes.py:1769 app/user/routes.py:856
-#: app/user/routes.py:1627
+#: app/post/routes.py:1460 app/post/routes.py:1769 app/user/routes.py:858
+#: app/user/routes.py:1629
 #, python-format
 msgid "Content from %(name)s will be hidden."
 msgstr "El contenido de %(name)s se ocultará."
@@ -3656,12 +3713,12 @@ msgstr "Se ha reportado un comentario"
 msgid "Comment has been unlocked."
 msgstr "%(name)s ha sido bloqueado."
 
-#: app/shared/reply.py:502
+#: app/shared/reply.py:501
 #, python-format
 msgid "Your answer was chosen as an answer to %(post_title)s"
 msgstr ""
 
-#: app/shared/user.py:29 app/user/routes.py:812 app/user/routes.py:1509
+#: app/shared/user.py:29 app/user/routes.py:814 app/user/routes.py:1511
 msgid "You cannot block yourself."
 msgstr "No puedes bloquearte a ti mismo."
 
@@ -3669,7 +3726,7 @@ msgstr "No puedes bloquearte a ti mismo."
 msgid "You cannot block admin or staff."
 msgstr "No puedes bloquear a un administrador o al equipo."
 
-#: app/shared/user.py:70 app/user/routes.py:887
+#: app/shared/user.py:70 app/user/routes.py:889
 msgid "You cannot unblock yourself."
 msgstr "No puedes desbloquearte a ti mismo."
 
@@ -3682,7 +3739,7 @@ msgstr ""
 msgid "Purged user with role permissions."
 msgstr "Permisos de rol"
 
-#: app/shared/user.py:169
+#: app/shared/user.py:168
 #, python-format
 msgid ""
 "%(actor)s has been banned, deleted and all their content deleted. This "
@@ -3994,7 +4051,6 @@ msgstr "Crear publicación"
 #: app/templates/_side_pane.html:16
 #: app/templates/community/_community_nav.html:191
 #: app/templates/community/_leave_button.html:3
-#: app/templates/community/add_remote.html:50
 #: app/templates/community/lookup_remote.html:21
 #: app/templates/feed/_feed_nav.html:149 app/templates/feed/add_remote.html:36
 #: app/templates/themes/dillo/_side_pane.html:8
@@ -4013,7 +4069,6 @@ msgstr "Pendiente"
 #: app/templates/auth/instance_chooser.html:340
 #: app/templates/community/_community_nav.html:204
 #: app/templates/community/_join_button.html:3
-#: app/templates/community/add_remote.html:53
 #: app/templates/community/lookup_remote.html:24
 #: app/templates/post/_post_replies.html:60
 #: app/templates/post/post_teaser/_macros.html:143
@@ -4129,8 +4184,8 @@ msgid "Local Subscribers"
 msgstr "Suscriptores locales"
 
 #: app/templates/_side_pane.html:148 app/templates/admin/communities.html:52
-#: app/templates/admin/content.html:29 app/templates/admin/instances.html:50
-#: app/templates/admin/instances.html:90
+#: app/templates/admin/content.html:29 app/templates/admin/content.html:43
+#: app/templates/admin/instances.html:50 app/templates/admin/instances.html:90
 #: app/templates/community/_community_nav.html:148
 #: app/templates/community/_community_nav.html:379
 #: app/templates/community/_community_nav.html:473
@@ -4142,11 +4197,13 @@ msgstr "Suscriptores locales"
 #: app/templates/user/_bookmarks_nav.html:5
 #: app/templates/user/alerts/_type.html:2
 #: app/templates/user/show_profile.html:147
+#: app/templates/user/show_profile.html:182
 #: app/templates/user/user_preview.html:26
 msgid "Posts"
 msgstr "Publicaciones"
 
 #: app/templates/_side_pane.html:149 app/templates/admin/content.html:30
+#: app/templates/admin/content.html:67
 #: app/templates/community/_community_moderation_nav.html:17
 #: app/templates/community/_community_nav.html:151
 #: app/templates/community/_community_nav.html:382
@@ -4163,6 +4220,7 @@ msgstr "Publicaciones"
 #: app/templates/user/_bookmarks_nav.html:8
 #: app/templates/user/alerts/_type.html:3
 #: app/templates/user/show_profile.html:148
+#: app/templates/user/show_profile.html:185
 #: app/templates/user/user_preview.html:27
 msgid "Comments"
 msgstr "Comentarios"
@@ -4304,7 +4362,7 @@ msgstr "Ir a la página de inicio"
 
 #: app/templates/base.html:144 app/templates/base.html:254
 #: app/templates/themes/dillo/base.html:79
-#: app/templates/user/notifications.html:20 app/user/routes.py:1138
+#: app/templates/user/notifications.html:20 app/user/routes.py:1140
 msgid "Notifications"
 msgstr "Notificaciones"
 
@@ -4340,7 +4398,7 @@ msgstr "Chats"
 
 #: app/templates/base.html:209 app/templates/themes/dillo/base.html:153
 #: app/templates/user/bookmarks.html:17 app/templates/user/bookmarks.html:20
-#: app/templates/user/bookmarks_comments.html:17 app/user/routes.py:1672
+#: app/templates/user/bookmarks_comments.html:17 app/user/routes.py:1674
 msgid "Bookmarks"
 msgstr "Marcadores"
 
@@ -4349,12 +4407,12 @@ msgid "Activity Alerts"
 msgstr "Alertas de actividad"
 
 #: app/templates/base.html:215 app/templates/user/scheduled_posts.html:15
-#: app/user/routes.py:1803
+#: app/user/routes.py:1805
 msgid "Scheduled posts"
 msgstr "Publicaciones programadas"
 
 #: app/templates/base.html:218 app/templates/user/hidden_posts.html:15
-#: app/user/routes.py:1815
+#: app/user/routes.py:1817
 msgid "Hidden posts"
 msgstr "Publicaciones ocultas"
 
@@ -4384,6 +4442,16 @@ msgstr "%(num)d notificaciones sin leer"
 msgid "Color mode"
 msgstr "Modo de color"
 
+#: app/templates/base.html:264
+#, fuzzy
+msgid "Dark mode"
+msgstr "Modo de color"
+
+#: app/templates/base.html:264
+#, fuzzy
+msgid "Light mode"
+msgstr "Modo de prueba"
+
 #: app/templates/auth/login.html:15 app/templates/base.html:265
 #: app/templates/themes/dillo/base.html:107
 msgid "Log in"
@@ -4406,12 +4474,19 @@ msgstr "Política de privacidad"
 msgid "Keyboard shortcuts"
 msgstr "Atajos de teclado"
 
-#: app/templates/base.html:301
+#: app/templates/base.html:301 app/templates/themes/dillo/base.html:207
 #, python-format
 msgid "PieFed v%(version)s is free and open source"
 msgstr "PieFed v%(version)s es libre y de código abierto"
 
-#: app/templates/base.html:302
+#: app/templates/base.html:301 app/templates/themes/dillo/base.html:207
+msgid ""
+"Please <a href=\"https://codeberg.org/rimu/pyfedi/issues\">report "
+"bugs</a> or <a href=\"https://join.piefed.social/get-involved/\">get "
+"involved</a>."
+msgstr ""
+
+#: app/templates/base.html:302 app/templates/themes/dillo/base.html:203
 msgid ""
 "This is how long you have spent using PieFed during this month. We hope "
 "this use of your time aligns with your priorities and values."
@@ -4684,8 +4759,8 @@ msgstr "Ordenar por actividad reciente"
 msgid "Sort by community creation date"
 msgstr "Ordenar por fecha de creación de la comunidad"
 
-#: app/templates/admin/users.html:83 app/templates/admin/users.html:84
-#: app/templates/admin/users.html:105
+#: app/templates/admin/edit_user.html:16 app/templates/admin/users.html:83
+#: app/templates/admin/users.html:84 app/templates/admin/users.html:107
 #: app/templates/community/community_moderate.html:42
 #: app/templates/list_communities.html:271
 msgid "Created"
@@ -4703,7 +4778,7 @@ msgstr "Explorar %(name)s"
 #: app/templates/admin/activities.html:61
 #: app/templates/admin/communities.html:116 app/templates/admin/content.html:53
 #: app/templates/admin/content.html:78 app/templates/admin/instances.html:106
-#: app/templates/admin/reports.html:39 app/templates/admin/users.html:119
+#: app/templates/admin/reports.html:39 app/templates/admin/users.html:121
 #: app/templates/community/community.html:176
 #: app/templates/community/community_moderate.html:78
 #: app/templates/community/community_moderate_subscribers.html:106
@@ -4727,7 +4802,7 @@ msgstr "Paginación"
 #: app/templates/admin/activities.html:64
 #: app/templates/admin/communities.html:119 app/templates/admin/content.html:56
 #: app/templates/admin/content.html:81 app/templates/admin/instances.html:109
-#: app/templates/admin/reports.html:42 app/templates/admin/users.html:122
+#: app/templates/admin/reports.html:42 app/templates/admin/users.html:124
 #: app/templates/community/community.html:179
 #: app/templates/community/community_moderate.html:81
 #: app/templates/community/community_moderate_comments.html:43
@@ -4756,7 +4831,7 @@ msgstr "Página anterior"
 #: app/templates/admin/activities.html:69
 #: app/templates/admin/communities.html:124 app/templates/admin/content.html:61
 #: app/templates/admin/content.html:86 app/templates/admin/instances.html:114
-#: app/templates/admin/reports.html:47 app/templates/admin/users.html:127
+#: app/templates/admin/reports.html:47 app/templates/admin/users.html:129
 #: app/templates/community/community.html:184
 #: app/templates/community/community_moderate.html:86
 #: app/templates/community/community_moderate_comments.html:48
@@ -4839,6 +4914,7 @@ msgstr "usuario@instancia"
 msgid "Moderator user@instance"
 msgstr "Moderador usuario@instancia"
 
+#: app/templates/admin/activities.html:28
 #: app/templates/community/community_modlog.html:32
 #: app/templates/community/community_wiki_revisions.html:32
 #: app/templates/modlog.html:63 app/templates/post/_post_full.html:198
@@ -4959,6 +5035,77 @@ msgstr "Registro"
 msgid "Pages"
 msgstr "Páginas"
 
+#: app/templates/admin/activities.html:15
+#: app/templates/admin/communities.html:22
+#, fuzzy
+msgid "Result Filter"
+msgstr "Editar filtro"
+
+#: app/templates/admin/activities.html:17
+#, fuzzy
+msgid "Failure"
+msgstr "Fallido"
+
+#: app/templates/admin/activities.html:18
+#, fuzzy
+msgid "Success"
+msgstr "Fuente"
+
+#: app/templates/admin/activities.html:19
+#, fuzzy
+msgid "Ignored"
+msgstr "Ignorar"
+
+#: app/templates/admin/activities.html:20
+msgid "Processing"
+msgstr ""
+
+#: app/templates/admin/activities.html:21
+#, fuzzy
+msgid "Direction Filter"
+msgstr "Editar filtro"
+
+#: app/templates/admin/activities.html:22
+#, fuzzy
+msgid "Both"
+msgstr "Otro"
+
+#: app/templates/admin/activities.html:23
+#, fuzzy
+msgid "In"
+msgstr "Míos"
+
+#: app/templates/admin/activities.html:24
+#, fuzzy
+msgid "Out"
+msgstr "Acerca de"
+
+#: app/templates/admin/activities.html:29
+#, fuzzy
+msgid "Direction"
+msgstr "Descripción"
+
+#: app/templates/admin/activities.html:30
+#, fuzzy
+msgid "ID"
+msgstr "Con costo"
+
+#: app/templates/admin/activities.html:31
+#: app/templates/community/community_moderate.html:41
+#: app/templates/search/start.html:46
+msgid "Type"
+msgstr "Tipo"
+
+#: app/templates/admin/activities.html:32
+#, fuzzy
+msgid "Result"
+msgstr "Ver revisiones"
+
+#: app/templates/admin/activities.html:34
+#, fuzzy
+msgid "JSON"
+msgstr "Unirse"
+
 #: app/templates/admin/activity_json.html:20
 #, fuzzy
 msgid "Re-submit this activity"
@@ -4967,6 +5114,25 @@ msgstr "Reenviar esta actividad"
 #: app/templates/admin/add_user.html:12
 msgid "Add new user"
 msgstr "Añadir nuevo usuario"
+
+#: app/templates/admin/add_user.html:25
+#: app/templates/admin/edit_community.html:33
+#: app/templates/community/community_edit.html:40
+#: app/templates/user/edit_profile.html:83
+#, fuzzy
+msgid "Provide a square image that looks good when small."
+msgstr ""
+"Proporciona una imagen cuadrada que se vea bien en tamaño reducido. Se "
+"permite SVG."
+
+#: app/templates/admin/add_user.html:30
+#: app/templates/admin/edit_community.html:38
+#: app/templates/community/add_local.html:29
+#: app/templates/community/community_edit.html:51
+#: app/templates/feed/feed_copy.html:31 app/templates/feed/feed_edit.html:36
+#: app/templates/feed/feed_new.html:31 app/templates/user/edit_profile.html:94
+msgid "Provide a wide image - letterbox orientation."
+msgstr "Proporciona una imagen panorámica en orientación letterbox."
 
 #: app/templates/admin/approve_registrations.html:15
 msgid "Registrations"
@@ -5011,7 +5177,8 @@ msgstr "Nombres de usuario similares"
 #: app/templates/admin/approve_registrations.html:31
 #: app/templates/admin/approve_registrations.html:86
 #: app/templates/admin/cms_pages.html:28
-#: app/templates/admin/communities.html:93 app/templates/admin/users.html:94
+#: app/templates/admin/communities.html:93 app/templates/admin/topics.html:38
+#: app/templates/admin/users.html:94
 #: app/templates/community/community_moderate.html:43
 #: app/templates/community/community_moderate_subscribers.html:92
 #: app/templates/community/community_moderate_subscribers.html:136
@@ -5019,6 +5186,8 @@ msgstr "Nombres de usuario similares"
 #: app/templates/feed/public_feeds.html:80 app/templates/user/files.html:34
 #: app/templates/user/scheduled_posts.html:29
 #: app/templates/user/scheduled_posts.html:47
+#: app/templates/user/user_feeds.html:27
+#: app/templates/user/user_public_feeds.html:21
 msgid "Actions"
 msgstr "Acciones"
 
@@ -5056,7 +5225,7 @@ msgstr "Archivo"
 #: app/templates/admin/blocked_images.html:29
 #: app/templates/admin/cms_pages.html:39
 #: app/templates/admin/communities.html:108 app/templates/admin/emoji.html:40
-#: app/templates/admin/instances.html:102
+#: app/templates/admin/instances.html:102 app/templates/admin/users.html:109
 #: app/templates/community/community_flair.html:40
 #: app/templates/community/community_wiki_list.html:53
 #: app/templates/community/community_wiki_page_view.html:26
@@ -5064,6 +5233,7 @@ msgstr "Archivo"
 #: app/templates/post/post_options.html:6
 #: app/templates/post/post_reply_options.html:9
 #: app/templates/post/post_reply_options.html:16
+#: app/templates/user/filters.html:60
 #: app/templates/user/scheduled_posts.html:48
 msgid "Edit"
 msgstr "Editar"
@@ -5130,8 +5300,8 @@ msgid ""
 "Content is written in Markdown format and will be converted to HTML when "
 "saved."
 msgstr ""
-"El contenido se escribe en formato Markdown y será convertido a HTML cuando "
-"se guarde."
+"El contenido se escribe en formato Markdown y será convertido a HTML "
+"cuando se guarde."
 
 #: app/templates/admin/cms_page_edit.html:38
 #: app/templates/post/add_reply_inline.html:34 app/templates/post/post.html:118
@@ -5166,6 +5336,7 @@ msgstr "Ultima edición"
 
 #: app/templates/admin/cms_pages.html:40
 #: app/templates/admin/communities.html:110 app/templates/admin/emoji.html:41
+#: app/templates/admin/users.html:110
 #: app/templates/community/community_flair.html:41
 #: app/templates/community/community_wiki_list.html:56
 #: app/templates/feed/_feed_table_row.html:28
@@ -5173,7 +5344,7 @@ msgstr "Ultima edición"
 #: app/templates/post/post_edit.html:105
 #: app/templates/post/post_options.html:28
 #: app/templates/post/post_reply_options.html:28
-#: app/templates/user/files.html:37
+#: app/templates/user/files.html:37 app/templates/user/filters.html:61
 #: app/templates/user/notifs/_time_and_buttons.html:28
 #: app/templates/user/scheduled_posts.html:49 app/user/forms.py:244
 msgid "Delete"
@@ -5182,6 +5353,16 @@ msgstr "Eliminar"
 #: app/templates/admin/cms_pages.html:48
 msgid "No pages have been created yet."
 msgstr "No hay páginas creadas todavía."
+
+#: app/templates/admin/communities.html:24
+#, fuzzy
+msgid "No topic"
+msgstr "Tema"
+
+#: app/templates/admin/communities.html:25
+#, fuzzy
+msgid "Low Quality"
+msgstr "Respuesta de baja calidad"
 
 #: app/templates/admin/communities.html:57
 #: app/templates/admin/communities.html:101
@@ -5245,9 +5426,29 @@ msgstr "Moderar"
 msgid "Move %(community)s to %(instance_domain)s"
 msgstr "Mover %(community)s a %(instance_domain)s"
 
+#: app/templates/admin/content.html:20
+#, fuzzy
+msgid "Trash"
+msgstr "Etiquetas"
+
+#: app/templates/admin/content.html:21
+#, fuzzy
+msgid "Spammy"
+msgstr "Spam"
+
+#: app/templates/admin/content.html:22
+#, fuzzy
+msgid "Deleted"
+msgstr "Eliminar"
+
 #: app/templates/admin/content.html:26
 msgid "Posts/Comments:"
 msgstr "Publicaciones/Comentarios:"
+
+#: app/templates/admin/content.html:32
+#, fuzzy
+msgid "Days"
+msgstr "1 día"
 
 #: app/templates/admin/content.html:37
 msgid "14 days"
@@ -5298,6 +5499,31 @@ msgstr "Editar %(topic_name)s"
 msgid "Edit %(user_name)s (%(display_name)s)"
 msgstr "Editar %(user_name)s (%(display_name)s)"
 
+#: app/templates/admin/edit_user.html:17
+#, fuzzy
+msgid "Last active"
+msgstr "Última actividad"
+
+#: app/templates/admin/edit_user.html:43
+#, fuzzy
+msgid "receive newsletter"
+msgstr "Enviar boletín"
+
+#: app/templates/admin/edit_user.html:46
+#, fuzzy
+msgid "searchable"
+msgstr "Buscar"
+
+#: app/templates/admin/edit_user.html:47
+#, fuzzy
+msgid "indexable"
+msgstr "Personas"
+
+#: app/templates/admin/edit_user.html:55
+#: app/templates/user/show_profile.html:115
+msgid "View original profile"
+msgstr "Ver perfil original"
+
 #: app/templates/admin/emoji.html:16
 msgid "Add new emoji"
 msgstr "Añadir nuevo emoji"
@@ -5309,6 +5535,7 @@ msgstr "Token"
 #: app/templates/admin/emoji.html:28
 #: app/templates/instance/list_instances.html:126
 #: app/templates/user/show_profile.html:139
+#: app/templates/user/user_feeds.html:25
 #: app/templates/user/user_preview.html:13
 msgid "Instance"
 msgstr "Instancia"
@@ -5501,7 +5728,7 @@ msgstr "Estado de la instancia: En línea/Inactiva/Desaparecida para siempre"
 msgid "Status"
 msgstr "Estado"
 
-#: app/templates/admin/instances.html:92 app/templates/admin/users.html:106
+#: app/templates/admin/instances.html:92 app/templates/admin/users.html:108
 msgid "Last Seen"
 msgstr "Visto por última vez"
 
@@ -5640,6 +5867,12 @@ msgstr ""
 msgid "Create a page in the \"Pages\" area then put it's address in here."
 msgstr ""
 
+#: app/templates/admin/topics.html:37 app/templates/user/user_feeds.html:21
+#: app/templates/user/user_public_feeds.html:18
+#, fuzzy
+msgid "# Communities"
+msgstr "Comunidades"
+
 #: app/templates/admin/users.html:16
 msgid "Add local user"
 msgstr "Añadir usuario local"
@@ -5666,7 +5899,7 @@ msgstr ""
 "Actitud: Porcentaje de votos positivos frente a negativos que hizo la "
 "cuenta."
 
-#: app/templates/admin/users.html:72 app/templates/admin/users.html:103
+#: app/templates/admin/users.html:72 app/templates/admin/users.html:105
 #: app/templates/user/show_profile.html:145
 #: app/templates/user/user_preview.html:24
 msgid "Attitude"
@@ -5681,7 +5914,7 @@ msgstr ""
 "Reputación: El karma de la cuenta. Total de votos positivos menos votos "
 "negativos recibidos."
 
-#: app/templates/admin/users.html:78 app/templates/admin/users.html:104
+#: app/templates/admin/users.html:78 app/templates/admin/users.html:106
 #: app/templates/user/show_profile.html:146
 #: app/templates/user/user_preview.html:25
 msgid "Reputation"
@@ -5690,6 +5923,24 @@ msgstr "Reputación"
 #: app/templates/admin/users.html:89
 msgid "Last seen."
 msgstr "Visto por última vez."
+
+#: app/templates/admin/users.html:101
+#, fuzzy
+msgid "Banned posts"
+msgstr "Bloquear publicaciones"
+
+#: app/templates/admin/users.html:102
+#, fuzzy
+msgid "Banned comments"
+msgstr "Bloquear comentarios"
+
+#: app/templates/admin/users.html:113
+#: app/templates/community/community_moderate_subscribers.html:156
+#: app/templates/domain/domain.html:71
+#: app/templates/domain/domains_blocked.html:46 app/templates/tag/tag.html:54
+#: app/templates/user/show_profile.html:338
+msgid "Unban"
+msgstr "Desbloquear"
 
 #: app/templates/auth/check_email.html:14
 msgid ""
@@ -6336,12 +6587,6 @@ msgstr ""
 "Proporciona una imagen cuadrada que se vea bien en tamaño reducido. Se "
 "permite SVG."
 
-#: app/templates/community/add_local.html:29
-#: app/templates/feed/feed_copy.html:31 app/templates/feed/feed_edit.html:36
-#: app/templates/feed/feed_new.html:31 app/templates/user/edit_profile.html:94
-msgid "Provide a wide image - letterbox orientation."
-msgstr "Proporciona una imagen panorámica en orientación letterbox."
-
 #: app/templates/community/add_local.html:32
 #, fuzzy
 msgid "Do not publicize test communities."
@@ -6404,11 +6649,6 @@ msgstr "Crear un evento"
 msgid "Lemmy does not support events, try a PieFed community instead."
 msgstr ""
 
-#: app/templates/community/add_remote.html:44
-#: app/templates/community/lookup_remote.html:15
-msgid "Found a community:"
-msgstr "Se encontró una comunidad:"
-
 #: app/templates/community/check_url_posted.html:2
 msgid "This link has already been posted to these communities:"
 msgstr "Este enlace ya se ha publicado en estas comunidades:"
@@ -6429,8 +6669,7 @@ msgstr "No apto para la vida (NSFL)"
 
 #: app/templates/community/community.html:123
 msgid "You need to be a member to see the contents of this private community."
-msgstr ""
-"Necesitas ser miembro para ver los contenidos de esta comunidad privada."
+msgstr "Necesitas ser miembro para ver los contenidos de esta comunidad privada."
 
 #: app/templates/community/community.html:159
 msgid "No posts in this community yet."
@@ -6459,14 +6698,6 @@ msgstr "Editar %(community)s"
 #: app/templates/community/community_edit.html:29
 msgid "Edit and configure this community"
 msgstr "Editar y configurar esta comunidad"
-
-#: app/templates/community/community_edit.html:40
-#: app/templates/user/edit_profile.html:83
-#, fuzzy
-msgid "Provide a square image that looks good when small."
-msgstr ""
-"Proporciona una imagen cuadrada que se vea bien en tamaño reducido. Se "
-"permite SVG."
 
 #: app/templates/community/community_edit.html:45
 #: app/templates/community/community_edit.html:53
@@ -6561,11 +6792,6 @@ msgstr "Local/Remoto"
 msgid "Reasons"
 msgstr "Razones"
 
-#: app/templates/community/community_moderate.html:41
-#: app/templates/search/start.html:46
-msgid "Type"
-msgstr "Tipo"
-
 #: app/templates/community/community_moderate.html:68
 msgid "Escalate"
 msgstr "Escalar"
@@ -6632,13 +6858,6 @@ msgstr "Personas bloqueadas"
 #, python-format
 msgid "See and manage who is banned from %(community)s"
 msgstr "Ver y gestionar quién está bloqueado en %(community)s"
-
-#: app/templates/community/community_moderate_subscribers.html:156
-#: app/templates/domain/domain.html:71
-#: app/templates/domain/domains_blocked.html:46 app/templates/tag/tag.html:54
-#: app/templates/user/show_profile.html:338
-msgid "Unban"
-msgstr "Desbloquear"
 
 #: app/templates/community/community_moderate_subscribers.html:165
 msgid "No banned people yet"
@@ -6759,6 +6978,10 @@ msgid ""
 "Start fediverse handles with '@' to differentiate them from email "
 "addresses."
 msgstr ""
+
+#: app/templates/community/lookup_remote.html:15
+msgid "Found a community:"
+msgstr "Se encontró una comunidad:"
 
 #: app/templates/community/rate.html:13
 #, fuzzy
@@ -6976,6 +7199,11 @@ msgstr ""
 "Notificar sobre cada nueva publicación. ¡No es recomendable en temas con "
 "mucho tráfico!"
 
+#: app/templates/feed/add_remote.html:15
+#, fuzzy
+msgid "Accepted address formats"
+msgstr "Aceptar votos negativos de"
+
 #: app/templates/feed/add_remote.html:30
 #: app/templates/feed/lookup_remote.html:15
 #, fuzzy
@@ -7033,6 +7261,8 @@ msgid "Add remote Feed"
 msgstr "Servidor remoto"
 
 #: app/templates/feed/public_feeds.html:79
+#: app/templates/user/user_feeds.html:22
+#: app/templates/user/user_public_feeds.html:19
 #, fuzzy
 msgid "Creator"
 msgstr "Crear"
@@ -7812,7 +8042,7 @@ msgid "Un-sticky"
 msgstr "Fijado"
 
 #: app/templates/post/post_options.html:68
-#, fuzzy, python-format
+#, fuzzy
 msgid "Un-sticky from instance"
 msgstr "Publicaciones de %(instance)s"
 
@@ -8296,7 +8526,7 @@ msgid "Blocks & Filters"
 msgstr "Bloqueos y filtros"
 
 #: app/templates/user/_user_nav.html:8 app/templates/user/_user_nav.html:26
-#: app/user/routes.py:725
+#: app/user/routes.py:727
 msgid "Import & Export"
 msgstr "Importar y Exportar"
 
@@ -8307,7 +8537,7 @@ msgstr ""
 
 #: app/templates/user/_user_nav.html:10 app/templates/user/_user_nav.html:32
 #: app/templates/user/connect_oauth.html:17
-#: app/templates/user/connect_oauth.html:20 app/user/routes.py:675
+#: app/templates/user/connect_oauth.html:20 app/user/routes.py:677
 msgid "Connect OAuth"
 msgstr "Conectar OAuth"
 
@@ -8320,7 +8550,7 @@ msgstr "Alertas"
 #: app/templates/user/block_instance.html:16
 #: app/templates/user/block_user.html:16
 #: app/templates/user/edit_filters.html:16 app/templates/user/filters.html:16
-#: app/templates/user/filters.html:19
+#: app/templates/user/filters.html:19 app/user/routes.py:1403
 msgid "Filters"
 msgstr "Filtros"
 
@@ -8507,7 +8737,7 @@ msgstr ""
 #: app/templates/user/edit_settings.html:17
 #: app/templates/user/edit_settings.html:20
 #: app/templates/user/import_export.html:17
-#: app/templates/user/import_export.html:20 app/user/routes.py:637
+#: app/templates/user/import_export.html:20 app/user/routes.py:639
 msgid "Change settings"
 msgstr "Cambiar ajustes"
 
@@ -8553,13 +8783,13 @@ msgstr ""
 "sido eliminada. Sin embargo, depende de ellos qué hacer con cualquier "
 "copia de tu contenido. Algunos sitios funcionan diferente al nuestro."
 
-#: app/templates/user/edit_filters.html:18 app/user/routes.py:1464
+#: app/templates/user/edit_filters.html:18 app/user/routes.py:1466
 msgid "Edit filter"
 msgstr "Editar filtro"
 
 #: app/templates/user/edit_filters.html:20
 #: app/templates/user/edit_filters.html:27 app/templates/user/filters.html:41
-#: app/user/routes.py:1427
+#: app/user/routes.py:1429
 msgid "Add filter"
 msgstr "Añadir filtro"
 
@@ -8640,7 +8870,7 @@ msgstr ""
 msgid "Mail Settings"
 msgstr "Ajustes varios"
 
-#: app/templates/user/edit_settings.html:28
+#: app/templates/user/edit_settings.html:28 app/templates/user/filters.html:23
 msgid "Visibility"
 msgstr "Visibilidad"
 
@@ -8734,7 +8964,7 @@ msgstr ""
 #: app/templates/user/file_delete.html:15
 #: app/templates/user/file_upload.html:15 app/templates/user/files.html:17
 #: app/templates/user/files.html:21 app/templates/user/show_profile.html:306
-#: app/user/routes.py:2142
+#: app/user/routes.py:2144
 #, fuzzy
 msgid "Files"
 msgstr "Fallido"
@@ -8784,6 +9014,11 @@ msgstr "Ocultar respuestas con puntuación igual o inferior a este nivel."
 msgid "Use a comma between each word."
 msgstr ""
 
+#: app/templates/user/filters.html:39
+#, fuzzy
+msgid "Keyword Filters"
+msgstr "Filtros"
+
 #: app/templates/user/filters.html:43
 msgid ""
 "Filters can hide posts that contain keywords you specify, either by "
@@ -8807,6 +9042,11 @@ msgstr "Semitransparente"
 #: app/templates/user/filters.html:67
 msgid "No filters defined yet."
 msgstr "No se han definido filtros todavía."
+
+#: app/templates/user/filters.html:70
+#, fuzzy
+msgid "Blocks"
+msgstr "Bloquear"
 
 #: app/templates/user/filters.html:71
 msgid ""
@@ -8862,6 +9102,11 @@ msgstr "No hay instancias bloqueadas"
 msgid "No posts are marked as hidden."
 msgstr ""
 
+#: app/templates/user/import_export.html:29
+#, fuzzy
+msgid "Export community subscriptions and user settings"
+msgstr "Importar suscripciones a comunidades y bloqueos de usuario desde Lemmy"
+
 #: app/templates/user/newsletter_unsubscribed.html:14
 msgid ""
 "You have unsubscribed from the email newsletter. We might email you for "
@@ -8891,6 +9136,11 @@ msgstr "Gestionar"
 
 #: app/templates/user/notifications.html:64
 #, fuzzy
+msgid "Granted"
+msgstr "Creado"
+
+#: app/templates/user/notifications.html:64
+#, fuzzy
 msgid "Enable popup notifications"
 msgstr "Notificaciones"
 
@@ -8916,7 +9166,7 @@ msgid "No passkeys created yet."
 msgstr "No hay publicaciones en esta etiqueta todavía."
 
 #: app/templates/user/read_posts.html:17 app/templates/user/read_posts.html:20
-#: app/user/routes.py:1903
+#: app/user/routes.py:1905
 msgid "Read posts"
 msgstr "Publicaciones leídas"
 
@@ -8977,10 +9227,6 @@ msgstr ""
 msgid "View user profile on original server"
 msgstr "Ver perfil de usuario en el servidor original"
 
-#: app/templates/user/show_profile.html:115
-msgid "View original profile"
-msgstr "Ver perfil original"
-
 #: app/templates/user/show_profile.html:120
 #, fuzzy, python-format
 msgid "Block @%(user_name)s"
@@ -9000,7 +9246,7 @@ msgid "Lemmyverse.link"
 msgstr ""
 
 #: app/templates/user/show_profile.html:134
-#: app/templates/user/user_preview.html:59 app/user/routes.py:1950
+#: app/templates/user/user_preview.html:59 app/user/routes.py:1952
 msgid "Edit note"
 msgstr "Editar nota"
 
@@ -9043,6 +9289,16 @@ msgstr "Dirección IP de la última interacción."
 msgid "Donor"
 msgstr "Voto negativo"
 
+#: app/templates/user/show_profile.html:179
+#, fuzzy
+msgid "Overview"
+msgstr "Ver"
+
+#: app/templates/user/show_profile.html:196
+#, fuzzy, python-format
+msgid "Posts and Comments by %(user_name)s"
+msgstr "Publicaciones de %(user_name)s"
+
 #: app/templates/user/show_profile.html:210
 #, fuzzy
 msgid "Overview pagination"
@@ -9053,9 +9309,24 @@ msgstr "Paginación de publicaciones"
 msgid "No posts or comments yet."
 msgstr "No hay comentarios todavía."
 
+#: app/templates/user/show_profile.html:232
+#, fuzzy
+msgid "RSS feed"
+msgstr "Editar filtro"
+
+#: app/templates/user/show_profile.html:235 app/user/routes.py:238
+#, python-format
+msgid "Posts by %(user_name)s"
+msgstr "Publicaciones de %(user_name)s"
+
 #: app/templates/user/show_profile.html:241
 msgid "Post pagination"
 msgstr "Paginación de publicaciones"
+
+#: app/templates/user/show_profile.html:262
+#, fuzzy, python-format
+msgid "Comments by %(user_name)s"
+msgstr "Publicaciones de %(user_name)s"
 
 #: app/templates/user/show_profile.html:315
 #, fuzzy
@@ -9093,7 +9364,7 @@ msgid ""
 "made to your account."
 msgstr ""
 
-#: app/templates/user/user_ban.html:9 app/user/routes.py:770
+#: app/templates/user/user_ban.html:9 app/user/routes.py:772
 #, fuzzy, python-format
 msgid "Ban %(name)s"
 msgstr "Unirse a %(name)s"
@@ -9102,6 +9373,11 @@ msgstr "Unirse a %(name)s"
 #, fuzzy
 msgid "New Feed"
 msgstr "Feed de inicio"
+
+#: app/templates/user/user_feeds.html:20
+#, fuzzy
+msgid "Parent Feed"
+msgstr "Tema padre"
 
 #: app/templates/user/user_feeds.html:38
 msgid "You do not have any Feeds yet.."
@@ -9813,11 +10089,6 @@ msgstr ""
 msgid "This user has been deleted."
 msgstr "Este usuario ha sido eliminado."
 
-#: app/user/routes.py:238
-#, python-format
-msgid "Posts by %(user_name)s"
-msgstr "Publicaciones de %(user_name)s"
-
 #: app/user/routes.py:277
 msgid ""
 "You have changed your email address so we need to verify it. Please check"
@@ -9852,41 +10123,49 @@ msgid "English"
 msgstr "Inglés"
 
 #: app/user/routes.py:559
+msgid "Finnish"
+msgstr ""
+
+#: app/user/routes.py:560
 msgid "French"
 msgstr "Francés"
 
-#: app/user/routes.py:560
+#: app/user/routes.py:561
 msgid "German"
 msgstr "Alemán"
 
-#: app/user/routes.py:561
+#: app/user/routes.py:562
 #, fuzzy
 msgid "Hindi"
 msgstr "Buscar"
 
-#: app/user/routes.py:562
+#: app/user/routes.py:563
 msgid "Japanese"
 msgstr "Japonés"
 
-#: app/user/routes.py:563
+#: app/user/routes.py:564
 msgid "Spanish"
 msgstr ""
 
-#: app/user/routes.py:564
+#: app/user/routes.py:565
 #, fuzzy
 msgid "Polish"
 msgstr "Inglés"
 
-#: app/user/routes.py:672
+#: app/user/routes.py:566
+msgid "Ukrainian"
+msgstr ""
+
+#: app/user/routes.py:674
 #, fuzzy, python-format
 msgid "Your %(provider)s account has been disconnected."
 msgstr "Tu nueva comunidad ha sido creada."
 
-#: app/user/routes.py:693
+#: app/user/routes.py:695
 msgid "Export Complete."
 msgstr "Exportación completada."
 
-#: app/user/routes.py:718
+#: app/user/routes.py:720
 msgid ""
 "Your subscriptions and blocks are being imported. If you have many it "
 "could take a few minutes."
@@ -9894,30 +10173,30 @@ msgstr ""
 "Se están importando tus suscripciones y bloqueos. Si tienes muchos, "
 "podría tardar unos minutos."
 
-#: app/user/routes.py:751
+#: app/user/routes.py:753
 msgid "You cannot ban yourself."
 msgstr "No puedes bloquearte a ti mismo."
 
-#: app/user/routes.py:789
+#: app/user/routes.py:791
 msgid "You cannot unban yourself."
 msgstr "No puedes desbloquearte a ti mismo."
 
-#: app/user/routes.py:792
+#: app/user/routes.py:794
 #, fuzzy, python-format
 msgid "%(actor)s has been unbanned."
 msgstr "%(name)s ha sido desbloqueado."
 
-#: app/user/routes.py:827
+#: app/user/routes.py:829
 #, fuzzy, python-format
 msgid "%(actor)s has been blocked."
 msgstr "%(name)s ha sido bloqueado."
 
-#: app/user/routes.py:898
+#: app/user/routes.py:900
 #, fuzzy, python-format
 msgid "%(actor)s has been unblocked."
 msgstr "%(name)s ha sido bloqueado."
 
-#: app/user/routes.py:924
+#: app/user/routes.py:926
 msgid ""
 "Moderators have already assessed reports regarding this person, no "
 "further reports are necessary."
@@ -9925,135 +10204,135 @@ msgstr ""
 "Los moderadores ya han evaluado los reportes sobre esta persona; no se "
 "necesitan más reportes."
 
-#: app/user/routes.py:931
+#: app/user/routes.py:933
 #, python-format
 msgid "%(user_name)s has already been reported, thank you!"
 msgstr "¡%(user_name)s ya ha sido reportado, gracias!"
 
-#: app/user/routes.py:966
+#: app/user/routes.py:968
 #, python-format
 msgid "%(user_name)s has been reported, thank you!"
 msgstr "¡%(user_name)s ha sido reportado, gracias!"
 
-#: app/user/routes.py:972
+#: app/user/routes.py:974
 msgid "Report user"
 msgstr "Reportar usuario"
 
-#: app/user/routes.py:988
+#: app/user/routes.py:990
 msgid "You cannot delete yourself."
 msgstr "No puedes eliminar tu propia cuenta."
 
-#: app/user/routes.py:1002
+#: app/user/routes.py:1004
 msgid "Deleted user was a remote instance admin."
 msgstr ""
 
-#: app/user/routes.py:1004
+#: app/user/routes.py:1006
 #, fuzzy
 msgid "Deleted user with role permissions."
 msgstr "Permisos de rol"
 
-#: app/user/routes.py:1005
+#: app/user/routes.py:1007
 #, fuzzy, python-format
 msgid "%(actor)s has been deleted."
 msgstr "Este usuario ha sido eliminado."
 
-#: app/user/routes.py:1022
+#: app/user/routes.py:1024
 #, fuzzy, python-format
 msgid "%(community_name)s has been unblocked."
 msgstr "%(name)s ha sido bloqueado."
 
-#: app/user/routes.py:1066
+#: app/user/routes.py:1068
 msgid "Account deletion in progress. Give it a few minutes."
 msgstr "Eliminación de cuenta en curso. Espera unos minutos."
 
-#: app/user/routes.py:1073
+#: app/user/routes.py:1075
 msgid "Delete my account"
 msgstr "Eliminar mi cuenta"
 
-#: app/user/routes.py:1218
+#: app/user/routes.py:1220
 msgid "All notifications marked as read."
 msgstr "Todas las notificaciones se han marcado como leídas."
 
-#: app/user/routes.py:1362
+#: app/user/routes.py:1364
 msgid "NSFW content will be hidden due to legal restrictions in your country."
 msgstr ""
 
-#: app/user/routes.py:1480
+#: app/user/routes.py:1482
 msgid "Filter deleted."
 msgstr "Filtro eliminado."
 
-#: app/user/routes.py:1505
+#: app/user/routes.py:1507
 #, fuzzy, python-format
 msgid "User not found: %(username)s"
 msgstr "Editar nota para \"%(user_name)s\""
 
-#: app/user/routes.py:1515 app/user/routes.py:1560 app/user/routes.py:1594
+#: app/user/routes.py:1517 app/user/routes.py:1562 app/user/routes.py:1596
 #, fuzzy, python-format
 msgid "%(name)s is already blocked."
 msgstr "%(name)s ha sido bloqueado."
 
-#: app/user/routes.py:1554
+#: app/user/routes.py:1556
 #, fuzzy, python-format
 msgid "Community not found: %(name)s"
 msgstr "Comunidad no encontrada."
 
-#: app/user/routes.py:1621
+#: app/user/routes.py:1623
 #, python-format
 msgid "Instance not found: %(domain)s"
 msgstr ""
 
-#: app/user/routes.py:1629
+#: app/user/routes.py:1631
 #, fuzzy, python-format
 msgid "Error blocking instance: %(error)s"
 msgstr "No hay instancias bloqueadas"
 
-#: app/user/routes.py:1699
+#: app/user/routes.py:1701
 msgid "Comment bookmarks"
 msgstr "Marcadores de comentarios"
 
-#: app/user/routes.py:1727
+#: app/user/routes.py:1729
 msgid "Reply Alerts"
 msgstr "Alertas de respuestas"
 
-#: app/user/routes.py:1749
+#: app/user/routes.py:1751
 msgid "Community Alerts"
 msgstr "Alertas de comunidad"
 
-#: app/user/routes.py:1755
+#: app/user/routes.py:1757
 msgid "Topic Alerts"
 msgstr "Alertas de tema"
 
-#: app/user/routes.py:1761
+#: app/user/routes.py:1763
 #, fuzzy
 msgid "Feed Alerts"
 msgstr "Alertas de usuario"
 
-#: app/user/routes.py:1769
+#: app/user/routes.py:1771
 msgid "User Alerts"
 msgstr "Alertas de usuario"
 
-#: app/user/routes.py:1785
+#: app/user/routes.py:1787
 msgid "Post Alerts"
 msgstr "Alertas de publicaciones"
 
-#: app/user/routes.py:1840
+#: app/user/routes.py:1842
 msgid "Lemmy can't follow profiles, sorry"
 msgstr "Lemmy no puede seguir perfiles, lo sentimos"
 
-#: app/user/routes.py:1913
+#: app/user/routes.py:1915
 msgid "Reading history has been deleted"
 msgstr "El historial de lectura se ha eliminado"
 
-#: app/user/routes.py:1981
+#: app/user/routes.py:1983
 #, fuzzy, python-format
 msgid "That person could not be retrieved or is banned from %(site)s."
 msgstr "No se pudo recuperar a esa persona o está bloqueada en %(site)s."
 
-#: app/user/routes.py:1991
+#: app/user/routes.py:1993
 msgid "Searching for remote people requires login"
 msgstr ""
 
-#: app/user/routes.py:2209
+#: app/user/routes.py:2211
 msgid "You have exceeded your storage quota."
 msgstr ""
 
@@ -10370,3 +10649,4 @@ msgstr "Tu nueva comunidad ha sido creada."
 
 #~ msgid "More new communities"
 #~ msgstr "Más nuevas comunidades"
+

@@ -400,16 +400,18 @@ function setupLightDark() {
 
     const showActiveTheme = (theme) => {
         if (theme === 'dark') {
-            elem.setAttribute('aria-label', 'Light mode');
-            elem.setAttribute('title', 'Light mode');
-            elem.setAttribute('data-bs-original-title', 'Light mode');
+            const title = elem.dataset['light'];
+            elem.setAttribute('aria-label', title);
+            elem.setAttribute('title', title);
+            elem.setAttribute('data-bs-original-title', title);
             elem.setAttribute('data-bs-theme-value', 'light');
             icon.classList.remove('fe-moon');
             icon.classList.add('fe-sun');
         } else {
-            elem.setAttribute('aria-label', 'Dark mode');
-            elem.setAttribute('title', 'Dark mode');
-            elem.setAttribute('data-bs-original-title', 'Dark mode');
+            const title = elem.dataset['dark'];
+            elem.setAttribute('aria-label', title);
+            elem.setAttribute('title', title);
+            elem.setAttribute('data-bs-original-title', title);
             elem.setAttribute('data-bs-theme-value', 'dark');
             icon.classList.remove('fe-sun');
             icon.classList.add('fe-moon');
@@ -1367,7 +1369,7 @@ function setupNotificationPermission() {
         if(Notification.permission !== "granted") {
             permissionButton.addEventListener('click', () => {
                 Notification.requestPermission().then((permission) => {
-                  permissionButton.innerText = 'Granted'
+                  permissionButton.innerText = permissionButton.dataset['granted'];
                 });
             });
         }

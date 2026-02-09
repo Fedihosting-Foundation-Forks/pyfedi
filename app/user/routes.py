@@ -1398,7 +1398,7 @@ def user_settings_filters():
     blocked_instances = Instance.query.join(InstanceBlock, InstanceBlock.instance_id == Instance.id). \
         filter(InstanceBlock.user_id == current_user.id).order_by(Instance.domain).all()
 
-    return render_template('user/filters.html', form=form, filters=filters, user=current_user,
+    return render_template('user/filters.html', title=_('Filters'), form=form, filters=filters, user=current_user,
                            blocked_users=blocked_users, blocked_communities=blocked_communities,
                            blocked_domains=blocked_domains, blocked_instances=blocked_instances)
 

@@ -21,12 +21,12 @@
         {% include "user/_user_nav.html" %}
         <form method='post' enctype="multipart/form-data" role="form">
             {{ form.csrf_token() }}
-            <h5>Import</h5>
+            <h5>{{ _('Import') }}</h5>
             {{ render_field(form.import_file) }}
             {{ render_field(form.submit) }}
             <hr>
-            <h5>Export</h5>
-            <p>Export community subscriptions and user settings</p>
+            <h5>{{ _('Export') }}</h5>
+            <p>{{ _('Export community subscriptions and user settings') }}</p>
             {{ render_field(form.export_settings) }}
             <hr>
         </form>

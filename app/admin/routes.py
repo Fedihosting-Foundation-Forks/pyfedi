@@ -62,10 +62,11 @@ def admin_home():
     used = usage.used
     percent_used = used / total * 100
 
+    storage_used = _('Storage used')
     if percent_used > 95:
-        disk_usage = f"<span class='blink red'>Storage used: {percent_used:.2f}%</span>"
+        disk_usage = f"<span class='blink red'>{storage_used}: {percent_used:.2f}%</span>"
     else:
-        disk_usage = f"Storage used: {percent_used:.2f}%"
+        disk_usage = f"{storage_used}: {percent_used:.2f}%"
     
     # Get plugin information
     from app.plugins import get_loaded_plugins, get_plugin_hooks

@@ -419,8 +419,9 @@ class CommunityFlair(DefaultSchema):
     background_color = fields.String(required=True, validate=validate_color_code,
                                      metadata={"example": "#DEDDDA", "description": "Hex color code for the background of the flair"})
     blur_images = fields.Boolean(required=True)
-    ap_id = fields.Url(required=True, allow_none=True,
-                       metadata={"description": "Legacy tags that existed prior to 1.2 and some tags for remote communities might not have a defined ap_id"})
+    ap_id = fields.String(required=True, allow_none=True, metadata={
+        "description": "Legacy tags that existed prior to 1.2 and some tags for remote communities might not have a defined ap_id",
+        "format": "url"})
 
 
 class PostView(DefaultSchema):

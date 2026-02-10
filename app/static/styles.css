@@ -554,6 +554,11 @@ fieldset legend {
   font-size: inherit;
 }
 
+.form-control::placeholder {
+  color: rgba(var(--bs-secondary-color-rgb), 0.5);
+  font-style: italic;
+}
+
 .form-check-input {
   margin-top: 0;
 }

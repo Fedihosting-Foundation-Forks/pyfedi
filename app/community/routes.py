@@ -193,7 +193,7 @@ def add_remote():
             server, community = extract_domain_and_actor(address)
             new_community = search_for_community('!' + community + '@' + server)
         else:
-            message = Markup(_('Accepted address formats: !community@server.name or https://server.name/{c|m}/community.') + ' ' + _('Search on <a href="https://lemmyverse.net/communities">Lemmyverse.net</a> to find some.'))
+            message = Markup(_('Accepted address formats: !community@server.name or https://server.name/c/community.') + ' ' + _('Search on <a href="https://lemmyverse.net/communities">Lemmyverse.net</a> to find some.'))
             flash(message, 'error')
         if new_community is None:
             if g.site.enable_nsfw:

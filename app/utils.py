@@ -3978,4 +3978,5 @@ def debug_checkpoint(name: str):
 def get_site_as_dict() -> dict:
     # return the Site as a dict so that it can be serialized by flask-caching
     site = db.session.query(Site).get(1)
-    return { c.name: getattr(site, c.name) for c in site.__table__.columns }
+    exclude = ['private_key']
+    return { c.name: getattr(site, c.name) for c in site.__table__.columns if c.name not in exclude}

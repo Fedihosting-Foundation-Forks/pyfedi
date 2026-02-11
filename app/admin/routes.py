@@ -43,7 +43,7 @@ from app.utils import render_template, permission_required, set_setting, get_set
     download_defeds, instance_banned, login_required, referrer, \
     community_membership, retrieve_image_hash, posts_with_blocked_images, user_access, reported_posts, user_notes, \
     safe_order_by, get_task_session, patch_db_session, low_value_reposters, moderating_communities_ids, \
-    instance_allowed, trusted_instance_ids, get_emoji_replacements
+    instance_allowed, trusted_instance_ids, get_emoji_replacements, get_site_as_dict
 from app.admin import bp
 
 
@@ -215,6 +215,7 @@ def admin_site():
                 os.unlink(f'app/static/media/{base_filename}{file_ext}')
 
         db.session.commit()
+        cache.delete_memoized(get_site_as_dict)
         set_setting('announcement', form.announcement.data)
         set_setting('announcement_html', markdown_to_html(form.announcement.data, anchors_new_tab=False, a_target=""))
         flash(_('Settings saved.'))
@@ -277,6 +278,7 @@ def admin_misc():
             db.session.add(site)
         db.session.commit()
         cache.delete_memoized(blocked_referrers)
+        cache.delete_memoized(get_site_as_dict)
         set_setting("allow_default_user_add_remote_community", form.allow_default_user_add_remote_community.data)
         set_setting('meme_comms_low_quality', form.meme_comms_low_quality.data)
         set_setting('public_modlog', form.public_modlog.data)

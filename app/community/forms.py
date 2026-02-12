@@ -100,7 +100,7 @@ class EditCommunityForm(FlaskForm):
         (4, _l('Invitation by owner required')),
     ]
     invitations = SelectField(_l('Joining process'), coerce=int, choices=joining_options)
-    question_answer = BooleanField('Question & answer community')
+    question_answer = BooleanField(_l('Question & answer community'))
     restricted_to_mods = BooleanField(_l('Only moderators can post'))
     new_mods_wanted = BooleanField(_l('New moderators wanted'))
     downvote_accept_modes = [(DOWNVOTE_ACCEPT_ALL, _l('Everyone')),

@@ -27,10 +27,10 @@
                         <input type="radio" name="search_for" class="btn-check" id="btncheck3" autocomplete="off" value="communities">
                         <label class="btn btn-outline-primary" for="btncheck3">{{ _('Communities') }}</label>
                     </div>
-                    <div class="form-group"><label class="form-control-label" for="search_term" aria-label="Search here">{{ _('Keyword') }} ({{ _('optional') }})</label>
+                    <div class="form-group"><label class="form-control-label" for="search_term" aria-label="{{ _('Search here') }}">{{ _('Keyword') }} ({{ _('optional') }})</label>
                         <input autofocus="" class="form-control" id="search_term" name="q" type="search" value="">
                     </div>
-                    <div class="form-group"><label class="form-control-label" for="community" aria-label="Restrict results by community">{{ _('Community') }}</label>
+                    <div class="form-group"><label class="form-control-label" for="community" aria-label="{{ _('Restrict results by community') }}">{{ _('Community') }}</label>
                         <input type="text" class="form-control" id="community" name="community"
                                list="community_suggestions"
                                hx-post="/post/search_community_suggestions"
@@ -43,7 +43,7 @@
                     </div>
                     <fieldset class="mt-4 mb-4 coolfieldset collapsed">
                         <legend class="w-auto">{{ _('More options') }}</legend>
-                            <div class="form-group"><label class="form-control-label" for="type" aria-label="Restrict results by type">{{ _('Type') }}</label>
+                            <div class="form-group"><label class="form-control-label" for="type" aria-label="{{ _('Restrict results by type') }}">{{ _('Type') }}</label>
                             <select class="form-control form-select" id="type" name="type">
                                 <option value="0">{{ _('All') }}</option>
                                 <option value="{{ POST_TYPE_ARTICLE }}">{{ _('Discussion') }}</option>
@@ -53,7 +53,7 @@
                                 <option value="{{ POST_TYPE_POLL }}">{{ _('Poll') }}</option>
                             </select>
                         </div>
-                        <div class="form-group"><label class="form-control-label" for="language" aria-label="Restrict results by language">{{ _('Language') }}</label>
+                        <div class="form-group"><label class="form-control-label" for="language" aria-label="{{ _('Restrict results by language') }}">{{ _('Language') }}</label>
                             <select class="form-control form-select" id="language" name="language">
                                 <option value="0">{{ _('All') }}</option>
                                 {% for language in languages %}
@@ -61,7 +61,7 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="form-group"><label class="form-control-label" for="software" aria-label="Restrict results by instance software">{{ _('Instance Software') }}</label>
+                        <div class="form-group"><label class="form-control-label" for="software" aria-label="{{ _('Restrict results by instance software') }}">{{ _('Instance Software') }}</label>
                             <select class="form-control form-select" id="software" name="software">
                                 <option value="">{{ _('All') }}</option>
                                 {% for software in instance_software %}
@@ -71,14 +71,14 @@
                                 {% endfor %}
                             </select>
                         </div>
-                        <div class="form-group"><label class="form-control-label" for="type" aria-label="Sort results">{{ _('Sort by') }}</label>
+                        <div class="form-group"><label class="form-control-label" for="type" aria-label="{{ _('Sort results') }}">{{ _('Sort by') }}</label>
                             <select class="form-control form-select" id="sort_by" name="sort_by">
                                 <option value="">{{ _('Relevance') }}</option>
                                 <option value="date">{{ _('Recent first') }}</option>
                                 <option value="top">{{ _('Top') }}</option>
                             </select>
                         </div>
-                        <div class="form-group"><label class="form-control-label" for="type" aria-label="Sort results">{{ _('NSFW') }}</label>
+                        <div class="form-group"><label class="form-control-label" for="type" aria-label="{{ _('NSFW') }}">{{ _('NSFW') }}</label>
                             <select class="form-control form-select" id="nsfw" name="nsfw">
                                 <option value="">{{ _('Use my profile settings') }}</option>
                                 <option value="only">{{ _('Only NSFW') }}</option>
@@ -91,7 +91,7 @@
                         </div>
                     </fieldset>
 
-                    <input class="btn btn-primary btn-md" id="submit" name="submit" type="submit" value="Search">
+                    <input class="btn btn-primary btn-md" id="submit" name="submit" type="submit" value="{{ _('Search') }}">
                 </form>
                 <h6 class="mt-5">{{ _('Example searches:') }} </h6>
                 <table class="table">

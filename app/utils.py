@@ -1573,7 +1573,7 @@ def can_upload_video():
         return False
     elif upload_access == 'admins' and not current_user.is_admin_or_staff():
         return False
-    elif upload_access == 'users' and not current_user.is_authenticated():
+    elif upload_access == 'users' and not current_user.is_authenticated:
         return False
     return True
 
@@ -2033,6 +2033,9 @@ def url_to_thumbnail_file(filename) -> File:
 
             if store_files_in_s3():
                 content_type = guess_mime_type(temp_file_path)
+                extra_args = {'ContentType': content_type}
+                if current_app.config.get('S3_STORAGE_CLASS'):
+                    extra_args['StorageClass'] = current_app.config['S3_STORAGE_CLASS']
                 boto3_session = boto3.session.Session()
                 s3 = boto3_session.client(
                     service_name='s3',
@@ -2044,7 +2047,7 @@ def url_to_thumbnail_file(filename) -> File:
                 # Upload 170px thumbnail
                 s3.upload_file(temp_file_path, current_app.config['S3_BUCKET'], 'posts/' +
                                new_filename[0:2] + '/' + new_filename[2:4] + '/' + new_filename + final_ext,
-                               ExtraArgs={'ContentType': content_type})
+                               ExtraArgs=extra_args)
                 os.unlink(temp_file_path)
                 thumbnail_170_url = f"https://{current_app.config['S3_PUBLIC_URL']}/posts/{new_filename[0:2]}/{new_filename[2:4]}" + \
                                     '/' + new_filename + final_ext
@@ -2053,7 +2056,7 @@ def url_to_thumbnail_file(filename) -> File:
                     # Upload 512px thumbnail
                     s3.upload_file(temp_file_path_512, current_app.config['S3_BUCKET'], 'posts/' +
                                 new_filename[0:2] + '/' + new_filename[2:4] + '/' + new_filename + '_512' + final_ext,
-                                ExtraArgs={'ContentType': content_type})
+                                ExtraArgs=extra_args)
                     os.unlink(temp_file_path_512)
                     thumbnail_512_url = f"https://{current_app.config['S3_PUBLIC_URL']}/posts/{new_filename[0:2]}/{new_filename[2:4]}" + \
                                         '/' + new_filename + '_512' + final_ext
@@ -3070,9 +3073,12 @@ def move_file_to_s3(file_id, s3):
                     'app/static/media'):
                 if os.path.isfile(file.thumbnail_path):
                     content_type = guess_mime_type(file.thumbnail_path)
+                    extra_args = {'ContentType': content_type}
+                    if current_app.config.get('S3_STORAGE_CLASS'):
+                        extra_args['StorageClass'] = current_app.config['S3_STORAGE_CLASS']
                     new_path = file.thumbnail_path.replace('app/static/media/', "")
                     s3.upload_file(file.thumbnail_path, current_app.config['S3_BUCKET'], new_path,
-                                   ExtraArgs={'ContentType': content_type})
+                                   ExtraArgs=extra_args)
                     os.unlink(file.thumbnail_path)
                     file.thumbnail_path = f"https://{current_app.config['S3_PUBLIC_URL']}/{new_path}"
                     db.session.commit()
@@ -3081,9 +3087,12 @@ def move_file_to_s3(file_id, s3):
                     'app/static/media'):
                 if os.path.isfile(file.file_path):
                     content_type = guess_mime_type(file.file_path)
+                    extra_args = {'ContentType': content_type}
+                    if current_app.config.get('S3_STORAGE_CLASS'):
+                        extra_args['StorageClass'] = current_app.config['S3_STORAGE_CLASS']
                     new_path = file.file_path.replace('app/static/media/', "")
                     s3.upload_file(file.file_path, current_app.config['S3_BUCKET'], new_path,
-                                   ExtraArgs={'ContentType': content_type})
+                                   ExtraArgs=extra_args)
                     os.unlink(file.file_path)
                     file.file_path = f"https://{current_app.config['S3_PUBLIC_URL']}/{new_path}"
                     db.session.commit()
@@ -3092,9 +3101,12 @@ def move_file_to_s3(file_id, s3):
                     'app/static/media'):
                 if os.path.isfile(file.source_url):
                     content_type = guess_mime_type(file.source_url)
+                    extra_args = {'ContentType': content_type}
+                    if current_app.config.get('S3_STORAGE_CLASS'):
+                        extra_args['StorageClass'] = current_app.config['S3_STORAGE_CLASS']
                     new_path = file.source_url.replace('app/static/media/', "")
                     s3.upload_file(file.source_url, current_app.config['S3_BUCKET'], new_path,
-                                   ExtraArgs={'ContentType': content_type})
+                                   ExtraArgs=extra_args)
                     os.unlink(file.source_url)
                     file.source_url = f"https://{current_app.config['S3_PUBLIC_URL']}/{new_path}"
                     db.session.commit()

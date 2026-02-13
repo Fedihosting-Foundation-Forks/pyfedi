@@ -614,7 +614,7 @@ def handle_lemmy_spoilers(text: str) -> str:
     # If the number of openings and closings match, make the html substitutions
     # If they don't match, then process the block spoilers in allowlist_html instead (can't nest spoilers, more quirks)
     if len(num_openings) == len(num_closings):
-        text = spoiler_opening.sub(r'<details><summary>\1</summary><div class="spoiler_block symmetric">' + "\n", text)
+        text = spoiler_opening.sub(r'<details><summary>\1</summary><div class="spoiler_block symmetric">', text)
         text = spoiler_closing.sub(r'</div></details>', text)
 
     # Step 3: Restore code snippets

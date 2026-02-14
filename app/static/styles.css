@@ -836,7 +836,6 @@ div.navbar {
     margin-right: calc(var(--bs-navbar-nav-link-padding-x) * -2);
   }
 }
-
 @media (min-width: 992px) {
   ul.navbar-nav {
     width: 100%;
@@ -2578,7 +2577,7 @@ h1 .warning_badge {
 }
 
 .main_pane {
-/* Ensure a little space after pagination on mobile. */
+  /* Ensure a little space after pagination on mobile. */
   padding-bottom: 12px;
 }
 @media (min-width: 992px) {
@@ -2867,7 +2866,6 @@ form h5 {
     margin-left: calc(var(--bs-gutter-x) * -0.5);
   }
 }
-
 #insertImageDialog {
   max-width: 1000px;
 }

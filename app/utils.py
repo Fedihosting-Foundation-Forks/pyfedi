@@ -1573,7 +1573,7 @@ def can_upload_video():
         return False
     elif upload_access == 'admins' and not current_user.is_admin_or_staff():
         return False
-    elif upload_access == 'users' and not current_user.is_authenticated():
+    elif upload_access == 'users' and not current_user.is_authenticated:
         return False
     return True
 

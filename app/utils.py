@@ -2124,7 +2124,7 @@ def parse_page(page_url):
             found_tags["og_description"] = desc["content"]
 
     if "og:description" in found_tags and "description" not in found_tags:
-        found_tags["description"] = found_tags["og_description"]
+        found_tags["description"] = found_tags["og:description"]
 
     if len(found_tags) == 0 or 'og:title' not in found_tags:
         title = soup.find("title")

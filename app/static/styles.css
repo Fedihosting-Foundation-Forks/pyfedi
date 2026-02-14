@@ -1718,6 +1718,28 @@ time {
   max-width: 100%;
 }
 
+details {
+  margin-bottom: 1rem;
+}
+
+.spoiler_block {
+  margin: 3px 0 0 1em;
+  padding: 0.5em 0.5em 0.5em 0.2em;
+  border-left-style: solid;
+  border-left-width: 2px;
+  background-color: var(--bs-secondary-bg-subtle);
+  border-left-color: var(--bs-secondary-border-subtle);
+}
+.spoiler_block p:last-child {
+  margin-bottom: 0;
+}
+.spoiler_block table, .spoiler_block img {
+  padding: 0.5em;
+}
+.spoiler_block > details {
+  margin-bottom: 0;
+}
+
 .render_username {
   display: inline;
 }

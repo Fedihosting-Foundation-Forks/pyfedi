@@ -310,6 +310,39 @@ And if you want to add your score to the database to help your fellow Bookworms 
         result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
         target_html = '<p><em><strong>This</strong></em> is <em><strong>bold and italics</strong></em>.</p>\n'
         self.assertEqual(target_html, result)
+    
+    def test_spoiler_blocks(self):
+        """Test various functionality with spoiler blocks."""
+
+        # Basic functionality
+        markdown = "::: spoiler Summary\nThis is a spoiler.\n:::"
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
+        target_html = '<details><summary>Summary</summary><div class="spoiler_block symmetric">\n<p>This is a spoiler.</p>\n</div></details>\n'
+        self.assertEqual(target_html, result)
+
+        # Naked spoiler
+        markdown = "::: spoiler\nThis is a spoiler.\n:::"
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
+        target_html = '<details><summary>Spoiler</summary><div class="spoiler_block symmetric">\n<p>This is a spoiler.</p>\n</div></details>\n'
+        self.assertEqual(target_html, result)
+
+        # Bulleted list immediately after spoiler opening
+        markdown = "::: spoiler Summary\n- one\n- two\n:::"
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
+        target_html = '<details><summary>Summary</summary><div class="spoiler_block symmetric">\n<ul>\n<li>one</li>\n<li>two</li>\n</ul>\n</div></details>\n'
+        self.assertEqual(target_html, result)
+
+        # Nested spoilers
+        markdown = "::: spoiler First Summary\n::: spoiler Second Summary\nSpoiler content\n:::\n:::"
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
+        target_html = '<details><summary>First Summary</summary><div class="spoiler_block symmetric">\n<details><summary>Second Summary</summary><div class="spoiler_block symmetric">\n<p>Spoiler content</p>\n</div></details>\n</div></details>\n'
+        self.assertEqual(target_html, result)
+
+        # Asymmetric spoiler formatting, fallback to old spoiler block behavior
+        markdown = "::: spoiler Summary 1\n::: spoiler Summary 2\nThis is a spoiler with no closing\n:::\n"
+        result = markdown_to_html(markdown, test_env={'fn_string': 'fn-test'})
+        target_html = '<p><details><summary>Summary 1</summary><div class="spoiler_block"><p>\n</p></div></details> spoiler Summary 2</p>\n<p>This is a spoiler with no closing</p>\n<p>:::</p>\n'
+        self.assertEqual(target_html, result)
 
 
 if __name__ == '__main__':

@@ -344,7 +344,7 @@ def allowlist_html(html: str, a_target='_blank', test_env=False) -> str:
     clean_html = clean_html.replace('<h2>:::</h2>',
                                     '<p>:::</p>')  # this is needed for lemmy.world/c/hardware's sidebar, for some reason.
     re_spoiler = re.compile(r':{3}\s*?spoiler\s+?(\S.+?)(?:\n|</p>)(.+?)(?:\n|<p>):{3}', re.S)
-    clean_html = re_spoiler.sub(r'<details><summary>\1</summary><p>\2</p></details>', clean_html)
+    clean_html = re_spoiler.sub(r'<details><summary>\1</summary><div class="spoiler_block"><p>\2</p></div></details>', clean_html)
 
     # replace strikethough markdown left in HTML
     re_strikethough = re.compile(r'~~(.*)~~')
@@ -593,6 +593,78 @@ def handle_lemmy_autocomplete(text: str) -> str:
     return text
 
 
+def handle_lemmy_spoilers(text: str) -> str:
+    """
+    Handles the block spoiler syntax inherited from lemmy
+    """
+
+    placeholder = gibberish(10)
+
+    # Step 1: Extract inline and block code, replacing with placeholders
+    code_snippets, text = stash_code_html(text, placeholder)
+
+    # Step 2: Regex stuff
+    spoiler_opening = re.compile(r'^<p>:{3}\sspoiler\s+?(\S.+?)?</p>$', re.M)
+    spoiler_closing = re.compile(r'^<p>:{3}\s*?</p>$', re.M)
+
+    # Step 3: Count the number of openings and closings so that we know we are closing each html tag we open
+    num_openings = re.findall(spoiler_opening, text)
+    num_closings = re.findall(spoiler_closing, text)
+
+    # Step 4: If the number of openings and closings match, make the html substitutions
+    # If they don't match, then process the block spoilers in allowlist_html instead (can't nest spoilers, more quirks)
+    if len(num_openings) == len(num_closings):
+        text = spoiler_opening.sub(r'<details><summary>\1</summary><div class="spoiler_block symmetric">', text)
+        text = spoiler_closing.sub(r'</div></details>', text)
+
+    # Step 5: Restore code snippets
+    text = pop_code(code_snippets=code_snippets, text=text, placeholder=placeholder)
+
+    return text
+
+
+def handle_naked_spoilers(text: str) -> str:
+    """
+    Makes lemmy spoiler blocks without a summary block actually work
+    """
+
+    placeholder = gibberish(10)
+
+    # Step 1: Extract inline and block code, replacing with placeholders
+    code_snippets, text = stash_code_md(text, placeholder)
+
+    # Step 2: Regex stuff
+    empty_spoilers = re.compile(r'^:{3}\sspoiler[ ]*?$', re.M)
+    text = empty_spoilers.sub('::: spoiler Spoiler', text)
+
+    # Step 3: Restore code snippets
+    text = pop_code(code_snippets=code_snippets, text=text, placeholder=placeholder)
+
+    return text
+
+
+def handle_spoiler_spacing(text: str) -> str:
+    """
+    Inserts a blank line in the markdown after a spoiler block opening (see #1612)
+    """
+
+    placeholder = gibberish(10)
+
+    # Step 1: Extract inline and block code, replacing with placeholders
+    code_snippets, text = stash_code_md(text, placeholder)
+
+    # Step 2: Regex stuff
+    spoiler_opening = re.compile(r'^:{3}\sspoiler\s+?(\S.+?)?$', re.M)
+    spoiler_closing = re.compile(r'^:{3}\s*?$', re.M)
+    text = spoiler_opening.sub(r'::: spoiler \1\n', text)
+    text = spoiler_closing.sub(r'\n:::\n', text)
+
+    # Step 3: Restore code snippets
+    text = pop_code(code_snippets=code_snippets, text=text, placeholder=placeholder)
+
+    return text
+
+
 # use this for Markdown irrespective of origin, as it can deal with both soft break newlines ('\n' used by PieFed) and hard break newlines ('  \n' or ' \\n')
 # ' \\n' will create <br /><br /> instead of just <br />, but hopefully that's acceptable.
 def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_target="_blank", test_env=False) -> str:
@@ -604,6 +676,8 @@ def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_targ
         
         markdown_text = handle_bold_em(markdown_text)  # Some preprocessing to better handle bold and italics
         markdown_text = handle_lemmy_autocomplete(markdown_text)
+        markdown_text = handle_naked_spoilers(markdown_text)
+        markdown_text = handle_spoiler_spacing(markdown_text)
 
         try:
             md = markdown2.Markdown(extras={'middle-word-em': False,
@@ -642,6 +716,8 @@ def markdown_to_html(markdown_text, anchors_new_tab=True, allow_img=True, a_targ
         
         if not allow_img:
             raw_html = escape_img(raw_html)
+        
+        raw_html = handle_lemmy_spoilers(raw_html)
 
         return allowlist_html(raw_html, a_target=a_target if anchors_new_tab else '', test_env=test_env)
     else:
@@ -1346,7 +1422,7 @@ def instance_allowed(host: str) -> bool:
 
 @cache.memoize(timeout=150)
 def instance_banned(domain: str) -> bool:
-    session = get_task_session()
+    session = get_task_session()  # noqa: F811
     try:
         if domain is None or domain == '':
             return False
@@ -1375,7 +1451,7 @@ def instance_online(domain: str) -> bool:
     domain = domain.lower().strip()
     if 'https://' in domain or 'http://' in domain:
         domain = urlparse(domain).hostname
-    session = get_task_session()
+    session = get_task_session()  # noqa: F811
     try:
         instance = session.query(Instance).filter_by(domain=domain).first()
         if instance is not None:
@@ -1396,7 +1472,7 @@ def instance_gone_forever(domain: str) -> bool:
     domain = domain.lower().strip()
     if 'https://' in domain or 'http://' in domain:
         domain = urlparse(domain).hostname
-    session = get_task_session()
+    session = get_task_session()  # noqa: F811
     try:
         instance = session.query(Instance).filter_by(domain=domain).first()
         if instance is not None:
@@ -1417,7 +1493,7 @@ def user_cookie_banned() -> bool:
 
 @cache.memoize(timeout=30)
 def banned_ip_addresses() -> List[str]:
-    session = get_task_session()
+    session = get_task_session()  # noqa: F811
     try:
         ips = session.query(IpBan).all()
         return [ip.ip_address for ip in ips]
@@ -2525,7 +2601,7 @@ def patch_db_session(task_session):
     
     # Create a wrapper that makes the task session work with Flask-SQLAlchemy's Model.query
     class SessionWrapper:
-        def __init__(self, session):
+        def __init__(self, session):  # noqa: F811
             self._session = session
             
         def __call__(self):
@@ -2602,7 +2678,7 @@ def download_defeds(defederation_subscription_id: int, domain: str):
 
 @celery.task
 def download_defeds_worker(defederation_subscription_id: int, domain: str):
-    session = get_task_session()
+    session = get_task_session()  # noqa: F811
     for defederation_url in retrieve_defederation_list(domain):
         session.add(BannedInstances(domain=defederation_url, reason='auto', subscription_id=defederation_subscription_id))
     session.commit()
@@ -3587,7 +3663,7 @@ def is_valid_xml_utf8(pystring):
 def archive_post(post_id: int):
     from app import redis_client
     import os
-    session = get_task_session()
+    session = get_task_session()  # noqa: F811
     try:
         with patch_db_session(session):
             if current_app.debug:

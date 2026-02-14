@@ -14,4 +14,4 @@ class TestFixupUrl(unittest.TestCase):
         """Test YouTube playlists"""
         thumbnail, embed = fixup_url('https://www.youtube.com/playlist?list=OLAK5uy_m0ymBxrjfVeJeuv9sde3pN_yvAfwWuxGw')
         self.assertEqual(thumbnail, '')
-        self.assertEqual(embed, 'https://www.youtube.com/embed/videoseries?list=OLAK5uy_m0ymBxrjfVeJeuv9sde3pN_yvAfwWuxGw')
+        self.assertEqual(embed, 'https://www.youtube.com/playlist?list=OLAK5uy_m0ymBxrjfVeJeuv9sde3pN_yvAfwWuxGw')

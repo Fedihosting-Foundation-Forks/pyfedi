@@ -682,6 +682,7 @@ def connect_oauth():
 @bp.route('/user/settings/import_export', methods=['GET', 'POST'])
 @login_required
 def user_settings_import_export():
+    from app import redis_client
     user = User.query.filter_by(id=current_user.id, deleted=False, banned=False, ap_id=None).first()
     if user is None:
         abort(404)
@@ -706,16 +707,14 @@ def user_settings_import_export():
             file_ext = os.path.splitext(import_file.filename)[1]
             if file_ext.lower() != '.json':
                 abort(400)
-            new_filename = gibberish(15) + '.json'
-
-            directory = 'app/static/media/'
-
-            # save the file
-            final_place = os.path.join(directory, new_filename)
-            import_file.save(final_place)
+            
+            redis_key = f"import:{user.id}:{gibberish(15)}"
+            imported_data = import_file.stream.read()
+            
+            redis_client.set(redis_key, imported_data, ex=3600)
 
             # import settings in background task
-            import_settings(final_place)
+            import_settings(redis_key)
 
             flash(_('Your subscriptions and blocks are being imported. If you have many it could take a few minutes.'))
 
@@ -1221,23 +1220,24 @@ def notifications_all_read():
     return redirect(url_for('user.notifications', type=original_notif_type))
 
 
-def import_settings(filename):
+def import_settings(redis_key):
     if current_app.debug:
-        import_settings_task(current_user.id, filename)
+        import_settings_task(current_user.id, redis_key)
     else:
-        import_settings_task.delay(current_user.id, filename)
+        import_settings_task.delay(current_user.id, redis_key)
 
 
 @celery.task
-def import_settings_task(user_id, filename):
+def import_settings_task(user_id, redis_key):
     from app.api.alpha.utils.misc import get_resolve_object
 
     with current_app.app_context():
         session = get_task_session()
         try:
             with patch_db_session(session):
+                from app import redis_client
                 user = session.query(User).get(user_id)
-                contents = file_get_contents(filename)
+                contents = redis_client.get(redis_key)
                 contents_json = json.loads(contents)
 
                 # Follow communities
@@ -1346,7 +1346,7 @@ def import_settings_task(user_id, filename):
                 cache.delete_memoized(blocked_users, user.id)
                 cache.delete_memoized(blocked_domains, user.id)
 
-                os.unlink(filename)
+                redis_client.delete(redis_key)
 
         except Exception:
             session.rollback()

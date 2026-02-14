@@ -1936,6 +1936,8 @@ def feed_tree_public(search_param=None) -> List[dict]:
 
 @cache.memoize(timeout=600)
 def opengraph_parse(url):
+    if url == '':
+        return None
     if '?' in url:
         url = url.split('?')
         url = url[0]
@@ -2229,6 +2231,14 @@ def fixup_url(url):
         video_id = timestamp = None
         path = parsed_url.path
         query_params = parse_qs(parsed_url.query)
+
+        # Handle YouTube playlists
+        if path == '/playlist' and 'list' in query_params:
+            playlist_id = query_params['list'][0]
+            thumbnail_url = ''
+            embed_url = f'https://www.youtube.com/embed/videoseries?list={playlist_id}'
+            return thumbnail_url, embed_url
+
         if path:
             if path.startswith('/shorts/') and len(path) > 8:
                 video_id = path[8:]

@@ -166,7 +166,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent" role="navigation">
+            <div class="collapse navbar-collapse{% if current_user.is_authenticated %} authenticated{% endif %}" id="navbarSupportedContent" role="navigation">
                     <ul class="nav navbar-nav text-end text-lg-start">
                         {% if current_user.is_anonymous -%}
                             <li class="nav-item dropdown{% if active_parent == 'communities' %} active{% endif %} communities_menu_parent">

@@ -74,7 +74,7 @@
                 </div>
                 <div class="card-body">
                     {% if len(subscribed) > 0 %}
-                        <h4>Member of</h4>
+                        <h4>{{ _('Member of') }}</h4>
                         <ul>
                             {% for community in subscribed %}
                                 <li>
@@ -84,7 +84,7 @@
                         </ul>
                     {% endif %}
                     {% if len(moderates) > 0 %}
-                        <h4>Moderates</h4>
+                        <h4>{{ _('Moderates') }}</h4>
                         <ul>
                             {% for community in moderates %}
                                 <li>

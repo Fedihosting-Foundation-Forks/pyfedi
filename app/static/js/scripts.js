@@ -538,10 +538,11 @@ function collapseReply(comment_id) {
 // every element with the 'confirm_first' class gets a popup confirmation dialog
 function setupConfirmFirst() {
     const show_first = document.querySelectorAll('.confirm_first');
+    const translation = document.querySelector('#areYouSureTranslation');
     show_first.forEach(element => {
         if (!element.dataset.confirmFirstSetup) {
             element.addEventListener("click", function(event) {
-                if (!confirm("Are you sure?")) {
+                if (!confirm(translation.value)) {
                   event.preventDefault(); // As the user clicked "Cancel" in the dialog, prevent the default action.
                   event.stopImmediatePropagation(); // Stop other event listeners from running
                   event.action_cancelled = true; // Custom flag for setupSendPost handlers

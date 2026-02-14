@@ -49,9 +49,9 @@
                         <td>{{ activity.exception_message if activity.exception_message else '' }}</td>
                         <td>
                         {% if activity.activity_json is none %}
-                            None
+                            {{ _('None') }}
                         {% else %}
-                            <a href="{{ url_for('admin.activity_json', activity_id=activity.id) }}">View</a>
+                            <a href="{{ url_for('admin.activity_json', activity_id=activity.id) }}">{{ _('View') }}</a>
                         {% endif %}
                         </td>
                     </tr>

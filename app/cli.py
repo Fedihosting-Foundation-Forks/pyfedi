@@ -767,6 +767,9 @@ def register(app):
             for file_id in file_ids:
                 file = File.query.get(file_id)
                 content_type = guess_mime_type(file.source_url)
+                extra_args = {'ContentType': content_type}
+                if current_app.config.get('S3_STORAGE_CLASS'):
+                    extra_args['StorageClass'] = current_app.config['S3_STORAGE_CLASS']
                 new_path = file.source_url.replace('/static/media/', "/")
                 s3_path = new_path.replace(f'https://{server_name}/', '')
                 new_path = new_path.replace(server_name, current_app.config['S3_PUBLIC_URL'])
@@ -774,7 +777,7 @@ def register(app):
                 if os.path.isfile(local_file):
                     try:
                         s3.upload_file(local_file, current_app.config['S3_BUCKET'], s3_path,
-                                       ExtraArgs={'ContentType': content_type})
+                                       ExtraArgs=extra_args)
                     except Exception as e:
                         print(f"Error uploading {local_file}: {e}")
                     os.unlink(local_file)

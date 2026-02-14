@@ -2175,6 +2175,11 @@ class Post(db.Model):
             parsed_url = urlparse(self.url)
             query_params = parse_qs(parsed_url.query)
 
+            # Handle playlists
+            if 'list' in query_params:
+                playlist_id = query_params['list'][0]
+                return f'videoseries?list={playlist_id}'
+
             if 'v' in query_params:
                 video_id = query_params.pop('v')[0]
                 if rel:

@@ -2232,11 +2232,10 @@ def fixup_url(url):
         path = parsed_url.path
         query_params = parse_qs(parsed_url.query)
 
-        # Handle YouTube playlists
+        # Handle YouTube playlists - let them through unmolested
         if path == '/playlist' and 'list' in query_params:
-            playlist_id = query_params['list'][0]
             thumbnail_url = ''
-            embed_url = f'https://www.youtube.com/embed/videoseries?list={playlist_id}'
+            embed_url = url
             return thumbnail_url, embed_url
 
         if path:

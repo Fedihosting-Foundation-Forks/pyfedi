@@ -1675,7 +1675,8 @@ def post_move(post_id: int):
 
 @bp.route("/post/search_community_suggestions", methods=['POST'])
 def post_search_community_suggestions():
-    q = request.form.get("which_community", "").lower()
+    q = request.form.get("which_community") or request.form.get("community") or ""
+    q = q.lower()
 
     joined = joined_communities(current_user.get_id())
     moderating = moderating_communities(current_user.get_id())

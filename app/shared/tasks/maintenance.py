@@ -192,7 +192,7 @@ def update_hashtag_counts():
         session.execute(text('''
             UPDATE tag 
             SET post_count = (
-                SELECT COUNT(post_tag.post_id)
+                SELECT COUNT(*)
                 FROM post_tag 
                 WHERE post_tag.tag_id = tag.id
             )

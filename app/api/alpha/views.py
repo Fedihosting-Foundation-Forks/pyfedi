@@ -637,7 +637,7 @@ def calculate_path(reply):
 # emergency function - shouldn't be called in normal circumstances
 def calculate_child_count(reply):
     child_count = db.session.execute(
-        text('select count(id) as c from post_reply where :id = ANY(path) and id != :id and deleted = false'),
+        text('select count(*) as c from post_reply where :id = ANY(path) and id != :id and deleted = false'),
         {"id": reply.id}).scalar()
     reply.child_count = child_count
     db.session.commit()

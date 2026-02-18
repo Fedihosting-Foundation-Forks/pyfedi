@@ -556,12 +556,14 @@ def user_settings():
         ('ca', _l('Catalan')),
         ('zh', _l('Chinese')),
         ('en', _l('English')),
+        ('fi', _l('Finnish')),
         ('fr', _l('French')),
         ('de', _l('German')),
         ('hi', _l('Hindi')),
         ('ja', _l('Japanese')),
         ('es', _l('Spanish')),
         ('pl', _l('Polish')),
+        ('uk', _l('Ukrainian')),
     ]
     form.read_languages.choices = read_language_choices()
     if form.validate_on_submit():
